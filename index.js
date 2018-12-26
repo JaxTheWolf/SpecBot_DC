@@ -12,7 +12,7 @@ const path = require(`path`);
 
 client.registry
     .registerGroups([
-        [`Main`, `Main commands regarding PCs`],
+        [`main`, `Main commands regarding PCs`],
     ])
     .registerDefaults()
     .registerCommandsIn(path.join(__dirname, `commands`));
