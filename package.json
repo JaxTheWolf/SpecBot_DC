@@ -1,0 +1,24 @@
+{
+  "name": "specbot_dc",
+  "version": "1.0.0",
+  "description": "A simple Discord bot to save and show peoples' pc configurations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaxTheWolf/SpecBot_DC.git"
+  },
+  "author": "Roman Lubij (oko123#8509)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaxTheWolf/SpecBot_DC/issues"
+  },
+  "homepage": "https://github.com/JaxTheWolf/SpecBot_DC#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "discord.js-commando": "^0.10.0",
+    "sqlite": "^3.0.0"
+  }
+}
