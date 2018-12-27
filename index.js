@@ -1,26 +1,41 @@
-const conf = require(`./conf.json`);
+const {
+  token,
+  owner,
+  prefix,
+  disableEveryone,
+  unknownCommandResponse
+} = require(`./conf.json`);
 
-const Commando = require(`discord.js-commando`);
-
-const client = new Commando.Client({
-    owner: conf.owner,
-    commandPrefix: conf.prefix,
-    unknownCommandResponse: conf.unknownCommandResponse,
-});
-
+const {
+  CommandoClient
+} = require(`discord.js-commando`);
 const path = require(`path`);
 
+const client = new CommandoClient({
+  commandPrefix: prefix,
+  unknownCommandResponse: unknownCommandResponse,
+  owner: owner,
+  disableEveryone: disableEveryone
+});
+
 client.registry
-    .registerGroups([
-        [`pc`, `Main commands regarding PCs`],
-    ])
-    .registerDefaults()
-    .registerCommandsIn(path.join(__dirname, `commands`));
+  .registerDefaultTypes()
+  .registerGroups([
+    [`pc`, `General stuff about computers.`]
+  ])
+  .registerDefaultGroups()
+  .registerDefaultCommands()
+  .registerCommandsIn(path.join(__dirname, `commands`));
+
+client.on(`ready`, () => {
+  console.log(`Logged in!`);
+  client.user.setActivity(`Developing...`);
+});
 
 const sqlite = require(`sqlite`);
 
 client.setProvider(
-    sqlite.open(path.join(__dirname, `settings.sqlite3`)).then(db => new Commando.SQLiteProvider(db))
+  sqlite.open(path.join(__dirname, `settings.sqlite3`)).then(db => new Commando.SQLiteProvider(db))
 ).catch(console.error);
 
-client.login(`${conf.token}`);
+client.login(token);
