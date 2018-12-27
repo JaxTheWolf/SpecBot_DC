@@ -99,7 +99,7 @@ module.exports = class Setpc1Command extends Command {
 
     fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf2/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log());
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log());
     return msg.say(`Done!`);
   }
 };
