@@ -8,7 +8,7 @@ module.exports = class Setpc1Command extends Command {
       name: `setpc1`,
       group: `pc`,
       memberName: `setpc1`,
-      description: `Sets a computer.`,
+      description: `Sets a second computer.`,
       examples: [`setpc1`],
       args: [{
           key: `CPU`,
@@ -86,15 +86,20 @@ module.exports = class Setpc1Command extends Command {
     MOUSE,
     HEADSET
   }) {
-    console.log(`setpc1 used!`);
 
     let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}`;
     let owner = msg.author;
     let fs = require('fs');
 
+    function log() {
+      let path = require('path');
+      let filename = path.basename(__filename, `.js`);
+      console.log(`${filename} was used by ${msg.author.tag}.`);
+    }
+
     fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content));
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf2/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log());
     return msg.say(`Done!`);
   }
 };

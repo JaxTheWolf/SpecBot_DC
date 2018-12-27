@@ -13,7 +13,12 @@ module.exports = class ReplyCommand extends Command {
     });
   }
   run(msg) {
-    console.log(`Reply used!`);
-    return msg.say(`It's working! Yay!`);
+    function log() {
+      let path = require('path');
+      let filename = path.basename(__filename, `.js`);
+      console.log(`${filename} was used by ${msg.author.tag}.`);
+    }
+
+    return msg.say(`It's working! Yay!`).then(log());
   }
 };
