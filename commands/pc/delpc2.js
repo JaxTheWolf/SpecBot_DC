@@ -8,7 +8,7 @@ module.exports = class DelPC2Command extends Command {
       name: `delpc2`,
       group: `pc`,
       memberName: `delpc2`,
-      description: `Deletes your configuration`,
+      description: `Deletes your second configuration`,
       examples: [`delpc2`]
     });
   }

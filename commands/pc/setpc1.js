@@ -8,7 +8,7 @@ module.exports = class Setpc1Command extends Command {
       name: `setpc1`,
       group: `pc`,
       memberName: `setpc1`,
-      description: `Sets a second computer.`,
+      description: `Sets a computer.`,
       examples: [`setpc1`],
       args: [{
           key: `CPU`,
