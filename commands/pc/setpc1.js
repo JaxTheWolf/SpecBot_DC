@@ -13,61 +13,73 @@ module.exports = class Setpc1Command extends Command {
       args: [{
           key: `CPU`,
           prompt: `Which CPU do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `GPU`,
           prompt: `Which GPU do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `RAM`,
           prompt: `What RAM do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         }, {
           key: `CASE`,
           prompt: `Which CASE do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `MOBO`,
           prompt: `Which MOBO do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `PSU`,
           prompt: `Which PSU do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `COOLER`,
           prompt: `Which COOLER do you use?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `STORAGE`,
           prompt: `Which STORAGE do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `SCREEN`,
           prompt: `Which SCREEN do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `KEYBOARD`,
           prompt: `Which KEYBOARD do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `MOUSE`,
           prompt: `Which MOUSE do you have?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
         {
           key: `HEADSET`,
           prompt: `Which HEADSET do you use?`,
-          type: `string`
+          type: `string`,
+          wait: 90,
         },
       ]
     });
