@@ -1,0 +1,7 @@
+{
+  "token": "Your bot token",
+  "owner": "Your owner ID",
+  "prefix": "Prefix",
+  "unknownCommandResponse": false,
+  "disableEveryone": true
+}
