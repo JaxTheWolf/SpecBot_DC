@@ -6,3 +6,7 @@ conf.json
 
 # ignore bot's settings DB
 settings.sqlite3
+
+# ignore conf folders
+conf1
+conf2

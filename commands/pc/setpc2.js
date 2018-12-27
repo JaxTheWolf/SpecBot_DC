@@ -2,14 +2,14 @@ const {
   Command
 } = require(`discord.js-commando`);
 
-module.exports = class Setpc1Command extends Command {
+module.exports = class Setpc2Command extends Command {
   constructor(client) {
     super(client, {
-      name: `setpc1`,
+      name: `setpc2`,
       group: `pc`,
-      memberName: `setpc1`,
+      memberName: `setpc2`,
       description: `Sets a computer.`,
-      examples: [`setpc1`],
+      examples: [`setpc2`],
       args: [{
           key: "CPU",
           prompt: "Which CPU do you have?",
@@ -93,9 +93,9 @@ module.exports = class Setpc1Command extends Command {
     let fs = require('fs');
     let getDirName = require('path').dirname;
 
-    fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
+    fs.promises.mkdir(`${__dirname}/../../conf2/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content));
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf2/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content));
     return msg.say(`Done!`);
   }
 };
