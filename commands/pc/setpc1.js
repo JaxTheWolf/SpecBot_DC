@@ -11,63 +11,63 @@ module.exports = class Setpc1Command extends Command {
       description: `Sets a computer.`,
       examples: [`setpc1`],
       args: [{
-          key: "CPU",
-          prompt: "Which CPU do you have?",
-          type: "string"
+          key: `CPU`,
+          prompt: `Which CPU do you have?`,
+          type: `string`
         },
         {
-          key: "GPU",
-          prompt: "Which GPU do you have?",
-          type: "string"
+          key: `GPU`,
+          prompt: `Which GPU do you have?`,
+          type: `string`
         },
         {
-          key: "RAM",
-          prompt: "What RAM do you have?",
-          type: "string"
+          key: `RAM`,
+          prompt: `What RAM do you have?`,
+          type: `string`
         }, {
-          key: "CASE",
-          prompt: "Which CASE do you have?",
-          type: "string"
+          key: `CASE`,
+          prompt: `Which CASE do you have?`,
+          type: `string`
         },
         {
-          key: "MOBO",
-          prompt: "Which MOBO do you have?",
-          type: "string"
+          key: `MOBO`,
+          prompt: `Which MOBO do you have?`,
+          type: `string`
         },
         {
-          key: "PSU",
-          prompt: "Which PSU do you have?",
-          type: "string"
+          key: `PSU`,
+          prompt: `Which PSU do you have?`,
+          type: `string`
         },
         {
-          key: "COOLER",
-          prompt: "Which COOLER do you use?",
-          type: "string"
+          key: `COOLER`,
+          prompt: `Which COOLER do you use?`,
+          type: `string`
         },
         {
-          key: "STORAGE",
-          prompt: "Which STORAGE do you have?",
-          type: "string"
+          key: `STORAGE`,
+          prompt: `Which STORAGE do you have?`,
+          type: `string`
         },
         {
-          key: "SCREEN",
-          prompt: "Which SCREEN do you have?",
-          type: "string"
+          key: `SCREEN`,
+          prompt: `Which SCREEN do you have?`,
+          type: `string`
         },
         {
-          key: "KEYBOARD",
-          prompt: "Which KEYBOARD do you have?",
-          type: "string"
+          key: `KEYBOARD`,
+          prompt: `Which KEYBOARD do you have?`,
+          type: `string`
         },
         {
-          key: "MOUSE",
-          prompt: "Which MOUSE do you have?",
-          type: "string"
+          key: `MOUSE`,
+          prompt: `Which MOUSE do you have?`,
+          type: `string`
         },
         {
-          key: "HEADSET",
-          prompt: "Which HEADSET do you use?",
-          type: "string"
+          key: `HEADSET`,
+          prompt: `Which HEADSET do you use?`,
+          type: `string`
         },
       ]
     });
@@ -91,7 +91,6 @@ module.exports = class Setpc1Command extends Command {
     let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}`;
     let owner = msg.author;
     let fs = require('fs');
-    let getDirName = require('path').dirname;
 
     fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
       recursive: true

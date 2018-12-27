@@ -14,6 +14,6 @@ module.exports = class ReplyCommand extends Command {
   }
   run(msg) {
     console.log(`Reply used!`);
-    return msg.say(`It's working!`);
+    return msg.say(`It's working! Yay!`);
   }
 };
