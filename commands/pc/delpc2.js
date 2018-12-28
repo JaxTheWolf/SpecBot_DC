@@ -22,10 +22,11 @@ module.exports = class DelPC2Command extends Command {
     fs.unlink(`${__dirname}/../../conf2/${msg.guild.id}/${msg.guild.id}/${owner.tag}.txt`, function(err) {
       if (err) {
         console.log(err);
-        msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`).then(log(__filename, msg));
+        msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`);
       } else {
-        msg.reply(`Your configuration has been successcully deleted!`).then(log(__filename, msg));
+        msg.reply(`Your configuration has been successcully deleted!`);
       }
     });
+    log(__filename, msg);
   }
 };

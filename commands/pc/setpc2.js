@@ -115,7 +115,8 @@ module.exports = class Setpc2Command extends Command {
 
     fs.promises.mkdir(`${__dirname}/../../conf2/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.tag}.txt`, content)).then(log(__filename, msg));
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.tag}.txt`, content));
     return msg.say(`Configuration saved succesfully!`);
+    log(__filename, msg);
   }
 };

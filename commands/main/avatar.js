@@ -30,5 +30,6 @@ module.exports = class AvatarCommand extends Command {
     } else {
       msg.say(user.avatarURL);
     }
+    log(__filename, msg);
   }
 };

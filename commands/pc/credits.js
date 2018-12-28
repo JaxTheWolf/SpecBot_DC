@@ -22,6 +22,7 @@ module.exports = class CreditsCommand extends Command {
       console.log(`${filename} was used by ${msg.author.tag}.`);
     }
 
-    return msg.say(`SpecBot is coded by Roman Lubij, oko123#8509 and Designed by Jonne-Patrik Savimäki, The76i#1234, artwork by CrazyPenguin01#7682`).then(log(__filename, msg));
+    return msg.say(`SpecBot is coded by Roman Lubij, oko123#8509 and Designed by Jonne-Patrik Savimäki, The76i#1234, artwork by CrazyPenguin01#7682`);
+    (log(__filename, msg);
   }
 };
