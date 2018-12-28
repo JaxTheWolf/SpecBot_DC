@@ -81,6 +81,12 @@ module.exports = class Setpc1Command extends Command {
           type: `string`,
           wait: 90,
         },
+        {
+          key: `EXTRA`,
+          prompt: `Do you have any extra accessories?`,
+          type: `string`,
+          wait: 60,
+        },
       ]
     });
   }
@@ -96,10 +102,11 @@ module.exports = class Setpc1Command extends Command {
     SCREEN,
     KEYBOARD,
     MOUSE,
-    HEADSET
+    HEADSET,
+    EXTRA
   }) {
 
-    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}`;
+    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}/nEXTRA: ${EXTRA}`;
     let owner = msg.author;
     let fs = require('fs');
 
@@ -112,6 +119,6 @@ module.exports = class Setpc1Command extends Command {
     fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
       recursive: true
     }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log());
-    return msg.say(`Done!`);
+    return msg.say(`Configuration saved succesfully!`);
   }
 };
