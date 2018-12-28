@@ -1,6 +1,9 @@
 const {
   Command
 } = require(`discord.js-commando`);
+const {
+  log
+} = require(`../../logger`);
 
 module.exports = class SayCommand extends Command {
   constructor(client) {
@@ -10,6 +13,7 @@ module.exports = class SayCommand extends Command {
       memberName: `say`,
       description: `Repeats whatever you specify.`,
       examples: [`say oko sux`],
+      clientPermissions: ['MANAGE_MESSAGES'],
       args: [{
         key: "say",
         prompt: "What would you like the bot to repeat?",
@@ -20,12 +24,7 @@ module.exports = class SayCommand extends Command {
   run(msg, {
     say
   }) {
-    function log() {
-      let path = require('path');
-      let filename = path.basename(__filename, `.js`);
-      console.log(`${filename} was used by ${msg.author.tag}.`);
-    }
     msg.delete();
-    msg.say(say).then(console.log());
+    msg.say(say).then(log(__filename, msg));
   }
 };

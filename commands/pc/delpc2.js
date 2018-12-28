@@ -1,6 +1,9 @@
 const {
   Command
 } = require(`discord.js-commando`);
+const {
+  log
+} = require(`../../logger`);
 
 module.exports = class DelPC2Command extends Command {
   constructor(client) {
@@ -16,18 +19,12 @@ module.exports = class DelPC2Command extends Command {
     const fs = require(`fs`);
     let owner = msg.author;
 
-    function log() {
-      let path = require('path');
-      let filename = path.basename(__filename, `.js`);
-      console.log(`${filename} was used by ${msg.author.tag}.`);
-    }
-
     fs.unlink(`${__dirname}/../../conf2/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, function(err) {
       if (err) {
         console.log(err);
-        msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`).then(log());
+        msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`).then(log(__filename, msg));
       } else {
-        msg.reply(`Your configuration has been successcully deleted!`).then(log());
+        msg.reply(`Your configuration has been successcully deleted!`).then(log(__filename, msg));
       }
     });
   }
