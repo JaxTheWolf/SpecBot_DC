@@ -1,6 +1,9 @@
 const {
   Command
 } = require(`discord.js-commando`);
+const {
+  log
+} = require(`../../logger`);
 
 module.exports = class Setpc2Command extends Command {
   constructor(client) {
@@ -110,15 +113,9 @@ module.exports = class Setpc2Command extends Command {
     let owner = msg.author;
     let fs = require('fs');
 
-    function log() {
-      let path = require('path');
-      let filename = path.basename(__filename, `.js`);
-      console.log(`${filename} was used by ${msg.author.tag}.`);
-    }
-
     fs.promises.mkdir(`${__dirname}/../../conf2/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log());
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log(__filename, msg));
     return msg.say(`Configuration saved succesfully!`);
   }
 };

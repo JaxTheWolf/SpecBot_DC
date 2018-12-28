@@ -25,12 +25,14 @@ client.registry
     [`pc`, `General stuff about computers.`],
   ])
   .registerDefaultGroups()
-  .registerDefaultCommands()
+  .registerDefaultCommands({
+    eval: false
+  })
   .registerCommandsIn(path.join(__dirname, `commands`));
 
 client.on(`ready`, () => {
   console.log(`Logged in!`);
-  client.user.setActivity(`Developing...`);
+  client.user.setActivity(`in ${client.guilds.size} guilds`);
 });
 
 const sqlite = require(`sqlite`);
