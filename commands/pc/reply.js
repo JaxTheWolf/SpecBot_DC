@@ -19,6 +19,6 @@ module.exports = class ReplyCommand extends Command {
       console.log(`${filename} was used by ${msg.author.tag}.`);
     }
 
-    return msg.say(`It's working! Yay!`).then(log());
+    return msg.say(`It's working!`).then(log());
   }
 };
