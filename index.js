@@ -21,7 +21,8 @@ const client = new CommandoClient({
 client.registry
   .registerDefaultTypes()
   .registerGroups([
-    [`pc`, `General stuff about computers.`]
+    [`main`, `"Main" commands.`],
+    [`pc`, `General stuff about computers.`],
   ])
   .registerDefaultGroups()
   .registerDefaultCommands()
