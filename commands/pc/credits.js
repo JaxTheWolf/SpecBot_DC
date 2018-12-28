@@ -19,6 +19,6 @@ const {
         console.log(`${filename} was used by ${msg.author.tag}.`);
       }
   
-      return msg.say(`SpecBot is coded by Roman Lubij, oko123#8509 and Designed by Jonne-Patrik Savimäki, The76i#6969`).then(log());
+      return msg.say(`SpecBot is coded by Roman Lubij, oko123#8509 and Designed by Jonne-Patrik Savimäki, The76i#1234`).then(log());
     }
   };
