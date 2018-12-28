@@ -7,6 +7,9 @@ const {
 const {
   log
 } = require(`../../logger`);
+const {
+  rhc
+} = require(`../../randomHexColour`);
 
 module.exports = class PC1Command extends Command {
   constructor(client) {
@@ -33,12 +36,10 @@ module.exports = class PC1Command extends Command {
         msg.reply(`This person doesn't have a configuration yet!`);
         console.log(err);
       } else {
-        let colour = `#` + (`00000` + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
-
         const embed = new RichEmbed()
           .setTitle(`Here's ${user.username}'s configuration!`)
           .setDescription(`${data}`)
-          .setColor(colour);
+          .setColor(rhc);
         msg.channel.send({
           embed
         });

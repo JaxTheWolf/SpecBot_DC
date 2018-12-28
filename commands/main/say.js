@@ -26,6 +26,6 @@ module.exports = class SayCommand extends Command {
   }) {
     msg.delete();
     msg.say(say);
-    (log(__filename, msg);
+    log(__filename, msg);
   }
 };
