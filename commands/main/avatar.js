@@ -25,6 +25,10 @@ module.exports = class AvatarCommand extends Command {
   run(msg, {
     user
   }) {
-    msg.say(msg.user.avatarURL);
+    if(user === " " || user === null) {
+      msg.say(msg.author.avatarURL);
+    } else {
+      msg.say(user.avatarURL);
+    }
   }
 };
