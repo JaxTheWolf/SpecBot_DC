@@ -32,7 +32,7 @@ client.registry
 
 client.on(`ready`, () => {
   console.log(`Logged in!`);
-  client.user.setActivity(`in ${client.guilds.size} guilds`);
+  client.user.setActivity(`in ${client.guilds.size} servers`);
 });
 
 const sqlite = require(`sqlite`);
