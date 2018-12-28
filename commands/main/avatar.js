@@ -4,6 +4,12 @@ const {
 const {
   log
 } = require(`../../logger`);
+const {
+  RichEmbed
+} = require(`discord.js`);
+const {
+  rhc
+} = require(`../../randomHexColour`);
 
 module.exports = class AvatarCommand extends Command {
   constructor(client) {
@@ -17,7 +23,7 @@ module.exports = class AvatarCommand extends Command {
         key: "user",
         prompt: "Which user's avatar would you like to see?",
         type: "user",
-        default: " ",
+        default: "",
         error: "That isn't a valid user mention!",
       }]
     });
@@ -25,10 +31,19 @@ module.exports = class AvatarCommand extends Command {
   run(msg, {
     user
   }) {
-    if(user === " " || user === null) {
-      msg.say(msg.author.avatarURL);
+
+    let embed = new RichEmbed();
+
+    if (user === "") {
+      embed.setTitle(`Here's your avatar:`)
+        .setDescription(msg.author.avatarURL)
+        .setColor(rhc);
+      msg.say(embed);
     } else {
-      msg.say(user.avatarURL);
+      embed.setTitle(`Here's ${user.username}'s avatar:`)
+        .setDescription(user.avatarURL)
+        .setColor(rhc);
+      msg.say(embed);
     }
     log(__filename, msg);
   }
