@@ -1,1 +1,1 @@
-sudo npm install
+npm install
