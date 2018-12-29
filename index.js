@@ -1,6 +1,6 @@
 const {
   token,
-  owner_id,
+  owner,
   prefix,
   disableEveryone,
   unknownCommandResponse
@@ -14,7 +14,7 @@ const path = require(`path`);
 const client = new CommandoClient({
   commandPrefix: prefix,
   unknownCommandResponse: unknownCommandResponse,
-  owner: owner_id,
+  owner: owner,
   disableEveryone: disableEveryone
 });
 
