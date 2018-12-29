@@ -109,13 +109,13 @@ module.exports = class Setpc1Command extends Command {
     EXTRA
   }) {
 
-    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}/nEXTRA: ${EXTRA}`;
+    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`;
     let owner = msg.author;
     let fs = require('fs');
 
     fs.promises.mkdir(`${__dirname}/../../conf1/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.tag}.txt`, content));
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.id}.txt`, content));
     return msg.say(`Configuration saved succesfully!`);
 
     log(__filename, msg)
