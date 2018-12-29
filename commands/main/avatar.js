@@ -31,19 +31,22 @@ module.exports = class AvatarCommand extends Command {
   run(msg, {
     user
   }) {
+    try {
+      let embed = new RichEmbed();
 
-    let embed = new RichEmbed();
-
-    if (user === "") {
-      embed.setTitle(`Here's your avatar:`)
-        .setDescription(msg.author.avatarURL)
-        .setColor(rhc);
-      msg.say(embed);
-    } else {
-      embed.setTitle(`Here's ${user.username}'s avatar:`)
-        .setDescription(user.avatarURL)
-        .setColor(rhc);
-      msg.say(embed);
+      if (user === "") {
+        embed.setTitle(`Here's your avatar:`)
+          .setImage(msg.author.avatarURL)
+          .setColor(rhc);
+        msg.say(embed);
+      } else {
+        embed.setTitle(`Here's ${user.username}'s avatar:`)
+          .setImage(user.avatarURL)
+          .setColor(rhc);
+        msg.say(embed);
+      }
+    } catch {
+      msg.say(`This person doesn't have an avatar set!`);
     }
     log(__filename, msg);
   }
