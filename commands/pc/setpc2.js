@@ -11,7 +11,7 @@ module.exports = class Setpc2Command extends Command {
       name: `setpc2`,
       group: `pc`,
       memberName: `setpc2`,
-      description: `Sets a computer.`,
+      description: `Sets a second computer.`,
       examples: [`setpc2`],
       args: [{
           key: `CPU`,
@@ -109,13 +109,14 @@ module.exports = class Setpc2Command extends Command {
     EXTRA
   }) {
 
-    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}/nEXTRA: ${EXTRA}`;
+    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`;
     let owner = msg.author;
     let fs = require('fs');
 
     fs.promises.mkdir(`${__dirname}/../../conf2/${msg.guild.id}`, {
       recursive: true
-    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.username}#${owner.discriminator}.txt`, content)).then(log(__filename, msg));
+    }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.id}.txt`, content));
     return msg.say(`Configuration saved succesfully!`);
+    log(__filename, msg);
   }
 };

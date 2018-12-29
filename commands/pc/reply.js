@@ -16,6 +16,7 @@ module.exports = class ReplyCommand extends Command {
     });
   }
   run(msg) {
-    return msg.say(`It's working!`).then(log(__filename, msg));
+    return msg.say(`It's working!`);
+    (log(__filename, msg));
   }
 };

@@ -7,6 +7,9 @@ const {
 const {
   log
 } = require(`../../logger`);
+const {
+  rhc
+} = require(`../../randomHexColour`);
 
 module.exports = class PC1Command extends Command {
   constructor(client) {
@@ -28,21 +31,20 @@ module.exports = class PC1Command extends Command {
   }) {
     const fs = require(`fs`);
 
-    fs.readFile(`${__dirname}/../../conf1/${msg.guild.id}/${user.username}#${user.discriminator}.txt`, `utf8`, function(err, data) {
+    fs.readFile(`${__dirname}/../../conf1/${msg.guild.id}/${user.id}.txt`, `utf8`, function(err, data) {
       if (err) {
-        msg.reply(`This person doesn't have a configuration yet!`).then(log(__filename, msg));
+        msg.reply(`This person doesn't have a configuration yet!`);
         console.log(err);
       } else {
-        let colour = `#` + (`00000` + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
-
         const embed = new RichEmbed()
           .setTitle(`Here's ${user.username}'s configuration!`)
           .setDescription(`${data}`)
-          .setColor(colour);
+          .setColor(rhc);
         msg.channel.send({
           embed
-        }).then(log(__filename, msg));
+        });
       }
     });
+    log(__filename, msg);
   }
 };

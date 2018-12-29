@@ -10,3 +10,6 @@ settings.sqlite3
 # ignore conf folders
 conf1
 conf2
+
+# ignore logfiles
+*.log
