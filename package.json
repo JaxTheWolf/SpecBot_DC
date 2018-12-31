@@ -1,6 +1,6 @@
 {
   "name": "specbot_dc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple Discord bot to save and show peoples' PC/Setup configurations.",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
+    "random-hex-color": "^1.0.1",
     "sqlite": "^3.0.0"
   }
 }
