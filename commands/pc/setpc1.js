@@ -118,6 +118,6 @@ module.exports = class Setpc1Command extends Command {
     }).then(x => fs.promises.writeFile(`${__dirname}/../../conf1/${msg.guild.id}/${owner.id}.txt`, content));
     return msg.say(`Configuration saved succesfully!`);
 
-    log(__filename, msg)
+    log(__filename, msg);
   }
 };
