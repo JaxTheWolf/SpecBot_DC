@@ -7,9 +7,7 @@ const {
 const {
   RichEmbed
 } = require(`discord.js`);
-const {
-  rhc
-} = require(`../../randomHexColour`);
+let randomHexColor = require(`random-hex-color`);
 
 module.exports = class AvatarCommand extends Command {
   constructor(client) {
@@ -42,7 +40,7 @@ module.exports = class AvatarCommand extends Command {
       } else {
         embed.setTitle(`Here's ${user.username}'s avatar:`)
           .setImage(user.avatarURL)
-          .setColor(rhc);
+          .setColor(randomHexColor());
         msg.say(embed);
       }
     } catch {

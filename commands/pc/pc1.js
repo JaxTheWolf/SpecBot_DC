@@ -7,9 +7,7 @@ const {
 const {
   log
 } = require(`../../logger`);
-const {
-  rhc
-} = require(`../../randomHexColour`);
+let randomHexColor = require(`random-hex-color`);
 
 module.exports = class PC1Command extends Command {
   constructor(client) {
@@ -39,7 +37,7 @@ module.exports = class PC1Command extends Command {
         const embed = new RichEmbed()
           .setTitle(`Here's ${user.username}'s configuration!`)
           .setDescription(`${data}`)
-          .setColor(rhc);
+          .setColor(randomHexColor());
         msg.channel.send({
           embed
         });
