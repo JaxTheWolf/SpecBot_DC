@@ -7,9 +7,7 @@ const {
 const {
   RichEmbed
 } = require(`discord.js`);
-const {
-  randomHexColor
-} = require(`random-hex-color`);
+const randomHexColor = require(`random-hex-color`);
 
 module.exports = class SayCommand extends Command {
   constructor(client) {
