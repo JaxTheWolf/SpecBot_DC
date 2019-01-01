@@ -7,7 +7,7 @@ const {
 const {
   RichEmbed
 } = require(`discord.js`);
-const randomHexColor = require(`random-hex-color`);
+let randomHexColor = require(`random-hex-color`);
 
 module.exports = class SayCommand extends Command {
   constructor(client) {
@@ -33,7 +33,7 @@ module.exports = class SayCommand extends Command {
     let toSay = new RichEmbed()
       .setTitle(`${msg.author.username} says:`)
       .setDescription(say)
-      .setColor(randomHexColor);
+      .setColor(randomHexColor());
 
     msg.say(toSay);
     log(__filename, msg);
