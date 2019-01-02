@@ -28,8 +28,9 @@ module.exports = class PC2Command extends Command {
     user
   }) {
     const fs = require(`fs`);
+    let readFrom = `${__dirname}/../../conf2`;
 
-    fs.readFile(`${__dirname}/../../conf2/${msg.guild.id}/${user.id}.txt`, `utf8`, function(err, data) {
+    fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function(err, data) {
       if (err) {
         msg.reply(`This person doesn't have a configuration yet!`);
         console.log(err);

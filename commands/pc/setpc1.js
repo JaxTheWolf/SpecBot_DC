@@ -112,22 +112,16 @@ module.exports = class Setpc1Command extends Command {
     let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`;
     let owner = msg.author;
     let fs = require('fs');
-    let writeTo = `${__dirname}/../../conf1/${msg.guild.id}`;
+    let writeTo = `${__dirname}/../../conf1`;
 
-    if (!fs.existsSync(writeTo)) {
-      fs.promises.mkdir(writeTo, {
-        recursive: true
-      }).then(x => fs.promises.writeFile(`${writeTo}/${owner.id}.txt`, content));
-      return msg.say(`Configuration saved succesfully!`);
-    } else {
-      fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
-        if (err) {
-          msg.say(`There was a problem while savinf your file. (\`${e}\`)`);
-        } else {
-          return msg.say(`Configuration saved succesfully!`);
-        }
-      });
-    }
+    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
+      if (err) {
+        msg.say(`There was a problem while saving your file. (\`${e}\`)`);
+      } else {
+        return msg.say(`Configuration saved succesfully!`);
+      }
+    });
+
 
 
     log(__filename, msg);

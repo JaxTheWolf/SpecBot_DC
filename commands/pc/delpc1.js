@@ -18,8 +18,9 @@ module.exports = class DelPC1Command extends Command {
   run(msg) {
     const fs = require(`fs`);
     let owner = msg.author;
+    let delFrom = `${__dirname}/../../conf1`;
 
-    fs.unlink(`${__dirname}/../../conf1/${msg.guild.id}/${owner.id}.txt`, function(err) {
+    fs.unlink(`${delFrom}/${owner.id}.txt`, function(err) {
       if (err) {
         console.log(err);
         msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`);
