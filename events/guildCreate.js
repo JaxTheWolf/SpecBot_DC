@@ -1,6 +1,6 @@
 module.exports = (client, guild) => {
   function setActivity() {
-    client.user.setActivity(`in ${client.guilds.size} servers`);
+    client.user.setActivity(`in ${client.guilds.size} servers|-help`);
   }
 
   setActivity();
