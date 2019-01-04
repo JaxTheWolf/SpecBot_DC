@@ -1,12 +1,9 @@
-const {
-  Command
-} = require(`discord.js-commando`);
-const {
-  RichEmbed
-} = require(`discord.js`);
-const {
-  log
-} = require(`../../logger`);
+const { Command } = require(`discord.js-commando`);
+const { RichEmbed } = require(`discord.js`);
+const { options } = require(`../../options`);
+const log = require(`node-file-logger`);
+log.SetUserOptions(options);
+let path = require(`path`);
 let randomHexColor = require(`random-hex-color`);
 
 module.exports = class PC1Command extends Command {
@@ -17,16 +14,16 @@ module.exports = class PC1Command extends Command {
       memberName: `pc1`,
       description: `Replies with a user's configuration`,
       examples: [`pc1 @oko123#8509`],
-      args: [{
-        key: `user`,
-        prompt: `Which user's configuration would you like to view?`,
-        type: `user`
-      }]
+      args: [
+        {
+          key: `user`,
+          prompt: `Which user's configuration would you like to view?`,
+          type: `user`
+        }
+      ]
     });
   }
-  run(msg, {
-    user
-  }) {
+  run(msg, { user }) {
     const fs = require(`fs`);
     let readFrom = `${__dirname}/../../conf1`;
 
@@ -44,6 +41,8 @@ module.exports = class PC1Command extends Command {
         });
       }
     });
-    log(__filename, msg);
+    log.Info(
+      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
+    );
   }
 };

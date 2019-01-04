@@ -1,1 +1,2 @@
+cd ..
 sudo npm install

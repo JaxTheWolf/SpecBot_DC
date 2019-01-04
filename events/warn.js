@@ -1,4 +1,3 @@
-module.exports = (info) => {
-
+module.exports = info => {
   console.warn(info);
 };

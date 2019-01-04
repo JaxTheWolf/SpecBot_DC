@@ -1,9 +1,8 @@
-const {
-  Command
-} = require(`discord.js-commando`);
-const {
-  log
-} = require(`../../logger`);
+const { Command } = require(`discord.js-commando`);
+const { options } = require(`../../options`);
+const log = require(`node-file-logger`);
+log.SetUserOptions(options);
+let path = require(`path`);
 
 module.exports = class InviteCommand extends Command {
   constructor(client) {
@@ -16,10 +15,16 @@ module.exports = class InviteCommand extends Command {
     });
   }
   run(msg) {
-    this.client.generateInvite([`SEND_MESSAGES`, `MANAGE_MESSAGES`])
-      .then(link => msg.say(`Here's the invite link! ${link}`)
-        .then(msg.say(`I hope you'll enjoy the bot!`)));
+    this.client
+      .generateInvite([`SEND_MESSAGES`, `MANAGE_MESSAGES`])
+      .then(link =>
+        msg
+          .say(`Here's the invite link! ${link}`)
+          .then(msg.say(`I hope you'll enjoy the bot!`))
+      );
 
-    (log(__filename, msg));
+    log.Info(
+      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
+    );
   }
 };

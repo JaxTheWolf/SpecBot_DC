@@ -1,12 +1,9 @@
-const {
-  Command
-} = require(`discord.js-commando`);
-const {
-  log
-} = require(`../../logger`);
-const {
-  RichEmbed
-} = require(`discord.js`);
+const { Command } = require(`discord.js-commando`);
+const { RichEmbed } = require(`discord.js`);
+const { options } = require(`../../options`);
+const log = require(`node-file-logger`);
+log.SetUserOptions(options);
+let path = require(`path`);
 let randomHexColor = require(`random-hex-color`);
 
 module.exports = class SayCommand extends Command {
@@ -17,17 +14,17 @@ module.exports = class SayCommand extends Command {
       memberName: `embed`,
       description: `Embeds whatever you specify.`,
       examples: [`embed lul`],
-      clientPermissions: ['MANAGE_MESSAGES'],
-      args: [{
-        key: "say",
-        prompt: "What would you like the bot to embed?",
-        type: "string"
-      }]
+      clientPermissions: ["MANAGE_MESSAGES"],
+      args: [
+        {
+          key: "say",
+          prompt: "What would you like the bot to embed?",
+          type: "string"
+        }
+      ]
     });
   }
-  run(msg, {
-    say
-  }) {
+  run(msg, { say }) {
     msg.delete();
 
     let toSay = new RichEmbed()
@@ -36,6 +33,8 @@ module.exports = class SayCommand extends Command {
       .setColor(randomHexColor());
 
     msg.say(toSay);
-    log(__filename, msg);
+    log.Info(
+      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
+    );
   }
 };

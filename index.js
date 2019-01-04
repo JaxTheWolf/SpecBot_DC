@@ -6,9 +6,7 @@ const {
   unknownCommandResponse
 } = require(`./conf.json`);
 
-const {
-  CommandoClient
-} = require(`discord.js-commando`);
+const { CommandoClient } = require(`discord.js-commando`);
 const path = require(`path`);
 
 const fs = require(`fs`);
@@ -24,7 +22,7 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([
     [`main`, `"Main" commands.`],
-    [`pc`, `General stuff about computers.`],
+    [`pc`, `General stuff about computers.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
@@ -46,8 +44,12 @@ fs.readdir("./events/", (err, files) => {
 const sqlite = require(`sqlite`);
 const Commando = require(`discord.js-commando`);
 
-client.setProvider(
-  sqlite.open(path.join(__dirname, `settings.sqlite3`)).then(db => new Commando.SQLiteProvider(db))
-).catch(console.error);
+client
+  .setProvider(
+    sqlite
+      .open(path.join(__dirname, `settings.sqlite3`))
+      .then(db => new Commando.SQLiteProvider(db))
+  )
+  .catch(console.error);
 
 client.login(token);
