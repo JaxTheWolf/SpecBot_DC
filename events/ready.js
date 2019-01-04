@@ -9,5 +9,9 @@ module.exports = client => {
   let path = require(`path`);
 
   setActivity();
-  log.Info(`Ready!`);
+
+  let toLog = `Ready!`;
+
+  console.log(toLog);
+  log.Info(toLog);
 };

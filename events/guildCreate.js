@@ -9,5 +9,8 @@ module.exports = (client, guild) => {
   let path = require(`path`);
 
   setActivity();
-  log.Info(`Joined guild "${guild.name}".`);
+  let toLog = `Joined guild "${guild.name}".`;
+
+  console.log(toLog);
+  log.Info(toLog);
 };

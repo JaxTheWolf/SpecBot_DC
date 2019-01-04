@@ -26,8 +26,11 @@ module.exports = class SayCommand extends Command {
     msg.delete();
     msg.say(say);
 
-    log.Info(
-      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
-    );
+    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+      msg.author.username
+    }.`;
+
+    console.log(toLog);
+    log.Info(toLog);
   }
 };

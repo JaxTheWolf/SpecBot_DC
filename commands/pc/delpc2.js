@@ -31,8 +31,11 @@ module.exports = class DelPC2Command extends Command {
         msg.reply(`Your configuration has been successcully deleted!`);
       }
     });
-    log.Info(
-      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
-    );
+    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+      msg.author.username
+    }.`;
+
+    console.log(toLog);
+    log.Info(toLog);
   }
 };

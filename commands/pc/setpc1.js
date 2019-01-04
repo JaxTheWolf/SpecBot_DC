@@ -131,8 +131,11 @@ module.exports = class Setpc1Command extends Command {
       }
     });
 
-    log.Info(
-      `${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`
-    );
+    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+      msg.author.username
+    }.`;
+
+    console.log(toLog);
+    log.Info(toLog);
   }
 };
