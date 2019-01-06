@@ -17,7 +17,7 @@ module.exports = class PC2Command extends Command {
       args: [
         {
           key: `user`,
-          prompt: `Which user's configuration would you like to view?`,
+          prompt: `Which user's second configuration would you like to view?`,
           type: `user`
         }
       ]
@@ -29,11 +29,11 @@ module.exports = class PC2Command extends Command {
 
     fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function(err, data) {
       if (err) {
-        msg.reply(`This person doesn't have a configuration yet!`);
+        msg.reply(`This person doesn't have a second configuration yet!`);
         console.log(err);
       } else {
         const embed = new RichEmbed()
-          .setTitle(`Here's ${user.username}'s configuration!`)
+          .setTitle(`Here's ${user.username}'s second configuration!`)
           .setDescription(`${data}`)
           .setColor(randomHexColor());
         msg.channel.send({
