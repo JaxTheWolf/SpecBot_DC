@@ -6,10 +6,10 @@ const {
   unknownCommandResponse
 } = require(`./conf.json`);
 
-const {
-  CommandoClient
-} = require(`discord.js-commando`);
+const { CommandoClient } = require(`discord.js-commando`);
 const path = require(`path`);
+
+const fs = require(`fs`);
 
 const client = new CommandoClient({
   commandPrefix: prefix,
@@ -22,7 +22,7 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([
     [`main`, `"Main" commands.`],
-    [`pc`, `General stuff about computers.`],
+    [`pc`, `General stuff about computers.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
@@ -30,16 +30,26 @@ client.registry
   })
   .registerCommandsIn(path.join(__dirname, `commands`));
 
-client.on(`ready`, () => {
-  console.log(`Logged in!`);
-  client.user.setActivity(`in ${client.guilds.size} servers`);
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    const event = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    client.on(eventName, event.bind(null, client));
+    delete require.cache[require.resolve(`./events/${file}`)];
+  });
 });
 
 const sqlite = require(`sqlite`);
 const Commando = require(`discord.js-commando`);
 
-client.setProvider(
-  sqlite.open(path.join(__dirname, `settings.sqlite3`)).then(db => new Commando.SQLiteProvider(db))
-).catch(console.error);
+client
+  .setProvider(
+    sqlite
+      .open(path.join(__dirname, `settings.sqlite3`))
+      .then(db => new Commando.SQLiteProvider(db))
+  )
+  .catch(console.error);
 
 client.login(token);

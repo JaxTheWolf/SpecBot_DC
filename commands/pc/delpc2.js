@@ -1,9 +1,8 @@
-const {
-  Command
-} = require(`discord.js-commando`);
-const {
-  log
-} = require(`../../logger`);
+const { Command } = require(`discord.js-commando`);
+const { options } = require(`../../options`);
+const log = require(`node-file-logger`);
+log.SetUserOptions(options);
+let path = require(`path`);
 
 module.exports = class DelPC2Command extends Command {
   constructor(client) {
@@ -11,22 +10,32 @@ module.exports = class DelPC2Command extends Command {
       name: `delpc2`,
       group: `pc`,
       memberName: `delpc2`,
-      description: `Deletes your second configuration`,
+      description: `Deletes your configuration`,
       examples: [`delpc2`]
     });
   }
   run(msg) {
     const fs = require(`fs`);
     let owner = msg.author;
+    let delFrom = `${__dirname}/../../conf2`;
 
-    fs.unlink(`${__dirname}/../../conf2/${msg.guild.id}/${msg.guild.id}/${owner.id}.txt`, function(err) {
+    fs.unlink(`${delFrom}/${owner.id}.txt`, function(err) {
       if (err) {
         console.log(err);
-        msg.reply(`You don't have a configuration yet or an error has occured. (\`${err}\`)`);
+        msg.reply(
+          `You don't have a configuration yet or an error has occured. (\`${
+            err
+          }\`)`
+        );
       } else {
         msg.reply(`Your configuration has been successcully deleted!`);
       }
     });
-    log(__filename, msg);
+    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+      msg.author.username
+    }.`;
+
+    console.log(toLog);
+    log.Info(toLog);
   }
 };
