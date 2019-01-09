@@ -14,25 +14,37 @@ module.exports = class SayCommand extends Command {
       memberName: `embed`,
       description: `Embeds whatever you specify.`,
       examples: [`embed lul`],
-      clientPermissions: ["MANAGE_MESSAGES"],
+      clientPermissions: [`MANAGE_MESSAGES`],
       args: [
         {
-          key: "say",
-          prompt: "What would you like the bot to embed?",
-          type: "string"
+          key: `say`,
+          prompt: `What would you like the bot to embed?`,
+          type: `string`
         }
       ]
     });
   }
   run(msg, { say }) {
     msg.delete();
+    let toSay = new RichEmbed();
 
-    let toSay = new RichEmbed()
-      .setTitle(`${msg.author.username} says:`)
-      .setDescription(say)
-      .setColor(randomHexColor());
+    function checkAnon(toCheck) {
+      if (toCheck.includes(`///anon`)) return true;
+      else return false;
+    }
 
-    msg.say(toSay);
+    if (!checkAnon(msg.content)) {
+      toSay.setTitle(`${msg.author.username} says:`);
+      toSay.setDescription(say);
+      toSay.setColor(randomHexColor());
+
+      msg.say(toSay);
+    } else {
+      toSay.setDescription(say.replace(`///anon`, ``));
+      toSay.setColor(randomHexColor());
+      msg.say(toSay);
+    }
+
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`;
