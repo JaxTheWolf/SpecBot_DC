@@ -12,12 +12,12 @@ module.exports = class SayCommand extends Command {
       memberName: `say`,
       description: `Repeats whatever you specify.`,
       examples: [`say oko sux`],
-      clientPermissions: ["MANAGE_MESSAGES"],
+      clientPermissions: [`MANAGE_MESSAGES`],
       args: [
         {
-          key: "say",
-          prompt: "What would you like the bot to repeat?",
-          type: "string"
+          key: `say`,
+          prompt: `What would you like the bot to repeat?`,
+          type: `string`
         }
       ]
     });

@@ -120,7 +120,7 @@ module.exports = class Setpc1Command extends Command {
       HEADSET
     }\nEXTRA: ${EXTRA}`;
     let owner = msg.author;
-    let fs = require("fs");
+    let fs = require(`fs`);
     let writeTo = `${__dirname}/../../conf1`;
 
     fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
