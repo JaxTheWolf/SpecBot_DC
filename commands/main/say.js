@@ -8,6 +8,7 @@ module.exports = class SayCommand extends Command {
   constructor(client) {
     super(client, {
       name: `say`,
+      aliases: [`repeat`, `msg`],
       group: `main`,
       memberName: `say`,
       description: `Repeats whatever you specify.`,

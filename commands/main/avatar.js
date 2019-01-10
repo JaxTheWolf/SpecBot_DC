@@ -10,6 +10,7 @@ module.exports = class AvatarCommand extends Command {
   constructor(client) {
     super(client, {
       name: `avatar`,
+      aliases: [`pfp`],
       group: `main`,
       memberName: `avatar`,
       description: `Shows your or mentioned user's avatar.`,

@@ -9,6 +9,7 @@ module.exports = class AnnounceCommand extends Command {
   constructor(client) {
     super(client, {
       name: `announce`,
+      aliases: [`ann`, `announcement`],
       group: `main`,
       memberName: `announce`,
       description: `Annonuces a message to every guilůd the bot is in (Owner only)`,

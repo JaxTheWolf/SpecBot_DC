@@ -8,6 +8,7 @@ module.exports = class CreditsCommand extends Command {
   constructor(client) {
     super(client, {
       name: `credits`,
+      aliases: [`creds`, `authors`],
       group: `main`,
       memberName: `credits`,
       description: `Credits creators.`,
