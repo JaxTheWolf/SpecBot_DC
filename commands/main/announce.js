@@ -1,4 +1,4 @@
-﻿const { Command } = require(`discord.js-commando`);
+const { Command } = require(`discord.js-commando`);
 const { options } = require(`../../options`);
 const { owner } = require(`../../conf.json`);
 const log = require(`node-file-logger`);
@@ -47,7 +47,9 @@ module.exports = class AnnounceCommand extends Command {
         });
       });
     } catch (err) {
-      console.log(`Could not send message to a (few) guild(s)!`);
+      let toLog = `Could not send message to a (few) guild(s)!`;
+      console.log(toLog);
+      log.Info();
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
