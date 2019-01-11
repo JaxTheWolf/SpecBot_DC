@@ -33,7 +33,7 @@ module.exports = class AvatarCommand extends Command {
       embed
         .setTitle(`Here's your avatar:`)
         .setImage(msg.author.displayAvatarURL)
-        .setColor(rhc);
+        .setColor(randomHexColor());
       msg.say(embed);
     } else {
       embed
