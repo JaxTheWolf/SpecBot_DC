@@ -1,4 +1,4 @@
-const { Command } = require(`discord.js-commando`);
+﻿const { Command } = require(`discord.js-commando`);
 const { options } = require(`../../options`);
 const { owner } = require(`../../conf.json`);
 const log = require(`node-file-logger`);
@@ -12,7 +12,7 @@ module.exports = class AnnounceCommand extends Command {
       aliases: [`ann`, `announcement`],
       group: `main`,
       memberName: `announce`,
-      description: `Annonuces a message to every guilůd the bot is in (Owner only)`,
+      description: `Annonuces a message to every guild the bot is in (Owner only)`,
       examples: [`announce Bot will be down for a few minutes!`],
       ownerOnly: true,
       args: [
