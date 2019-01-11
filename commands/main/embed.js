@@ -27,6 +27,7 @@ module.exports = class SayCommand extends Command {
   run(msg, { say }) {
     msg.delete();
     let toSay = new RichEmbed();
+    let author = msg.author;
 
     function checkAnon(toCheck) {
       if (toCheck.includes(`///anon`)) return true;
@@ -34,14 +35,16 @@ module.exports = class SayCommand extends Command {
     }
 
     if (!checkAnon(msg.content)) {
-      toSay.setTitle(`${msg.author.username} says:`);
-      toSay.setDescription(say);
-      toSay.setColor(randomHexColor());
+      toSay
+        .setAuthor(`${author.username} says:`, author.displayAvatarURL)
+        .setDescription(say)
+        .setColor(randomHexColor());
 
       msg.say(toSay);
     } else {
-      toSay.setDescription(say.replace(`///anon`, ``));
-      toSay.setColor(randomHexColor());
+      toSay
+        .setDescription(say.replace(`///anon`, ``))
+        .setColor(randomHexColor());
       msg.say(toSay);
     }
 
