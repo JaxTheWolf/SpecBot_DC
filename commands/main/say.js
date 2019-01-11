@@ -8,16 +8,17 @@ module.exports = class SayCommand extends Command {
   constructor(client) {
     super(client, {
       name: `say`,
+      aliases: [`repeat`, `msg`],
       group: `main`,
       memberName: `say`,
       description: `Repeats whatever you specify.`,
       examples: [`say oko sux`],
-      clientPermissions: ["MANAGE_MESSAGES"],
+      clientPermissions: [`MANAGE_MESSAGES`],
       args: [
         {
-          key: "say",
-          prompt: "What would you like the bot to repeat?",
-          type: "string"
+          key: `say`,
+          prompt: `What would you like the bot to repeat?`,
+          type: `string`
         }
       ]
     });

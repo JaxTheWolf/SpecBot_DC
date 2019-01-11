@@ -1,6 +1,6 @@
 {
   "name": "specbot_dc",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description":
     "A simple Discord bot to save and show peoples' PC/Setup configurations.",
   "main": "index.js",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/JaxTheWolf/SpecBot_DC/issues"
   },
-  "homepage": "https://github.com/JaxTheWolf/SpecBot_DC#readme",
+  "homepage": "https://jaxthewolf.github.io/SpecBot_DC/",
   "dependencies": {
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
