@@ -10,7 +10,7 @@ module.exports = class AnnounceCommand extends Command {
     super(client, {
       name: `announce`,
       aliases: [`ann`, `announcement`],
-      group: `main`,
+      group: `owner`,
       memberName: `announce`,
       description: `Annonuces a message to every guild the bot is in (Owner only)`,
       examples: [`announce Bot will be down for a few minutes!`],
