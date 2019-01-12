@@ -23,7 +23,7 @@ client.registry
   .registerGroups([
     [`main`, `"Main" commands.`],
     [`pc`, `General stuff about computers.`],
-    [`mods`, `Moderation related commands.`],
+    /*[`mods`, `Moderation related commands.`],*/
     [`owner`, `Owner-only commands.`]
   ])
   .registerDefaultGroups()
