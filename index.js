@@ -22,7 +22,9 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([
     [`main`, `"Main" commands.`],
-    [`pc`, `General stuff about computers.`]
+    [`pc`, `General stuff about computers.`],
+    [`mods`, `Moderation related commands.`],
+    [`owner`, `Owner-only commands.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
@@ -51,5 +53,14 @@ client
       .then(db => new Commando.SQLiteProvider(db))
   )
   .catch(console.error);
+
+const cleanupFunc = async code => {
+  await client.destroy();
+  process.exit(code);
+};
+
+process.once("exit", cleanupFunc);
+process.once("SIGINT", cleanupFunc);
+process.once("SIGTERM", cleanupFunc);
 
 client.login(token);
