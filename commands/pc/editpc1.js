@@ -52,34 +52,31 @@ module.exports = class EditPC1Comand extends Command {
       `EXTRA`
     ];
 
-    if (allowed.includes(component.toUpperCase())) {
-      try {
-        fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function(err, data) {
-          if (err) {
-            msg.reply(
-              `You don't have a configuration yet or an error has occured.`
-            );
-            console.log(err);
-            res = null;
-          } else {
-            res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
-
-            fs.writeFile(`${dir}/${owner.id}.txt`, res, function(err) {
-              if (err) {
-                msg.say(
-                  `There was a problem while saving your file. (\`${e}\`)`
-                );
-              } else {
-                return msg.say(`Configuration saved succesfully!`);
-              }
-            });
-          }
-        });
-      } catch (e) {
-        msg.say(`An error has occured. ${e}`);
-      }
-    } else {
+    if (!allowed.includes(component.toUpperCase())) {
       msg.reply(`\`${component}\` is not a valid component!`);
+      return;
+    } else {
+      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function(err, data) {
+        if (err) {
+          msg.reply(
+            `You don't have a configuration yet or an error has occured.`
+          );
+          console.log(err);
+          res = null;
+        } else {
+          res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
+
+          fs.writeFile(`${dir}/${owner.id}.txt`, res, function(err) {
+            if (err) {
+              msg.say(
+                `There was a problem while saving your file. (\`${err}\`)`
+              );
+            } else {
+              return msg.say(`Configuration saved succesfully!`);
+            }
+          });
+        }
+      });
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
