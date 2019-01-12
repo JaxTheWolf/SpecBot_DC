@@ -23,7 +23,7 @@ module.exports = class DonateCommand extends Command {
       )
       .then(
         msg.say(
-          `If you don't have or don't want to spend real money, you can always help us by spreading the bot and our GitHub page! <https://github.com/JaxTheWolf/SpecBot_DC>`
+          `If you don't have or don't want to spend real money, you can always help us by spreading the bot by using -invite command, and share it through our GitHub page! <https://github.com/JaxTheWolf/SpecBot_DC>`
         )
       );
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
