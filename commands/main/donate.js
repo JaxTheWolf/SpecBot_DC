@@ -19,7 +19,7 @@ module.exports = class DonateCommand extends Command {
   run(msg) {
     msg
       .say(
-        `All donations are appreciated! We thank you for your donation! https://paypal.me/specbot`
+        `All donations are appreciated! We thank you for your donation! https://ko-fi.com/specbot`
       )
       .then(
         msg.say(
