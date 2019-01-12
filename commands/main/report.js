@@ -45,7 +45,7 @@ module.exports = class ReportCommand extends Command {
       .addField(`Channel:`, `**${msg.channel.name}**`, false)
       .addField(
         `If you feel that this report is unnecessary and/or you believe the command has been abused:`,
-        ` you may want to "punish" the author (**${msg.user.tag}**).`,
+        ` you may want to "punish" the author (**${msg.author.tag}**).`,
         false
       )
       .setFooter(new Date().toUTCString(), user.displayAvatarURL);
