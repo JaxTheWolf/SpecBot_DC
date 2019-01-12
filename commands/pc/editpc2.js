@@ -36,28 +36,50 @@ module.exports = class EditPC2Comand extends Command {
     let rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`);
     let res;
     let dir = `${__dirname}/../../conf2`;
-    try {
-      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function(err, data) {
-        if (err) {
-          msg.reply(
-            `You don't have a configuration yet or an error has occured.`
-          );
-          console.log(err);
-          res = null;
-        } else {
-          res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
+    let allowed = [
+      `CPU`,
+      `GPU`,
+      `RAM`,
+      `CASE`,
+      `MOBO`,
+      `PSU`,
+      `COOLER`,
+      `STORAGE`,
+      `SCREEN`,
+      `KEYBOARD`,
+      `MOUSE`,
+      `HEADSET`,
+      `EXTRA`
+    ];
 
-          fs.writeFile(`${dir}/${owner.id}.txt`, res, function(err) {
-            if (err) {
-              msg.say(`There was a problem while saving your file. (\`${e}\`)`);
-            } else {
-              return msg.say(`Configuration saved succesfully!`);
-            }
-          });
-        }
-      });
-    } catch (e) {
-      msg.say(`An error has occured. ${e}`);
+    if (allowed.includes(component.toUpperCase())) {
+      try {
+        fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function(err, data) {
+          if (err) {
+            msg.reply(
+              `You don't have a configuration yet or an error has occured.`
+            );
+            console.log(err);
+            res = null;
+          } else {
+            res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
+
+            fs.writeFile(`${dir}/${owner.id}.txt`, res, function(err) {
+              if (err) {
+                msg.say(
+                  `There was a problem while saving your file. (\`${e}\`)`
+                );
+              } else {
+                return msg.say(`Configuration saved succesfully!`);
+              }
+            });
+          }
+        });
+      } catch (e) {
+        msg.say(`An error has occured. ${e}`);
+      }
+    } else {
+      msg.reply(`\`${component}\` is not a valid component!`);
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
