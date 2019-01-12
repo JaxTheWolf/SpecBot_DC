@@ -15,15 +15,17 @@ module.exports = class DonateCommand extends Command {
       examples: [`donate`]
     });
   }
+
   run(msg) {
-    msg.say(
-      `All donations are appreciated! We thank you for your donation! https://paypal.me/specbot`
-    );
-  run(msg) {
-      msg.say(
+    msg
+      .say(
+        `All donations are appreciated! We thank you for your donation! https://paypal.me/specbot`
+      )
+      .then(
+        msg.say(
           `If you don't have or don't want to spend real money, you can always help us by spreading the bot and our GitHub page! <https://github.com/JaxTheWolf/SpecBot_DC>`
+        )
       );
-  }
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`;
