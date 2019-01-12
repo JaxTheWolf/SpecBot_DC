@@ -8,7 +8,7 @@ module.exports = class InviteCommand extends Command {
   constructor(client) {
     super(client, {
       name: `invite`,
-      aliases: [`inv`, `summon`]
+      aliases: [`inv`, `summon`],
       group: `main`,
       memberName: `invite`,
       description: `Replies with the bot's oauth2 link.`,
