@@ -30,7 +30,6 @@ module.exports = class UpdateCommand extends Command {
         `cd scripts && .\\update.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
         function(code, stdout, stderr) {
-          console.log(`${code} ${stdout}, ${stderr}`);
           msg.say(stdout);
         }
       );
