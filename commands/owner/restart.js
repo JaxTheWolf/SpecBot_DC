@@ -17,7 +17,7 @@ module.exports = class RestartCommand extends Command {
   }
   run(msg) {
     let shell = require(`shelljs`);
-//
+
     if (process.platform !== `win32`) {
       shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function(
         code,
