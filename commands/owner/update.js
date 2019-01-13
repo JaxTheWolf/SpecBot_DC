@@ -17,14 +17,19 @@ module.exports = class UpdateCommand extends Command {
   }
   run(msg) {
     let shell = require(`shelljs`);
-
-    shell.exec(`cd scripts/ && sh update.sh`, { shell: `/bin/bash` }, function(
-      code,
-      stdout,
-      stderr
-    ) {
-      msg.say(stdout);
-    });
+    if (process.platform !== `win32`) {
+      shell.exec(
+        `cd scripts/ && sh update.sh`,
+        { shell: `/bin/bash` },
+        function(code, stdout, stderr) {
+          msg.say(stdout);
+        }
+      );
+    } else {
+      shell.exec(`pwd`, function(code, stdout, stderr) {
+        msg.say(stdout);
+      });
+    }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
