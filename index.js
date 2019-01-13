@@ -5,10 +5,8 @@ const {
   disableEveryone,
   unknownCommandResponse
 } = require(`./conf.json`);
-
 const { CommandoClient } = require(`discord.js-commando`);
 const path = require(`path`);
-
 const fs = require(`fs`);
 
 const client = new CommandoClient({
