@@ -34,7 +34,7 @@ module.exports = class UptimeCommand extends Command {
       else retSec = seconds + ` second`;
       if (minute === 0 || minute > 1) retMin = minute + ` minutes`;
       else retMin = minute + ` minute`;
-      if (hour === 0 || retHour > 1) retHour = hour + ` hours`;
+      if (hour === 0 || hour > 1) retHour = hour + ` hours`;
       else retHour = hour + ` hour`;
       if (day === 0 || days > 1) retDay = day + ` days`;
       else retDay = day + ` day`;
