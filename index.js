@@ -24,8 +24,8 @@ client.registry
     [`main`, `"Main" commands.`],
     [`pc`, `General stuff about computers.`],
     /*[`mods`, `Moderation related commands.`],*/
-    [`owner`, `Owner-only commands.`]
-    /*[`info`, `informative commands.`]*/
+    [`owner`, `Owner-only commands.`],
+    [`info`, `Informative commands.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
