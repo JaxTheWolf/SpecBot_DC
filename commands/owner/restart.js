@@ -30,7 +30,7 @@ module.exports = class RestartCommand extends Command {
     } else {
       msg.say(`Restarting...`);
       shell.exec(
-        `cd scripts && .\\restart.bat`,
+        `cd scripts && taskkill /f /im node.exe && start run.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
         function(code, stdout, stderr) {
           msg.say(stdout);
