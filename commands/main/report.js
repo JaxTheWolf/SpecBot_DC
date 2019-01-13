@@ -14,7 +14,10 @@ module.exports = class ReportCommand extends Command {
       group: `main`,
       memberName: `report`,
       description: `Reports a user to the server owner.`,
-      examples: [`report @user#0000 "Hate messages" true`],
+      examples: [
+        `report @user#0000 "Hate messages" false`,
+        `report @user0000 "no" false`
+      ],
       args: [
         {
           key: `user`,
@@ -28,7 +31,7 @@ module.exports = class ReportCommand extends Command {
         },
         {
           key: `confirm`,
-          prompt: `ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT! Do you still want to proceed?`,
+          prompt: `ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT! Do you still want to proceed? (true if you understand, false otherwise.)`,
           type: `boolean`
         }
       ]
