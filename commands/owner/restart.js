@@ -8,7 +8,6 @@ module.exports = class RestartCommand extends Command {
   constructor(client) {
     super(client, {
       name: `restart`,
-      aliases: [`restart`],
       group: `owner`,
       memberName: `restart`,
       description: `Restarts the systemd service. Linux only`,

@@ -8,7 +8,6 @@ module.exports = class StatusCommand extends Command {
   constructor(client) {
     super(client, {
       name: `status`,
-      aliases: [`status`],
       group: `owner`,
       memberName: `status`,
       description: `Shows the status of the \`bot\` systemd service Linux only`,
