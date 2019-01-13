@@ -19,23 +19,27 @@ module.exports = class RestartCommand extends Command {
     let shell = require(`shelljs`);
 
     if (process.platform !== `win32`) {
+      function resNow() {
+        shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function(
+          code,
+          stdout,
+          stderr
+        ) {
+          msg.say(stdout);
+        });
+      }
       msg.say(`Restarting...`);
-      shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function(
-        code,
-        stdout,
-        stderr
-      ) {
-        msg.say(stdout);
-      });
+      setTimeout(1000, resNow);
     } else {
-      msg.say(`Restarting...`);
+      msg.say(`Not implemented`);
+      /*msg.say(`Restarting...`);
       shell.exec(
         `cd scripts && taskkill /f /im node.exe && start run.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
         function(code, stdout, stderr) {
           msg.say(stdout);
         }
-      );
+      );*/
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
