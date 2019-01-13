@@ -26,10 +26,14 @@ module.exports = class UpdateCommand extends Command {
         }
       );
     } else {
-      shell.exec(`echo %cd%`, function(code, stdout, stderr) {
-        console.log(`${code} ${stdout}, ${stderr}`);
-        msg.say(stdout);
-      });
+      shell.exec(
+        `cd scripts && .\\update.bat`,
+        { shell: `C:\\Windows\\System32\\cmd.exe` },
+        function(code, stdout, stderr) {
+          console.log(`${code} ${stdout}, ${stderr}`);
+          msg.say(stdout);
+        }
+      );
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
