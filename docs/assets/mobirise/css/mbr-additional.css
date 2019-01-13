@@ -2880,6 +2880,9 @@ body {
 .cid-redjHwMEr5 blockquote {
   color: #767676;
 }
+.cid-redjHwMEr5 P {
+  color: #000000;
+}
 .cid-reRGHFLfxj {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -2888,4 +2891,19 @@ body {
 .cid-reRGHFLfxj .mbr-text,
 .cid-reRGHFLfxj blockquote {
   color: #767676;
+}
+.cid-reRGHFLfxj P {
+  color: #000000;
+}
+.cid-reX29S2GQM {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #ffffff;
+}
+.cid-reX29S2GQM .mbr-text,
+.cid-reX29S2GQM blockquote {
+  color: #767676;
+}
+.cid-reX29S2GQM P {
+  color: #000000;
 }
