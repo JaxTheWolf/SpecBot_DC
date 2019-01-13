@@ -10,7 +10,7 @@ module.exports = class RestartCommand extends Command {
       name: `restart`,
       group: `owner`,
       memberName: `restart`,
-      description: `Restarts the systemd service. Linux only`,
+      description: `Restarts the systemd service or the nodejs process.`,
       ownerOnly: true,
       examples: [`restart`]
     });
@@ -27,7 +27,13 @@ module.exports = class RestartCommand extends Command {
         msg.say(stdout);
       });
     } else {
-      msg.say(`wip`);
+      shell.exec(
+        `cd scripts && \\.restart.bat`,
+        { shell: `C:\\Windows\\System32\\cmd.exe` },
+        function(code, stdout, stderr) {
+          msg.say(stdout);
+        }
+      );
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${

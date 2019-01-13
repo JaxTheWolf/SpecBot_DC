@@ -34,14 +34,14 @@ module.exports = class AvatarCommand extends Command {
         .setTitle(`Here's your avatar:`)
         .setImage(msg.author.displayAvatarURL)
         .setColor(randomHexColor());
-      msg.say(embed);
     } else {
       embed
         .setTitle(`Here's ${user.username}'s avatar:`)
         .setImage(user.displayAvatarURL)
         .setColor(randomHexColor());
-      msg.say(embed);
     }
+    msg.say(embed);
+
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`;
