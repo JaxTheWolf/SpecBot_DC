@@ -60,7 +60,7 @@ module.exports = class ReportCommand extends Command {
           ` you may want to "punish" the author (**${msg.author.tag}**).`,
           false
         )
-        .setFooter(new Date().toUTCString(), user.displayAvatarURL);
+        .setFooter(new Date(), user.displayAvatarURL);
       /*msg.say(embed); uncomment this for debugging purposes.*/
       guildOwner
         .send(embed)
