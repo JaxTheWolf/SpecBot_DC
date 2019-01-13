@@ -28,8 +28,8 @@ module.exports = class RestartCommand extends Command {
       });
     } else {
       shell.exec(
-        `cd scripts && \\.restart.bat`,
-        { shell: `C:\\Windows\\System32\\cmd.exe` },
+        `cd scripts && \.restart.bat`,
+        { shell: `C:\Windows\System32\cmd.exe` },
         function(code, stdout, stderr) {
           msg.say(stdout);
         }
