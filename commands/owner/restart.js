@@ -29,7 +29,7 @@ module.exports = class RestartCommand extends Command {
         });
       }
       msg.say(`Restarting...`);
-      setTimeout(1000, resNow);
+      setTimeout(resNow, 1000);
     } else {
       msg.say(`Not implemented`);
       /*msg.say(`Restarting...`);
