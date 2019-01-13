@@ -27,6 +27,7 @@ module.exports = class UpdateCommand extends Command {
       );
     } else {
       shell.exec(`pwd`, function(code, stdout, stderr) {
+        console.log(`${code} ${stdout}, ${stderr}`);
         msg.say(stdout);
       });
     }
