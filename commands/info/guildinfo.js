@@ -14,6 +14,7 @@ module.exports = class GuildInfoCommand extends Command {
       group: `info`,
       memberName: `guildinfo`,
       description: `Shows information about the guild.`,
+      guildOnly: true,
       examples: [`guildinfo`]
     });
   }

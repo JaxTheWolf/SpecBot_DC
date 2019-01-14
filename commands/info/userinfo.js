@@ -14,6 +14,7 @@ module.exports = class UserInfoCommand extends Command {
       group: `info`,
       memberName: `userinfo`,
       description: `Sends info about you or the tagged user (if any).`,
+      guildOnly: true,
       examples: [`userinfo @user0000`],
       args: [
         {
