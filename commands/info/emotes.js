@@ -12,7 +12,7 @@ module.exports = class XYZCommand extends Command {
       memberName: `emotes`,
       description: `Sends a message containing all server emotes.`,
       guildOnly: true,
-      examples: [emotes]
+      examples: [`emotes`]
     });
   }
   run(msg) {
