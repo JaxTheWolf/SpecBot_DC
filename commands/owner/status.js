@@ -20,7 +20,7 @@ module.exports = class StatusCommand extends Command {
 
     if (process.platform !== `win32`) {
       shell.exec(
-        `systemctl status bot | tail -100`,
+        `systemctl status bot | tail -10`,
         { shell: `/bin/bash` },
         function(code, stdout, stderr) {
           msg.say(`... ${stdout}`);
