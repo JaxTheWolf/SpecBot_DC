@@ -19,13 +19,13 @@ module.exports = class StatusCommand extends Command {
     let shell = require(`shelljs`);
 
     if (process.platform !== `win32`) {
-      shell.exec(`systemctl status bot`, { shell: `/bin/bash` }, function(
-        code,
-        stdout,
-        stderr
-      ) {
-        msg.say(stdout);
-      });
+      shell.exec(
+        `systemctl status bot | tail -100`,
+        { shell: `/bin/bash` },
+        function(code, stdout, stderr) {
+          msg.say(`... ${stdout}`);
+        }
+      );
     } else {
       msg.say(`wip`);
     }
