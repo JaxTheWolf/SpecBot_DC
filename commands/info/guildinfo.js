@@ -35,11 +35,6 @@ module.exports = class GuildInfoCommand extends Command {
       return memberCount;
     }
 
-    function fetchEmojis(guild) {
-      let emojiList = guild.emojis.map(e => e.toString()).join(" ");
-      return emojiList === `` ? `None` : emojiList;
-    }
-
     function channCount(guild, type) {
       let chann = 0;
       guild.channels.forEach(c => {
@@ -71,7 +66,6 @@ module.exports = class GuildInfoCommand extends Command {
         false
       )
       .addField(`Region:`, guild.region, false)
-      .addField(`Emojis:`, fetchEmojis(guild), false)
       .setFooter(`Guild created at:`)
       .setTimestamp(guild.createdAt);
 
