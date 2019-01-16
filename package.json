@@ -1,7 +1,8 @@
 {
   "name": "specbot_dc",
-  "version": "1.0.8.7",
-  "description": "A simple Discord bot to save and show peoples' PC/Setup configurations.",
+  "version": "1.0.9",
+  "description":
+    "A simple Discord bot to save and show peoples' PC/Setup configurations.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +23,6 @@
     "node-file-logger": "^0.9.5",
     "random-hex-color": "^1.0.1",
     "shelljs": "^0.8.3",
-    "sqlite": "^3.0.0",
-    "systeminformation": "^3.54.0"
+    "sqlite": "^3.0.0"
   }
 }
