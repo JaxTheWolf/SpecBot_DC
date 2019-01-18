@@ -47,6 +47,7 @@ module.exports = class GuildInfoCommand extends Command {
     let embed = new RichEmbed()
       .setColor(randomHexColor())
       .setTitle(`Here's some info about this guild:`)
+      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setThumbnail(guild.iconURL)
       .addField(`Name:`, guild.name, false)
       .addField(

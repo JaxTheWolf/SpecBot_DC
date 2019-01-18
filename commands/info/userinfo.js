@@ -42,6 +42,7 @@ module.exports = class UserInfoCommand extends Command {
       embed
         .setColor(randomHexColor())
         .setTitle(`Here's some info about you:`)
+        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setThumbnail(author.displayAvatarURL)
         .addField(`Your **username** is:`, `**${author.username}**`, false)
         .addField(

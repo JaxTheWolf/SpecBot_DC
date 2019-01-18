@@ -21,6 +21,7 @@ module.exports = class GuildListCommand extends Command {
     let embed = new RichEmbed()
       .setColor(randomHexColor())
       .setTitle(`Here's the list of guilds the bot is in:`)
+      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setDescription(guildlist);
 
     msg.say(embed);

@@ -32,11 +32,13 @@ module.exports = class AvatarCommand extends Command {
     if (user === ``) {
       embed
         .setTitle(`Here's your avatar:`)
+        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(msg.author.displayAvatarURL)
         .setColor(randomHexColor());
     } else {
       embed
         .setTitle(`Here's ${user.username}'s avatar:`)
+        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(user.displayAvatarURL)
         .setColor(randomHexColor());
     }
