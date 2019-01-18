@@ -21,6 +21,7 @@ client.registry
   .registerGroups([
     [`main`, `"Main" commands.`],
     [`pc`, `General stuff about computers.`],
+    [`economy`, `Economy related commands.`],
     /*[`mods`, `Moderation related commands.`],*/
     [`owner`, `Owner-only commands.`],
     [`info`, `Informative commands.`]
