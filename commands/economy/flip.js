@@ -43,7 +43,7 @@ module.exports = class FlipCommand extends Command {
       msg.say(`Insufficent funds.`);
       return;
     } else {
-      if (bet <= ) {
+      if (bet <= 1) {
         msg.reply(`You cannot bet less than 2 points!`);
         return;
       } else {
