@@ -33,7 +33,8 @@ module.exports = class LeaderboardCommand extends Command {
     for (const data of top10) {
       embed.addField(
         this.client.users.get(data.user).tag,
-        `${data.points} points (level ${data.level})`
+        `${data.points} points (level ${data.level})`,
+        true
       );
     }
     msg.channel.send({ embed });
