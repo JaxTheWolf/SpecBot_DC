@@ -67,8 +67,12 @@ module.exports = class FlipCommand extends Command {
       enmap.math(key, `+`, toAdd, `points`);
       embed
         .setDescription(
-          `Nice! I've given you ${
-            toAdd === 1 ? `${toAdd} point!` : `${toAdd} points`
+          `${
+            gstateConv === true
+              ? `CPU has been successfully inserted!`
+              : `Overclock is stable!`
+          } +${
+            toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
           } (Total: ${enmap.get(key, `points`)})`
         )
         .setImage(cf === true ? cpub : cpuf);
@@ -76,8 +80,12 @@ module.exports = class FlipCommand extends Command {
       enmap.math(key, `-`, bet, `points`);
       embed
         .setDescription(
-          `Better luck next time! I've removed ${
-            bet === 1 ? `${bet} point!` : `${bet} points`
+          `${
+            gstateConv === true
+              ? `You've bent the pins :(`
+              : `You fried the poor CPU!`
+          } -${
+            bet === 1 ? `${bet} point!` : `${bet} points!`
           } (Total: ${enmap.get(key, `points`)})`
         )
         .setImage(cf === true ? cpub : cpuf);
