@@ -38,7 +38,7 @@ module.exports = class PointsCommand extends Command {
         key = `${msg.guild.id}-${member.user.id}`;
 
         msg.channel.send(
-          `${member.nickname} currently has ${this.client.points.get(
+          `${member.user.username} currently has ${this.client.points.get(
             key,
             `points`
           )} points, and is level ${this.client.points.get(key, `level`)}!`
