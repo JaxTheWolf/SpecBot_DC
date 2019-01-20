@@ -31,7 +31,10 @@ module.exports = class GiveCommand extends Command {
     let enmap = this.client.points;
 
     if (enmap.get(key, `points`) < amount) {
-      msg.say(`Insufficent funds`);
+      msg.reply(`Insufficent funds`);
+      return;
+    } else if (amount < 0) {
+      msg.reply(`Cannot send negative amount of points!`);
       return;
     } else {
       enmap.math(key, `-`, amount, `points`);
