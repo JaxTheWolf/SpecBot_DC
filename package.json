@@ -17,13 +17,13 @@
   },
   "homepage": "https://jaxthewolf.github.io/SpecBot_DC/",
   "dependencies": {
-    "better-sqlite-pool": "^0.2.0",
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
-    "enmap": "^4.6.5",
+    "enmap": "^4.6.6",
     "node-file-logger": "^0.9.5",
     "random-hex-color": "^1.0.1",
     "shelljs": "^0.8.3",
-    "sqlite": "^3.0.0"
+    "sqlite": "^3.0.0",
+    "sqlite3": "^4.0.0"
   }
 }
