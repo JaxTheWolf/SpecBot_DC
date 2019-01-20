@@ -18,7 +18,9 @@ module.exports = class XYZCommand extends Command {
   run(msg) {
     function fetchEmojis(guild) {
       let emojiList = guild.emojis.map(e => e.toString()).join(" ");
-      return emojiList === `` ? `None` : emojiList;
+      return emojiList === ``
+        ? `This server doesn't have any custom emotes.`
+        : emojiList;
     }
 
     msg.say(fetchEmojis(msg.guild));
