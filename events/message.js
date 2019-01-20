@@ -15,14 +15,6 @@ module.exports = (client, msg) => {
         level: 1
       });
 
-      client.points.set(
-        key,
-        Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))) === 0
-          ? 1
-          : Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))),
-        `level`
-      );
-
       client.points.inc(key, `points`);
 
       const curLevel = Math.floor(
@@ -33,6 +25,13 @@ module.exports = (client, msg) => {
         msg.reply(`You've leveled up to level **${curLevel}**!`);
         client.points.set(key, curLevel, `level`);
       }
+      client.points.set(
+        key,
+        Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))) === 0
+          ? 1
+          : Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))),
+        `level`
+      );
     })();
   }
 };
