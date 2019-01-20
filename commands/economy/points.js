@@ -27,7 +27,7 @@ module.exports = class PointsCommand extends Command {
     let key;
     if (member === ``) {
       key = `${msg.guild.id}-${msg.author.id}`;
-      msg.channel.send(
+      msg.reply(
         `You currently have ${this.client.points.get(
           key,
           `points`
@@ -37,7 +37,7 @@ module.exports = class PointsCommand extends Command {
       try {
         key = `${msg.guild.id}-${member.user.id}`;
 
-        msg.channel.send(
+        msg.reply(
           `${member.user.username} currently has ${this.client.points.get(
             key,
             `points`

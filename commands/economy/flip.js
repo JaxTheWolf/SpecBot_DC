@@ -40,7 +40,7 @@ module.exports = class FlipCommand extends Command {
     }
 
     if (enmap.get(key, `points`) < bet) {
-      msg.say(`Insufficent funds.`);
+      msg.reply(`Insufficent funds.`);
       return;
     } else {
       if (bet <= 1) {
