@@ -50,6 +50,11 @@ module.exports = class FlipCommand extends Command {
         if (gstateConv === coinFlip()) {
           let toAdd = bet * 2;
           enmap.math(key, `+`, toAdd, `points`);
+          enmap.set(
+            key,
+            0.25 * Math.sqrt(client.points.get(key, `points`)),
+            `level`
+          );
           msg.reply(
             `Nice! I've given you ${
               toAdd === 1 ? `${toAdd} point!` : `${toAdd} points`
@@ -57,6 +62,11 @@ module.exports = class FlipCommand extends Command {
           );
         } else {
           enmap.math(key, `-`, bet, `points`);
+          enmap.set(
+            key,
+            0.25 * Math.sqrt(client.points.get(key, `points`)),
+            `level`
+          );
           msg.reply(
             `Better luck next time! I've removed ${
               bet === 1 ? `${bet} point!` : `${bet} points`
