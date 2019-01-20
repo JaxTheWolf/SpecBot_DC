@@ -60,7 +60,7 @@ module.exports = class FlipCommand extends Command {
       return msg.reply(`Insufficent funds.`);
     }
     if (bet <= 1) {
-      return msg.sa(`You cannot bet less than 2 points!`);
+      return msg.reply(`You cannot bet less than 2 points!`);
     }
     if (gstateConv === cf) {
       let toAdd = bet * 2;
