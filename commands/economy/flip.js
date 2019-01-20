@@ -11,7 +11,7 @@ module.exports = class FlipCommand extends Command {
       group: `economy`,
       memberName: `flip`,
       description: `Flips a coin. If you guess the coin state your bet gets doubled!`,
-      examples: [`flip`],
+      examples: [`flip 10 tails`, `flip 10 t`],
       args: [
         {
           key: `bet`,
@@ -43,7 +43,7 @@ module.exports = class FlipCommand extends Command {
       msg.say(`Insufficent funds.`);
       return;
     } else {
-      if (bet === 0) {
+      if (bet =< 2) {
         msg.reply(`You cannot bet less than 1 point!`);
         return;
       } else {
@@ -52,15 +52,15 @@ module.exports = class FlipCommand extends Command {
           enmap.math(key, `+`, toAdd, `points`);
           msg.reply(
             `Nice! I've given you ${
-              toAdd === 1 ? `${toAdd} point` : `${toAdd} points`
-            } points! (Total: ${enmap.get(key, `points`)})`
+              toAdd === 1 ? `${toAdd} point!` : `${toAdd} points`
+            } (Total: ${enmap.get(key, `points`)})`
           );
         } else {
           enmap.math(key, `-`, bet, `points`);
           msg.reply(
             `Better luck next time! I've removed ${
-              bet === 1 ? `${bet} point` : `${bet} points`
-            } points! (Total: ${enmap.get(key, `points`)})`
+              bet === 1 ? `${bet} point!` : `${bet} points`
+            } (Total: ${enmap.get(key, `points`)})`
           );
         }
       }
