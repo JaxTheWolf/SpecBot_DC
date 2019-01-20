@@ -10,6 +10,7 @@ module.exports = class GuildListCommand extends Command {
   constructor(client) {
     super(client, {
       name: `guildlist`,
+      aliases: [`guilds`, `glist`],
       group: `info`,
       memberName: `guildlist`,
       description: `Lists all the guilds the bot is in.`,

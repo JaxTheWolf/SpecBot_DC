@@ -12,7 +12,7 @@ module.exports = class PointsCommand extends Command {
       memberName: `points`,
       description: `Shows how many points you have`,
       guildOnly: true,
-      examples: [`points`],
+      examples: [`points`, `points @user#0000`],
       args: [
         {
           key: `member`,

@@ -17,7 +17,7 @@ module.exports = (client, msg) => {
 
       client.points.inc(key, `points`);
 
-      const curLevel = Math.floor(
+      let curLevel = Math.floor(
         0.25 * Math.sqrt(client.points.get(key, `points`))
       );
 
