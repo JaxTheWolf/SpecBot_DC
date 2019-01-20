@@ -52,8 +52,10 @@ module.exports = class FlipCommand extends Command {
           enmap.math(key, `+`, toAdd, `points`);
           enmap.set(
             key,
-            0.25 * Math.sqrt(this.client.points.get(key, `points`)),
-            `level`
+            Math.floor(
+              0.25 * Math.sqrt(this.client.points.get(key, `points`)),
+              `level`
+            )
           );
           msg.reply(
             `Nice! I've given you ${
@@ -64,8 +66,10 @@ module.exports = class FlipCommand extends Command {
           enmap.math(key, `-`, bet, `points`);
           enmap.set(
             key,
-            0.25 * Math.sqrt(this.client.points.get(key, `points`)),
-            `level`
+            Math.floor(
+              0.25 * Math.sqrt(this.client.points.get(key, `points`)),
+              `level`
+            )
           );
           msg.reply(
             `Better luck next time! I've removed ${
