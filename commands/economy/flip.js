@@ -53,7 +53,7 @@ module.exports = class FlipCommand extends Command {
     ) {
       gstateConv = false;
     } else {
-      return msg.reply(`Invalig guess`);
+      return msg.reply(`Invalid guess`);
     }
 
     if (enmap.get(key, `points`) < bet) {
