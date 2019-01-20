@@ -15,7 +15,7 @@ module.exports = class ReplyCommand extends Command {
     });
   }
   run(msg) {
-    return msg.say(`It's working!`);
+    msg.say(`It's working!`);
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`;

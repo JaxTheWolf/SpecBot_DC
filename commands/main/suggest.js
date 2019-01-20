@@ -16,7 +16,7 @@ module.exports = class SuggestCommand extends Command {
     });
   }
   run(msg) {
-    return msg.say(
+    msg.say(
       `Suggest new features here! https://goo.gl/forms/4LEfWSqBWHgi3umX2`
     );
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
