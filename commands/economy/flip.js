@@ -12,7 +12,7 @@ module.exports = class FlipCommand extends Command {
       name: `flip`,
       group: `economy`,
       memberName: `flip`,
-      description: `Flips a coin. If you guess the coin state your bet gets doubled!`,
+      description: `Flips a coin. If you guess the coin state your bet gets multiplied by 1.5!`,
       examples: [`flip 10 pins (pins = tails in this case)`, `flip 10 p`],
       args: [
         {
@@ -42,7 +42,7 @@ module.exports = class FlipCommand extends Command {
       .setColor(randomHexColor());
 
     function coinFlip() {
-      return Math.floor(Math.random() * 2) == 0;
+      return Math.floor(Math.random() * 2) === 0;
     }
 
     if (gstate.toLowerCase() === `p` || gstate.toLowerCase() === `pins`) {
@@ -63,7 +63,7 @@ module.exports = class FlipCommand extends Command {
       return msg.reply(`You cannot bet less than 2 points!`);
     }
     if (gstateConv === cf) {
-      let toAdd = bet * 2;
+      let toAdd = Math.floor(bet * 1.5);
       enmap.math(key, `+`, toAdd, `points`);
       embed
         .setDescription(
