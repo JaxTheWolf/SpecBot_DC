@@ -19,25 +19,24 @@ module.exports = class LeaderboardCommand extends Command {
     });
   }
   run(msg) {
-    let filtered = this.client.points
+    const filtered = this.client.points
       .filter(p => p.guild === msg.guild.id)
       .array();
-    let sorted = filtered.sort((a, b) => b.points - a.points);
-    let top10 = sorted.splice(0, 10);
-    let embed = new RichEmbed()
+    const sorted = filtered.sort((a, b) => b.points - a.points);
+    const top10 = sorted.splice(0, 10);
+    const embed = new RichEmbed()
       .setTitle(`Leaderboard`)
-      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
+      .setAuthor(this.client.user.username, this.client.user.avatarURL)
       .setDescription(`Our top 10 points leaders!`)
       .setColor(randomHexColor());
-
     for (const data of top10) {
       embed.addField(
         this.client.users.get(data.user).tag,
-        `${data.points} points (level ${data.level})`,
+        `**${data.points}** points (level **${data.level}**)`,
         true
       );
     }
-    msg.channel.send({ embed });
+    msg.say({ embed });
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
