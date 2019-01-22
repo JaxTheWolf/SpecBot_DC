@@ -38,7 +38,6 @@ module.exports = class LeaderboardCommand extends Command {
       );
     }
     msg.channel.send({ embed });
-    this.client.points.evict(key);
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
