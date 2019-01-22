@@ -36,6 +36,7 @@ module.exports = (client, msg) => {
           : Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))),
         `level`
       );
+      client.points.evict(key);
     })();
   }
 };

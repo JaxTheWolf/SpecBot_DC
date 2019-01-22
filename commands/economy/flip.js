@@ -91,6 +91,7 @@ module.exports = class FlipCommand extends Command {
         .setImage(cf === true ? cpub : cpuf);
     }
     msg.say({ embed });
+    client.points.evict(key);
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
