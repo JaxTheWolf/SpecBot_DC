@@ -1,6 +1,10 @@
 module.exports = (client, msg) => {
   const Enmap = require(`enmap`);
-  client.points = new Enmap({ name: `points` });
+  client.points = new Enmap({
+    name: `points`,
+    fetchAll: false,
+    autoFetch: true
+  });
 
   if (msg.author.bot) return;
   if (msg.guild) {
