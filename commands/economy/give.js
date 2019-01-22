@@ -47,7 +47,7 @@ module.exports = class GiveCommand extends Command {
         )})`
       );
     }
-    client.points.evict(key);
+    this.client.points.evict(key);
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

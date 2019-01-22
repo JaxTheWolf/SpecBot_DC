@@ -47,7 +47,7 @@ module.exports = class PointsCommand extends Command {
         msg.say(`This user doesn't have any points!`);
       }
     }
-    client.points.evict(key);
+    this.client.points.evict(key);
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
