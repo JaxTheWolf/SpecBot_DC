@@ -28,7 +28,13 @@ module.exports = class UserInfoCommand extends Command {
   }
   run(msg, { member }) {
     let embed = new RichEmbed();
-    let playStat;
+    let playStat, bot;
+    const status = {
+      online: "Online",
+      idle: "Idle",
+      dnd: "Do Not Disturb",
+      offline: "Offline/Invisible"
+    };
 
     if (member === ``) {
       let author = msg.author;
@@ -59,7 +65,7 @@ module.exports = class UserInfoCommand extends Command {
           false
         )
         .addField(
-          `You are currently **${authorMember.presence.status}**`,
+          `You are currently **${status[authorMember.presence.status]}**`,
           `and **playing ${playStat}**`,
           false
         )
@@ -72,6 +78,13 @@ module.exports = class UserInfoCommand extends Command {
         playStat = `nothing`;
       }
       let user = member.user;
+
+      if (user.bot) {
+        bot = `Yes`;
+      } else {
+        bot = `No`;
+      }
+
       embed
         .setColor(randomHexColor())
         .setTitle(`Here's some info about **${user.tag}**:`)
@@ -89,18 +102,15 @@ module.exports = class UserInfoCommand extends Command {
           false
         )
         .addField(
-          `They are currently **${member.presence.status}**`,
+          `They are currently **${status[member.presence.status]}**`,
           `and **playing ${playStat}**`,
           false
         )
-        .addField(`Are they a **bot user**?`, `**${user.bot}**`, false)
+        .addField(`Are they a **bot user**?`, `**${bot}**`, false)
         .setFooter(`User created at:`)
         .setTimestamp(user.createdAt);
     }
     msg.say(embed);
-
-    // TODO: (member): joinedAt, nickame, presence,
-    // TODO: (user): displayAvatarURL, createdAt, id, username
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
