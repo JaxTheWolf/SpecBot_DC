@@ -15,31 +15,45 @@ module.exports = class XYZCommand extends Command {
       examples: [`purge @user#0000 52`, `purge 10`],
       args: [
         {
-          key: `user`,
-          prompt: `Which user's messages would you like to delete?`,
-          type: `user`,
-          default: ``
-        },
-        {
           key: `amount`,
           prompt: `How many messages would you like to delete?`,
           type: `integer`,
           min: 2,
           max: 100
+        },
+        {
+          key: `member`,
+          prompt: `Which member's messages would you like to delete?`,
+          type: `member`,
+          default: ``
         }
       ]
     });
   }
-  async run(msg, { user, amount }) {
+  async run(msg, { member, amount }) {
     let messages = await msg.channel.fetchMessages({ limit: 100 });
-    if (user !== ``) {
-      messages = messages.array().filter(m => m.author.id === user.id);
-      messages.length = amount;
+    let user = member.user;
+    if (
+      !msg.guild.members
+        .get(msg.author.id)
+        .hasPermission(`MANAGE_MESSAGES`, false, true, true)
+    ) {
+      msg.say(`You don't have required permissions for this action!`);
+      return;
     } else {
-      messages = messages.array();
-      messages.length = amount + 1;
+      if (member !== ``) {
+        messages = messages.array().filter(m => m.author.id === user.id);
+        messages.length = amount;
+      } else {
+        messages = messages.array();
+        messages.length = amount + 1;
+      }
+
+      await msg.channel.bulkDelete(messages);
+      await msg
+        .say(`Deleted ${messages.length} messages!`)
+        .then(m => m.delete(2500));
     }
-    messages.map(async m => await m.delete().catch(console.error));
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
