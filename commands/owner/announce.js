@@ -49,7 +49,7 @@ module.exports = class AnnounceCommand extends Command {
     } catch (err) {
       let toLog = `Could not send message to a (few) guild(s)!`;
       console.log(toLog);
-      log.Info();
+      log.Info(toLog);
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
