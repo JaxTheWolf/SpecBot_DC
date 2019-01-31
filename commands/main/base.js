@@ -7,13 +7,13 @@ let path = require(`path`);
 module.exports = class XYZCommand extends Command {
   constructor(client) {
     super(client, {
-      name: ``,
-      aliases: [``],
-      group: ``,
-      memberName: ``,
-      description: ``,
-      examples: [],
-      args: [{}]
+      name: `base`,
+      aliases: [`base1`],
+      group: `main`,
+      memberName: `base`,
+      description: `A base command to copy`,
+      examples: [`base`]
+      //args: [{}]
     });
   }
   run(msg, {}) {
