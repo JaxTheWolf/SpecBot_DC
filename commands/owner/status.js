@@ -10,7 +10,7 @@ module.exports = class StatusCommand extends Command {
       name: `status`,
       group: `owner`,
       memberName: `status`,
-      description: `Shows the status of the \`bot\` systemd service Linux only`,
+      description: `Shows the status of the \`bot\` systemd service (Linux only, also systemd only)`,
       ownerOnly: true,
       examples: [`status`]
     });

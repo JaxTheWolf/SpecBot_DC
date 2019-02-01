@@ -10,12 +10,12 @@ module.exports = class DelPC2Command extends Command {
       name: `delpc2`,
       group: `pc`,
       memberName: `delpc2`,
-      description: `Deletes your configuration`,
+      description: `Deletes your configuration.`,
       examples: [`delpc2 true`],
       args: [
         {
           key: `confirm`,
-          prompt: `Do you want to proceed?`,
+          prompt: `Do you want to proceed? (true = yes, false = no)`,
           type: `boolean`
         }
       ]

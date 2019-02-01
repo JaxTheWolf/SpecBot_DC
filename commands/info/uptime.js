@@ -10,7 +10,7 @@ module.exports = class UptimeCommand extends Command {
       name: `uptime`,
       group: `info`,
       memberName: `uptime`,
-      description: `Displays how long the bot is on`,
+      description: `Displays how long the bot is on.`,
       examples: [`uptime`]
     });
   }

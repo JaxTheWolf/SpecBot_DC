@@ -12,7 +12,7 @@ module.exports = class EditPC1Comand extends Command {
       aliases: [`edit1`],
       group: `pc`,
       memberName: `editpc1`,
-      description: `Edits your configuration`,
+      description: `Edits your configuration.`,
       examples: [
         `editpc1 GPU "Radeon R4" (Wrap arguments with spaces in quotes)`
       ],

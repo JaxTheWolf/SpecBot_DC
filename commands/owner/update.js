@@ -10,7 +10,7 @@ module.exports = class UpdateCommand extends Command {
       name: `update`,
       group: `owner`,
       memberName: `update`,
-      description: `Updates the bot using \`git pull ...\``,
+      description: `Updates the bot using \`git pull ...\`.`,
       ownerOnly: true,
       examples: [`update`]
     });

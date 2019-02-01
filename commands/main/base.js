@@ -11,12 +11,13 @@ module.exports = class XYZCommand extends Command {
       aliases: [`base1`],
       group: `main`,
       memberName: `base`,
-      description: `A base command to copy`,
+      description: `A base command to copy.`,
       examples: [`base`]
       //args: [{}]
     });
   }
   run(msg, {}) {
+    msg.say(`Change me you fool`);
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`;

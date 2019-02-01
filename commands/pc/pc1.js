@@ -12,7 +12,7 @@ module.exports = class PC1Command extends Command {
       name: `pc1`,
       group: `pc`,
       memberName: `pc1`,
-      description: `Replies with a user's configuration`,
+      description: `Replies with a user's configuration.`,
       examples: [`pc1 @oko123#8509`],
       args: [
         {
