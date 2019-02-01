@@ -31,7 +31,9 @@ module.exports = class ServerCommand extends Command {
     function retrieveServer(user) {
       fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function(err, data) {
         if (err) {
-          msg.reply(`This person doesn't have a server or they haven't saved it yet!`);
+          msg.reply(
+            `This person doesn't have a server or they haven't saved it yet!`
+          );
           console.log(err);
         } else {
           const embed = new RichEmbed()
