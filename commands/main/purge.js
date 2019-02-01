@@ -4,7 +4,7 @@ const log = require(`node-file-logger`);
 log.SetUserOptions(options);
 let path = require(`path`);
 
-module.exports = class XYZCommand extends Command {
+module.exports = class PurgeCommand extends Command {
   constructor(client) {
     super(client, {
       name: `purge`,
@@ -19,7 +19,7 @@ module.exports = class XYZCommand extends Command {
           prompt: `How many messages would you like to delete?`,
           type: `integer`,
           min: 2,
-          max: 100
+          max: 99
         },
         {
           key: `member`,

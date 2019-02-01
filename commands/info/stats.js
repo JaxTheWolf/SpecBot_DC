@@ -7,13 +7,13 @@ const log = require(`node-file-logger`);
 log.SetUserOptions(options);
 let path = require(`path`);
 
-module.exports = class XYZCommand extends Command {
+module.exports = class StatsCommand extends Command {
   constructor(client) {
     super(client, {
       name: `stats`,
       group: `info`,
       memberName: `stats`,
-      description: `Shows the bot statistics`,
+      description: `Shows the bot statistics.`,
       examples: [`stats`]
     });
   }
@@ -21,17 +21,37 @@ module.exports = class XYZCommand extends Command {
     const duration = moment
       .duration(this.client.uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");
-    msg.channel.send(
+
+    let dir, pc1, pc2;
+
+    const fs = require(`fs`);
+    dir = `${__dirname}/../../conf1`;
+    pc1 = fs.readdirSync(dir).length;
+    dir = `${__dirname}/../../conf2`;
+    pc2 = fs.readdirSync(dir).length;
+    let totalMemUsage =
+      process.memoryUsage().heapUsed + process.memoryUsage().external;
+
+    msg.say(
       `---STATISTICS---
-    • Mem Usage  :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
-      2
-    )} MB
-    • Uptime     :: ${duration}
-    • Users      :: ${this.client.users.size.toLocaleString()}
-    • Servers    :: ${this.client.guilds.size.toLocaleString()}
-    • Channels   :: ${this.client.channels.size.toLocaleString()}
-    • Discord.js :: v${Discord.version}
-    • Node       :: ${process.version}`,
+      • Mem Used (bot only)                :: ${(
+        process.memoryUsage().heapUsed /
+        1024 /
+        1024
+      ).toFixed(2)} MB
+      • Mem Used (bot + C and C++ objects) :: ${(
+        totalMemUsage /
+        1024 /
+        1024
+      ).toFixed(2)} MB
+      • Uptime                             :: ${duration}
+      • Users                              :: ${this.client.users.size.toLocaleString()}
+      • Servers                            :: ${this.client.guilds.size.toLocaleString()}
+      • Channels                           :: ${this.client.channels.size.toLocaleString()}
+      • PC1 Confs                          :: ${pc1}
+      • PC2 Confs                          :: ${pc2}
+      • Discord.js                         :: v${Discord.version}
+      • Node                               :: ${process.version}`,
       { code: "asciidoc" }
     );
 
