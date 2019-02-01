@@ -40,9 +40,10 @@ module.exports = class LeaderboardCommand extends Command {
       msg.say({ embed });
     } catch (e) {
       msg.reply(
-        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
+        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying. Error: (${
+          e
+        })`
       );
-      msg.say(e);
     }
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
