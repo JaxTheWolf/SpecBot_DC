@@ -12,13 +12,12 @@ module.exports = class SetServerCommand extends Command {
       memberName: `setserver`,
       description: `Sets a server.`,
       examples: [`setserver`],
-      args: [
-        {
-          key: `serverconf`,
-          prompt: `Type out your server specs here:`,
-          type: `string`
-        }
-      ]
+      args:[{
+        key: `serverconf`,
+        prompt: `Type out your server specs here:`,
+        type: `string`,
+        infinite: true
+      },]
     });
   }
   run(msg, { serverconf }) {
