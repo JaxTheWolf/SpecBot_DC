@@ -125,7 +125,7 @@ module.exports = class Setpc2Command extends Command {
 
     fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
       if (err) {
-        msg.say(`There was a problem while saving your file. (\`${e}\`)`);
+        msg.say(`There was a problem while saving your file. (\`${err}\`)`);
       } else {
         return msg.say(`Configuration saved succesfully!`);
       }
