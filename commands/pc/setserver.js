@@ -15,7 +15,8 @@ module.exports = class SetServerCommand extends Command {
       args:[{
         key: `serverconf`,
         prompt: `Type out your server specs here:`,
-        type: `string`
+        type: `string`,
+        infinite: true
       },]
     });
   }
