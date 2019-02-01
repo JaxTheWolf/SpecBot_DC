@@ -10,7 +10,7 @@ module.exports = class GiveCommand extends Command {
       name: `give`,
       group: `economy`,
       memberName: `give`,
-      description: `Gives someone x points`,
+      description: `Gives someone x points.`,
       examples: [`give 10 @user#0000`],
       args: [
         {
@@ -30,24 +30,28 @@ module.exports = class GiveCommand extends Command {
     let key = `${msg.guild.id}-${msg.author.id}`;
     let enmap = this.client.points;
 
-    if (enmap.get(key, `points`) < amount) {
-      return msg.reply(`Insufficent funds`);
-    }
-    if (amount < 0) {
-      return msg.reply(`Cannot send negative amount of points!`);
-    } else {
-      enmap.math(key, `-`, amount, `points`);
-      key = `${msg.guild.id}-${user.id}`;
-      enmap.math(key, `+`, amount, `points`);
-      msg.reply(`Gave user ${user.username} ${amount} points!`);
-      user.send(
-        `${msg.author.username} gave you ${amount} points! (Total: ${enmap.get(
-          key,
-          `points`
-        )})`
+    try {
+      if (enmap.get(key, `points`) < amount) {
+        return msg.reply(`Insufficent funds`);
+      }
+      if (amount < 0) {
+        return msg.reply(`Cannot send negative amount of points!`);
+      } else {
+        enmap.math(key, `-`, amount, `points`);
+        key = `${msg.guild.id}-${user.id}`;
+        enmap.math(key, `+`, amount, `points`);
+        msg.reply(`Gave user ${user.username} ${amount} points!`);
+        user.send(
+          `${msg.author.username} gave you ${
+            amount
+          } points! (Total: ${enmap.get(key, `points`)})`
+        );
+      }
+    } catch {
+      msg.reply(
+        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
       );
     }
-
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

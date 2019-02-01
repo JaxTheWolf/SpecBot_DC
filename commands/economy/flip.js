@@ -45,52 +45,58 @@ module.exports = class FlipCommand extends Command {
       return Math.floor(Math.random() * 2) === 0;
     }
 
-    if (gstate.toLowerCase() === `p` || gstate.toLowerCase() === `pins`) {
-      gstateConv = true;
-    } else if (
-      gstate.toLowerCase() === `h` ||
-      gstate.toLowerCase() === `heads`
-    ) {
-      gstateConv = false;
-    } else {
-      return msg.reply(`Invalid guess`);
-    }
+    try {
+      if (gstate.toLowerCase() === `p` || gstate.toLowerCase() === `pins`) {
+        gstateConv = true;
+      } else if (
+        gstate.toLowerCase() === `h` ||
+        gstate.toLowerCase() === `heads`
+      ) {
+        gstateConv = false;
+      } else {
+        return msg.reply(`Invalid guess`);
+      }
 
-    if (enmap.get(key, `points`) < bet) {
-      return msg.reply(`Insufficent funds.`);
+      if (enmap.get(key, `points`) < bet) {
+        return msg.reply(`Insufficent funds.`);
+      }
+      if (bet <= 1) {
+        return msg.reply(`You cannot bet less than 2 points!`);
+      }
+      if (gstateConv === cf) {
+        let toAdd = Math.floor(bet * 1.5);
+        enmap.math(key, `+`, toAdd, `points`);
+        embed
+          .setDescription(
+            `${
+              gstateConv === true
+                ? `CPU has been successfully inserted!`
+                : `Overclock is stable!`
+            } +${
+              toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
+            } (Total: ${enmap.get(key, `points`)})`
+          )
+          .setImage(cf === true ? cpub : cpuf);
+      } else {
+        enmap.math(key, `-`, bet, `points`);
+        embed
+          .setDescription(
+            `${
+              gstateConv === true
+                ? `You've bent the pins :(`
+                : `You fried the poor CPU!`
+            } -${
+              bet === 1 ? `${bet} point!` : `${bet} points!`
+            } (Total: ${enmap.get(key, `points`)})`
+          )
+          .setImage(cf === true ? cpub : cpuf);
+      }
+      msg.say({ embed });
+    } catch {
+      msg.reply(
+        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
+      );
     }
-    if (bet <= 1) {
-      return msg.reply(`You cannot bet less than 2 points!`);
-    }
-    if (gstateConv === cf) {
-      let toAdd = Math.floor(bet * 1.5);
-      enmap.math(key, `+`, toAdd, `points`);
-      embed
-        .setDescription(
-          `${
-            gstateConv === true
-              ? `CPU has been successfully inserted!`
-              : `Overclock is stable!`
-          } +${
-            toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
-          } (Total: ${enmap.get(key, `points`)})`
-        )
-        .setImage(cf === true ? cpub : cpuf);
-    } else {
-      enmap.math(key, `-`, bet, `points`);
-      embed
-        .setDescription(
-          `${
-            gstateConv === true
-              ? `You've bent the pins :(`
-              : `You fried the poor CPU!`
-          } -${
-            bet === 1 ? `${bet} point!` : `${bet} points!`
-          } (Total: ${enmap.get(key, `points`)})`
-        )
-        .setImage(cf === true ? cpub : cpuf);
-    }
-    msg.say({ embed });
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
