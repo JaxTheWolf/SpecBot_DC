@@ -16,13 +16,14 @@ module.exports = class ServerCommand extends Command {
         {
           key: `confirm`,
           prompt: `Do you want to proceed? (true = yes, false = no)`,
-          type: `boolean`
+          type: `string`,
+          oneOf: [`yes`, `no`]
         }
       ]
     });
   }
   run(msg, { confirm }) {
-    if (!confirm) {
+    if (confirm === `no`) {
       msg.reply(`Cancelled command.`);
       return;
     } else {
