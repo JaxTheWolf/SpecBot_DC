@@ -11,7 +11,7 @@ module.exports = class PandaCommand extends Command {
   constructor(client) {
     super(client, {
       name: `panda`,
-      /*aliases: [`kitty`],*/
+      aliases: [`pandabear`, `bamboo_muncher`],
       group: `animals`,
       memberName: `panda`,
       description: `Sends a random image of a panda.`,

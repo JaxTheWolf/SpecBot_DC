@@ -11,7 +11,7 @@ module.exports = class PikachuCommand extends Command {
   constructor(client) {
     super(client, {
       name: `pikachu`,
-      /*aliases: [`kitty`],*/
+      aliases: [`chu`, `pika`, `owo`],
       group: `animals`,
       memberName: `pikachu`,
       description: `Sends a random image of Pikachu.`,

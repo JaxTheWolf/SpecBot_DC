@@ -11,7 +11,7 @@ module.exports = class BirdCommand extends Command {
   constructor(client) {
     super(client, {
       name: `bird`,
-      /*  aliases: [],*/
+      aliases: [`birb`, `birdie`],
       group: `animals`,
       memberName: `bird`,
       description: `Sends a random image of a bird.`,

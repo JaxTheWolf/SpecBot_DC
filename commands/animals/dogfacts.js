@@ -9,7 +9,7 @@ module.exports = class DogFactCommand extends Command {
   constructor(client) {
     super(client, {
       name: `dogfact`,
-      /*aliases: [`dog`, `doggie`, `puppy`, `pupper`, `dawg`],*/
+      aliases: [`dogfact`, `doggiefact`, `puppyfact`, `pupperfact`, `dawgfact`, `doggofact`, `dogefact`],
       group: `animals`,
       memberName: `dogfacts`,
       description: `Sends some random dog fact.`,
