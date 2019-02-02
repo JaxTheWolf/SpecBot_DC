@@ -23,7 +23,7 @@ module.exports = class RestartCommand extends Command {
         shell.exec(
           `systemctl restart bot`,
           { shell: `/bin/bash` },
-          function onDone(stdout) {
+          function onDone(code, stdout, stderr) {
             msg.say(stdout);
           }
         );
