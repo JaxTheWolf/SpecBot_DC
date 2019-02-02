@@ -39,14 +39,12 @@ module.exports = class SayCommand extends Command {
         .setAuthor(`${author.username} says:`, author.displayAvatarURL)
         .setDescription(say)
         .setColor(randomHexColor());
-
-      msg.say(toSay);
     } else {
       toSay
         .setDescription(say.replace(`///anon`, ``))
         .setColor(randomHexColor());
-      msg.say(toSay);
     }
+    msg.say(toSay);
 
     let toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

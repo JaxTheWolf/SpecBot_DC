@@ -30,7 +30,7 @@ module.exports = class DelPC2Command extends Command {
       let owner = msg.author;
       let delFrom = `${__dirname}/../../conf1`;
 
-      fs.unlink(`${delFrom}/${owner.id}.txt`, function(err) {
+      fs.unlink(`${delFrom}/${owner.id}.txt`, function onError(err) {
         if (err) {
           console.log(err);
           msg.reply(

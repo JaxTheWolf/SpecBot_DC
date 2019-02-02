@@ -12,21 +12,26 @@ module.exports = class SetServerCommand extends Command {
       memberName: `setserver`,
       description: `Sets a server.`,
       examples: [`setserver`],
-      args:[{
-        key: `serverconf`,
-        prompt: `Type out your server specs here:`,
-        type: `string`,
-        infinite: true
-      },]
+      args: [
+        {
+          key: `serverconf`,
+          prompt: `Type out your server specs here:`,
+          type: `string`,
+          infinite: true
+        }
+      ]
     });
   }
   run(msg, { serverconf }) {
-    let content = `Server: ${serverconf}`;
+    let content = `Server: \n${serverconf
+      .toString()
+      .split(`,`)
+      .join(`\n`)}`;
     let owner = msg.author;
     let fs = require(`fs`);
     let writeTo = `${__dirname}/../../server`;
 
-    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
+    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError(err) {
       if (err) {
         msg.say(`There was a problem while saving your file. (\`${err}\`)`);
       } else {

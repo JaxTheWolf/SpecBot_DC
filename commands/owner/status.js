@@ -22,7 +22,7 @@ module.exports = class StatusCommand extends Command {
       shell.exec(
         `systemctl status bot | tail -10`,
         { shell: `/bin/bash` },
-        function(code, stdout, stderr) {
+        function onDone(stdout) {
           msg.say(`... ${stdout}`);
         }
       );

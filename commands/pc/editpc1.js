@@ -56,7 +56,7 @@ module.exports = class EditPC1Comand extends Command {
       msg.reply(`\`${component}\` is not a valid component!`);
       return;
     } else {
-      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function(err, data) {
+      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone(err, data) {
         if (err) {
           msg.reply(
             `You don't have a configuration yet or an error has occured.`
@@ -66,7 +66,7 @@ module.exports = class EditPC1Comand extends Command {
         } else {
           res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
 
-          fs.writeFile(`${dir}/${owner.id}.txt`, res, function(err) {
+          fs.writeFile(`${dir}/${owner.id}.txt`, res, function onDone(err) {
             if (err) {
               msg.say(
                 `There was a problem while saving your file. (\`${err}\`)`
