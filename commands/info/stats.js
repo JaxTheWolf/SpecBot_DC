@@ -22,36 +22,37 @@ module.exports = class StatsCommand extends Command {
       .duration(this.client.uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
-    let dir, pc1, pc2;
+    let dir, pc1, pc2, servers;
 
     const fs = require(`fs`);
     dir = `${__dirname}/../../conf1`;
     pc1 = fs.readdirSync(dir).length;
     dir = `${__dirname}/../../conf2`;
     pc2 = fs.readdirSync(dir).length;
-    let totalMemUsage =
-      process.memoryUsage().heapUsed + process.memoryUsage().external;
+    dir = `${__dirname}/../../server`;
+    servers = fs.readdirSync(dir).length;
 
     msg.say(
       `---STATISTICS---
-      • Mem Used (bot only)                :: ${(
+      • Mem Used (bot only) :: ${(
         process.memoryUsage().heapUsed /
         1024 /
         1024
       ).toFixed(2)} MB
-      • Mem Used (bot + C and C++ objects) :: ${(
-        totalMemUsage /
+      • Mem Used (total)    :: ${(
+        process.memoryUsage().rss /
         1024 /
         1024
       ).toFixed(2)} MB
-      • Uptime                             :: ${duration}
-      • Users                              :: ${this.client.users.size.toLocaleString()}
-      • Servers                            :: ${this.client.guilds.size.toLocaleString()}
-      • Channels                           :: ${this.client.channels.size.toLocaleString()}
-      • PC1 Confs                          :: ${pc1}
-      • PC2 Confs                          :: ${pc2}
-      • Discord.js                         :: v${Discord.version}
-      • Node                               :: ${process.version}`,
+      • Uptime              :: ${duration}
+      • Users               :: ${this.client.users.size.toLocaleString()}
+      • Servers             :: ${this.client.guilds.size.toLocaleString()}
+      • Channels            :: ${this.client.channels.size.toLocaleString()}
+      • PC1 Confs           :: ${pc1}
+      • PC2 Confs           :: ${pc2}
+      • Servers             :: ${servers}
+      • Discord.js          :: v${Discord.version}
+      • Node                :: ${process.version}`,
       { code: "asciidoc" }
     );
 
