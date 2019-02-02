@@ -15,8 +15,8 @@ module.exports = class ReportCommand extends Command {
       memberName: `report`,
       description: `Reports a user to the server owner.`,
       examples: [
-        `report @user#0000 "Hate messages" false`,
-        `report @user0000 "no" false`
+        `report @user#0000 "Hate messages" no`,
+        `report @user0000 "no" yes`
       ],
       args: [
         {
@@ -31,8 +31,9 @@ module.exports = class ReportCommand extends Command {
         },
         {
           key: `confirm`,
-          prompt: `ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT! Do you still want to proceed? (true if you understand, false otherwise.)`,
-          type: `boolean`
+          prompt: `ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT! Do you still want to proceed? (yes if you understand, no otherwise.)`,
+          type: `string`,
+          oneOf: [`yes`, `no`]
         }
       ]
     });
@@ -40,7 +41,7 @@ module.exports = class ReportCommand extends Command {
   run(msg, { user, reason, confirm }) {
     let guildOwner = msg.guild.owner.user;
 
-    if (!confirm) {
+    if (confirm === `no`) {
       msg.reply(`Cancelled command.`);
       return;
     } else {

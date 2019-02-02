@@ -11,18 +11,19 @@ module.exports = class DelPC2Command extends Command {
       group: `pc`,
       memberName: `delpc2`,
       description: `Deletes your configuration.`,
-      examples: [`delpc2 true`],
+      examples: [`delpc2 yes`],
       args: [
         {
           key: `confirm`,
-          prompt: `Do you want to proceed? (true = yes, false = no)`,
-          type: `boolean`
+          prompt: `Do you want to proceed? (yes or no)`,
+          type: `string`,
+          oneOf: [`yes`, `no`]
         }
       ]
     });
   }
   run(msg, { confirm }) {
-    if (!confirm) {
+    if (confirm === `no`) {
       msg.reply(`Cancelled command.`);
       return;
     } else {
