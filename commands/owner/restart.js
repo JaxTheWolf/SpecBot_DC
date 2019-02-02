@@ -20,13 +20,13 @@ module.exports = class RestartCommand extends Command {
 
     if (process.platform !== `win32`) {
       function resNow() {
-        shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function(
-          code,
-          stdout,
-          stderr
-        ) {
-          msg.say(stdout);
-        });
+        shell.exec(
+          `systemctl restart bot`,
+          { shell: `/bin/bash` },
+          function onDone(stdout) {
+            msg.say(stdout);
+          }
+        );
       }
       msg.say(`Restarting...`);
       setTimeout(resNow, 1000);

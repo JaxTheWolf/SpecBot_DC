@@ -30,7 +30,7 @@ module.exports = class ServerCommand extends Command {
       let owner = msg.author;
       let delFrom = `${__dirname}/../../server`;
 
-      fs.unlink(`${delFrom}/${owner.id}.txt`, function(err) {
+      fs.unlink(`${delFrom}/${owner.id}.txt`, function onError(err) {
         if (err) {
           console.log(err);
           msg.reply(

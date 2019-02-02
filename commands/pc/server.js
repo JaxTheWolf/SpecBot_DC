@@ -29,7 +29,7 @@ module.exports = class ServerCommand extends Command {
     let readFrom = `${__dirname}/../../server`;
 
     function retrieveServer(user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function(err, data) {
+      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(err, data) {
         if (err) {
           msg.reply(
             `This person doesn't have a server or they haven't saved it yet!`

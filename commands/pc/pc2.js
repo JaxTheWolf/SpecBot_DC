@@ -29,7 +29,7 @@ module.exports = class PC2Command extends Command {
     let readFrom = `${__dirname}/../../conf2`;
 
     function retrievePC(user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function(err, data) {
+      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(err, data) {
         if (err) {
           msg.reply(`This person doesn't have a configuration yet!`);
           console.log(err);

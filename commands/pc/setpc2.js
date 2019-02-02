@@ -123,7 +123,7 @@ module.exports = class Setpc2Command extends Command {
     let fs = require(`fs`);
     let writeTo = `${__dirname}/../../conf2`;
 
-    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function(err) {
+    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError(err) {
       if (err) {
         msg.say(`There was a problem while saving your file. (\`${err}\`)`);
       } else {
