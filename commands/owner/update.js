@@ -21,7 +21,7 @@ module.exports = class UpdateCommand extends Command {
       shell.exec(
         `cd scripts/ && sh update.sh`,
         { shell: `/bin/bash` },
-        function onDone(stdout) {
+        function onDone(code, stdout, stderr) {
           msg.say(stdout);
         }
       );
@@ -29,7 +29,7 @@ module.exports = class UpdateCommand extends Command {
       shell.exec(
         `cd scripts && .\\update.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
-        function onDone(stdout) {
+        function onDone(code, stdout, stderr) {
           msg.say(stdout);
         }
       );
