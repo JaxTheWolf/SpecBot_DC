@@ -46,11 +46,19 @@ module.exports = class FlipCommand extends Command {
     }
 
     try {
-      if (gstate.toLowerCase() === `p` || gstate.toLowerCase() === `pins`) {
+      if (
+        gstate.toLowerCase() === `p` || 
+        gstate.toLowerCase() === `pins` ||
+        gstate.toLowerCase() === `tails` ||
+        gstate.toLowerCase() === `t`
+      ) {
         gstateConv = true;
       } else if (
         gstate.toLowerCase() === `h` ||
-        gstate.toLowerCase() === `heads`
+        gstate.toLowerCase() === `heads` ||
+        gstate.toLowerCase() === `heatspreader` ||
+        gstate.toLowerCase() === `ihs` ||
+        gstate.toLowerCase() === `hs`
       ) {
         gstateConv = false;
       } else {
