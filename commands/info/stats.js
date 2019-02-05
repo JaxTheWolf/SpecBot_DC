@@ -31,6 +31,7 @@ module.exports = class StatsCommand extends Command {
     pc2 = fs.readdirSync(dir).length;
     dir = `${__dirname}/../../server`;
     servers = fs.readdirSync(dir).length;
+    let { version } = require(`../../package.json`);
 
     msg.say(
       `---STATISTICS---
@@ -50,7 +51,8 @@ module.exports = class StatsCommand extends Command {
       • Channels            :: ${this.client.channels.size.toLocaleString()}
       • PC1 Confs           :: ${pc1}
       • PC2 Confs           :: ${pc2}
-      • Servers             :: ${servers}
+      • Server Confs        :: ${servers}
+      • Bot version         :: v${version}
       • Discord.js          :: v${Discord.version}
       • Node                :: ${process.version}`,
       { code: "asciidoc" }
