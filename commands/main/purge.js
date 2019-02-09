@@ -18,14 +18,16 @@ module.exports = class PurgeCommand extends Command {
           key: `amount`,
           prompt: `How many messages would you like to delete?`,
           type: `integer`,
-          min: 2,
-          max: 99
+          min: 1,
+          max: 99,
+          error: `You can only delete 1 to 99 messages.`
         },
         {
           key: `member`,
           prompt: `Which member's messages would you like to delete?`,
           type: `member`,
-          default: ``
+          default: ``,
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });

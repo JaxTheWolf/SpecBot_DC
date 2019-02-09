@@ -18,7 +18,8 @@ module.exports = class PointsCommand extends Command {
           key: `member`,
           prompt: `Whose info would you want to see?`,
           default: ``,
-          type: `member`
+          type: `member`,
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });
@@ -29,20 +30,28 @@ module.exports = class PointsCommand extends Command {
       if (member === ``) {
         key = `${msg.guild.id}-${msg.author.id}`;
         msg.reply(
-          `You currently have ${this.client.points.get(
+          `You currently have **${this.client.points.get(
             key,
             `points`
-          )} points, and are level ${this.client.points.get(key, `level`)}!`
+          )}** points, and are level **${this.client.points.get(
+            key,
+            `level`
+          )}**!`
         );
       } else {
         try {
           key = `${msg.guild.id}-${member.user.id}`;
 
           msg.reply(
-            `${member.user.username} currently has ${this.client.points.get(
+            `**${
+              member.user.username
+            }** currently has **${this.client.points.get(
               key,
               `points`
-            )} points, and is level ${this.client.points.get(key, `level`)}!`
+            )}** points, and is level **${this.client.points.get(
+              key,
+              `level`
+            )}**!`
           );
         } catch {
           msg.say(`This user doesn't have any points!`);

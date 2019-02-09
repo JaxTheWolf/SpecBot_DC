@@ -17,15 +17,15 @@ module.exports = class ServerCommand extends Command {
           key: `confirm`,
           prompt: `Do you want to proceed? (true = yes, false = no)`,
           type: `string`,
-          oneOf: [`yes`, `no`]
+          oneOf: [`yes`, `no`],
+          error: `Reply with yes/no.`
         }
       ]
     });
   }
   run(msg, { confirm }) {
     if (confirm === `no`) {
-      msg.reply(`Cancelled command.`);
-      return;
+      return msg.reply(`Cancelled command.`);
     } else {
       const fs = require(`fs`);
       let owner = msg.author;
