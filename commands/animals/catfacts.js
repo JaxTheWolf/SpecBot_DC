@@ -9,7 +9,7 @@ module.exports = class catFactCommand extends Command {
   constructor(client) {
     super(client, {
       name: `catfact`,
-      aliases: [`kittyfact`, `pussfact`, `pussyfact`, `catfact`, `kittenfact`, `pussycatfact`],
+      aliases: [`kittyfact`, `pussfact`, `pussyfact`, `catfacts`, `kittenfact`, `pussycatfact`],
       group: `animals`,
       memberName: `catfacts`,
       description: `Sends some random dog fact.`,
@@ -25,7 +25,7 @@ module.exports = class catFactCommand extends Command {
           data += chunk;
         });
         response.on(`end`, () => {
-          msg.say(JSON.parse(data).fact);
+          msg.say(`🐱 | ${JSON.parse(data).fact}`);
         });
       })
       .on(`error`, err => {
