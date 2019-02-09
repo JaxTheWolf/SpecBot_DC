@@ -33,7 +33,7 @@ module.exports = class EightBallCommand extends Command {
           data += chunk;
         });
         response.on(`end`, () => {
-          msg.say(JSON.parse(data).magic.answer);
+          msg.say(`🎱 | ${JSON.parse(data).magic.answer}`);
         });
       })
       .on(`error`, err => {

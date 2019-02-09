@@ -21,7 +21,8 @@ module.exports = class UserInfoCommand extends Command {
           key: `member`,
           prompt: `Whose info would you want to see?`,
           default: ``,
-          type: `member`
+          type: `member`,
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });

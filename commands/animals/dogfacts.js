@@ -25,7 +25,7 @@ module.exports = class DogFactCommand extends Command {
           data += chunk;
         });
         response.on(`end`, () => {
-          msg.say(JSON.parse(data).fact);
+          msg.say(`🐶 | ${JSON.parse(data).fact}`);
         });
       })
       .on(`error`, err => {

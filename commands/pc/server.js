@@ -19,7 +19,8 @@ module.exports = class ServerCommand extends Command {
           key: `user`,
           prompt: `Which user's server would you like to view?`,
           type: `user`,
-          default: ``
+          default: ``,
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });

@@ -5,6 +5,17 @@ const log = require(`node-file-logger`);
 log.SetUserOptions(options);
 let path = require(`path`);
 let randomHexColor = require(`random-hex-color`);
+let allowed = [
+  `p`,
+  `pins`,
+  `tails`,
+  `t`,
+  `h`,
+  `heads`,
+  `heatspreader`,
+  `ihs`,
+  `hs`
+];
 
 module.exports = class FlipCommand extends Command {
   constructor(client) {
@@ -19,12 +30,15 @@ module.exports = class FlipCommand extends Command {
           key: `bet`,
           prompt: `How many points do you wish to bet?`,
           type: `integer`,
-          default: 0
+          min: 2,
+          error: `You can only bet 2 points or more.`
         },
         {
           key: `gstate`,
           prompt: `Which side do you think the coin's going to land on?`,
-          type: `string`
+          type: `string`,
+          oneOf: allowed,
+          error: `Invalid side. Please try again.`
         }
       ]
     });
@@ -46,30 +60,13 @@ module.exports = class FlipCommand extends Command {
     }
 
     try {
-      if (
-        gstate.toLowerCase() === `p` || 
-        gstate.toLowerCase() === `pins` ||
-        gstate.toLowerCase() === `tails` ||
-        gstate.toLowerCase() === `t`
-      ) {
+      if (allowed.slice(0, 4).includes(gstate.toLowerCase())) {
         gstateConv = true;
-      } else if (
-        gstate.toLowerCase() === `h` ||
-        gstate.toLowerCase() === `heads` ||
-        gstate.toLowerCase() === `heatspreader` ||
-        gstate.toLowerCase() === `ihs` ||
-        gstate.toLowerCase() === `hs`
-      ) {
-        gstateConv = false;
       } else {
-        return msg.reply(`Invalid guess`);
+        gstateConv = false;
       }
-
       if (enmap.get(key, `points`) < bet) {
         return msg.reply(`Insufficent funds.`);
-      }
-      if (bet <= 1) {
-        return msg.reply(`You cannot bet less than 2 points!`);
       }
       if (gstateConv === cf) {
         let toAdd = Math.floor(bet * 1.5);

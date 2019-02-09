@@ -19,7 +19,8 @@ module.exports = class PC1Command extends Command {
           key: `user`,
           prompt: `Which user's configuration would you like to view?`,
           type: `user`,
-          default: ``
+          default: ``,
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });
@@ -29,10 +30,12 @@ module.exports = class PC1Command extends Command {
     let readFrom = `${__dirname}/../../conf1`;
 
     function retrievePC(user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(err, data) {
+      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(
+        err,
+        data
+      ) {
         if (err) {
-          msg.reply(`This person doesn't have a configuration yet!`);
-          console.log(err);
+          return msg.reply(`This person doesn't have a configuration yet!`);
         } else {
           const embed = new RichEmbed()
             .setTitle(`Here's ${user.username}'s configuration!`)

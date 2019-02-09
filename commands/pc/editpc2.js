@@ -53,8 +53,7 @@ module.exports = class EditPC2Comand extends Command {
     ];
 
     if (!allowed.includes(component.toUpperCase())) {
-      msg.reply(`\`${component}\` is not a valid component!`);
-      return;
+      return msg.reply(`\`${component}\` is not a valid component!`);
     } else {
       fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone(err, data) {
         if (err) {
@@ -68,7 +67,9 @@ module.exports = class EditPC2Comand extends Command {
 
           fs.writeFile(`${dir}/${owner.id}.txt`, res, function onDone(err) {
             if (err) {
-              msg.say(`There was a problem while saving your file. (\`${err}\`)`);
+              msg.say(
+                `There was a problem while saving your file. (\`${err}\`)`
+              );
             } else {
               return msg.say(`Configuration saved succesfully!`);
             }

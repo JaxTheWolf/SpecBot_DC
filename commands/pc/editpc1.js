@@ -53,8 +53,7 @@ module.exports = class EditPC1Comand extends Command {
     ];
 
     if (!allowed.includes(component.toUpperCase())) {
-      msg.reply(`\`${component}\` is not a valid component!`);
-      return;
+      return msg.reply(`\`${component}\` is not a valid component!`);
     } else {
       fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone(err, data) {
         if (err) {

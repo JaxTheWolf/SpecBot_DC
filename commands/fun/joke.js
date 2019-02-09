@@ -24,7 +24,7 @@ module.exports = class JokeCommand extends Command {
           data += chunk;
         });
         response.on(`end`, () => {
-          msg.say(JSON.parse(data).text);
+          msg.say(`😆 | ${JSON.parse(data).text}`);
         });
       })
       .on(`error`, err => {

@@ -21,7 +21,7 @@ module.exports = class AvatarCommand extends Command {
           prompt: `Which user's avatar would you like to see?`,
           type: `user`,
           default: ``,
-          error: `That isn't a valid user mention!`
+          error: `Invalid user mention. Please try again.`
         }
       ]
     });

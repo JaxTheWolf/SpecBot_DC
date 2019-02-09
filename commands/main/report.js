@@ -22,7 +22,8 @@ module.exports = class ReportCommand extends Command {
         {
           key: `user`,
           prompt: `Who would you like to report?`,
-          type: `user`
+          type: `user`,
+          error: `Invalid user mention. Please try again.`
         },
         {
           key: `reason`,
@@ -33,7 +34,8 @@ module.exports = class ReportCommand extends Command {
           key: `confirm`,
           prompt: `ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT! Do you still want to proceed? (yes if you understand, no otherwise.)`,
           type: `string`,
-          oneOf: [`yes`, `no`]
+          oneOf: [`yes`, `no`],
+          error: `Reply with yes/no.`
         }
       ]
     });
@@ -42,8 +44,7 @@ module.exports = class ReportCommand extends Command {
     let guildOwner = msg.guild.owner.user;
 
     if (confirm === `no`) {
-      msg.reply(`Cancelled command.`);
-      return;
+      return msg.reply(`Cancelled command.`);
     } else {
       const embed = new RichEmbed()
         .setAuthor(
