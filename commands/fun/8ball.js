@@ -1,12 +1,12 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-const https = require(`https`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+const https = require(`https`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class EightBallCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `8ball`,
       group: `fun`,
@@ -20,30 +20,30 @@ module.exports = class EightBallCommand extends Command {
           type: `string`
         }
       ]
-    });
+    })
   }
-  run(msg, { question }) {
-    let uriQuestion = encodeURI(question);
-    let uri = `https://8ball.delegator.com/magic/JSON/${uriQuestion}`;
+  run (msg, { question }) {
+    const uriQuestion = encodeURI(question)
+    const uri = `https://8ball.delegator.com/magic/JSON/${uriQuestion}`
 
     https
-      .get(uri, function onDone(response) {
-        let data = ``;
+      .get(uri, function onDone (response) {
+        let data = ``
         response.on(`data`, chunk => {
-          data += chunk;
-        });
+          data += chunk
+        })
         response.on(`end`, () => {
-          msg.say(`🎱 | ${JSON.parse(data).magic.answer}`);
-        });
+          msg.say(`🎱 | ${JSON.parse(data).magic.answer}`)
+        })
       })
       .on(`error`, err => {
-        msg.say(`An error has occured. (${err.message})`);
-      });
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+        msg.say(`An error has occured. (${err.message})`)
+      })
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

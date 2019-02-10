@@ -1,0 +1,24 @@
+{
+  "extends": "standard",
+  "parser": "babel-eslint",
+  "plugins": [
+    "eslint-plugin-json"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "semi": [
+      "error",
+      "never"
+    ]
+  }
+}

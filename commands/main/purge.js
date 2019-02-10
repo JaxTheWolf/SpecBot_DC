@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class PurgeCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `purge`,
       aliases: [`del`],
@@ -30,38 +30,38 @@ module.exports = class PurgeCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  async run(msg, { member, amount }) {
-    let messages = await msg.channel.fetchMessages({ limit: 100 });
-    let user = member.user;
+  async run (msg, { member, amount }) {
+    let messages = await msg.channel.fetchMessages({ limit: 100 })
+    const user = member.user
     if (
       !msg.guild.members
         .get(msg.author.id)
         .hasPermission(`MANAGE_MESSAGES`, false, true, true)
     ) {
-      msg.say(`You don't have required permissions for this action!`);
-      return;
+      msg.say(`You don't have required permissions for this action!`)
+      return
     } else {
       if (member !== ``) {
-        messages = messages.array().filter(m => m.author.id === user.id);
-        messages.length = amount;
+        messages = messages.array().filter(m => m.author.id === user.id)
+        messages.length = amount
       } else {
-        messages = messages.array();
-        messages.length = amount + 1;
+        messages = messages.array()
+        messages.length = amount + 1
       }
 
-      await msg.channel.bulkDelete(messages);
+      await msg.channel.bulkDelete(messages)
       await msg
         .say(`Deleted ${messages.length} messages!`)
-        .then(m => m.delete(2500));
+        .then(m => m.delete(2500))
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

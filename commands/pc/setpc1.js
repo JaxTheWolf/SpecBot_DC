@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class Setpc1Command extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `setpc1`,
       group: `pc`,
@@ -92,9 +92,9 @@ module.exports = class Setpc1Command extends Command {
           wait: 90
         }
       ]
-    });
+    })
   }
-  run(
+  run (
     msg,
     {
       CPU,
@@ -112,30 +112,30 @@ module.exports = class Setpc1Command extends Command {
       EXTRA
     }
   ) {
-    let content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${
+    const content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${
       CASE
     }\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${
       STORAGE
     }\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${
       HEADSET
-    }\nEXTRA: ${EXTRA}`;
-    let owner = msg.author;
-    let fs = require(`fs`);
-    let writeTo = `${__dirname}/../../conf1`;
+    }\nEXTRA: ${EXTRA}`
+    const owner = msg.author
+    const fs = require(`fs`)
+    const writeTo = `${__dirname}/../../conf1`
 
-    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError(err) {
+    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError (err) {
       if (err) {
-        msg.say(`There was a problem while saving your file. (\`${err}\`)`);
+        msg.say(`There was a problem while saving your file. (\`${err}\`)`)
       } else {
-        return msg.say(`Configuration saved succesfully!`);
+        return msg.say(`Configuration saved succesfully!`)
       }
-    });
+    })
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

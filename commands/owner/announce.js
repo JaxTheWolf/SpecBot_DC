@@ -1,12 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const { owner } = require(`../../conf.json`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class AnnounceCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `announce`,
       aliases: [`ann`, `announcement`],
@@ -22,12 +21,12 @@ module.exports = class AnnounceCommand extends Command {
           type: `string`
         }
       ]
-    });
+    })
   }
-  run(msg, { message }) {
+  run (msg, { message }) {
     try {
       this.client.guilds.map(guild => {
-        let found = 0;
+        let found = 0
         guild.channels.map(c => {
           if (found === 0) {
             if (c.type === `text`) {
@@ -38,25 +37,25 @@ module.exports = class AnnounceCommand extends Command {
                   c.permissionsFor(this.client.user).has(`SEND_MESSAGES`) ===
                   true
                 ) {
-                  c.send(message);
-                  found = 1;
+                  c.send(message)
+                  found = 1
                 }
               }
             }
           }
-        });
-      });
+        })
+      })
     } catch (e) {
-      let toLog = `Could not send message to a (few) guild(s)!`;
-      console.log(toLog);
-      log.Info(toLog);
+      const toLog = `Could not send message to a (few) guild(s)!`
+      console.log(toLog)
+      log.Info(toLog)
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class GuildInfoCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `guildinfo`,
       aliases: [
@@ -23,35 +23,35 @@ module.exports = class GuildInfoCommand extends Command {
       description: `Shows information about the guild.`,
       guildOnly: true,
       examples: [`guildinfo`]
-    });
+    })
   }
-  run(msg) {
-    function checkBots(guild) {
-      let botCount = 0;
+  run (msg) {
+    function checkBots (guild) {
+      let botCount = 0
       guild.members.forEach(member => {
-        if (member.user.bot) botCount++;
-      });
-      return botCount;
+        if (member.user.bot) botCount++
+      })
+      return botCount
     }
 
-    function checkMembers(guild) {
-      let memberCount = 0;
+    function checkMembers (guild) {
+      let memberCount = 0
       guild.members.forEach(member => {
-        if (!member.user.bot) memberCount++;
-      });
-      return memberCount;
+        if (!member.user.bot) memberCount++
+      })
+      return memberCount
     }
 
-    function channCount(guild, type) {
-      let chann = 0;
+    function channCount (guild, type) {
+      let chann = 0
       guild.channels.forEach(c => {
-        if (c.type === type) chann++;
-      });
-      return chann;
+        if (c.type === type) chann++
+      })
+      return chann
     }
 
-    let guild = msg.guild;
-    let embed = new RichEmbed()
+    const guild = msg.guild
+    const embed = new RichEmbed()
       .setColor(randomHexColor())
       .setTitle(`Here's some info about this guild:`)
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
@@ -75,15 +75,15 @@ module.exports = class GuildInfoCommand extends Command {
       )
       .addField(`Region:`, guild.region, false)
       .setFooter(`Guild created at:`)
-      .setTimestamp(guild.createdAt);
+      .setTimestamp(guild.createdAt)
 
-    msg.say(embed);
+    msg.say(embed)
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

@@ -1,12 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class EditPC2Comand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `editpc2`,
       aliases: [`edit2`],
@@ -28,15 +27,15 @@ module.exports = class EditPC2Comand extends Command {
           type: `string`
         }
       ]
-    });
+    })
   }
-  run(msg, { component, newCmp }) {
-    const fs = require(`fs`);
-    let owner = msg.author;
-    let rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`);
-    let res;
-    let dir = `${__dirname}/../../conf2`;
-    let allowed = [
+  run (msg, { component, newCmp }) {
+    const fs = require(`fs`)
+    const owner = msg.author
+    const rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`)
+    let res
+    const dir = `${__dirname}/../../conf2`
+    const allowed = [
       `CPU`,
       `GPU`,
       `RAM`,
@@ -50,39 +49,39 @@ module.exports = class EditPC2Comand extends Command {
       `MOUSE`,
       `HEADSET`,
       `EXTRA`
-    ];
+    ]
 
     if (!allowed.includes(component.toUpperCase())) {
-      return msg.reply(`\`${component}\` is not a valid component!`);
+      return msg.reply(`\`${component}\` is not a valid component!`)
     } else {
-      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone(err, data) {
+      fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone (err, data) {
         if (err) {
           msg.reply(
             `You don't have a configuration yet or an error has occured.`
-          );
-          console.log(err);
-          res = null;
+          )
+          console.log(err)
+          res = null
         } else {
-          res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`);
+          res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`)
 
-          fs.writeFile(`${dir}/${owner.id}.txt`, res, function onDone(err) {
+          fs.writeFile(`${dir}/${owner.id}.txt`, res, function onDone (err) {
             if (err) {
               msg.say(
                 `There was a problem while saving your file. (\`${err}\`)`
-              );
+              )
             } else {
-              return msg.say(`Configuration saved succesfully!`);
+              return msg.say(`Configuration saved succesfully!`)
             }
-          });
+          })
         }
-      });
+      })
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class UserInfoCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `userinfo`,
       aliases: [`uinfo`, `user_info`, `u_info`],
@@ -25,25 +25,25 @@ module.exports = class UserInfoCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { member }) {
-    let embed = new RichEmbed();
-    let playStat, bot;
+  run (msg, { member }) {
+    const embed = new RichEmbed()
+    let playStat, bot
     const status = {
-      online: "Online",
-      idle: "Idle",
-      dnd: "Do Not Disturb",
-      offline: "Offline/Invisible"
-    };
+      online: `Online`,
+      idle: `Idle`,
+      dnd: `Do Not Disturb`,
+      offline: `Offline/Invisible`
+    }
 
     if (member === ``) {
-      let author = msg.author;
-      let authorMember = msg.guild.members.get(author.id);
+      const author = msg.author
+      const authorMember = msg.guild.members.get(author.id)
       try {
-        playStat = authorMember.presence.game.name;
+        playStat = authorMember.presence.game.name
       } catch (e) {
-        playStat = `nothing`;
+        playStat = `nothing`
       }
 
       embed
@@ -71,19 +71,19 @@ module.exports = class UserInfoCommand extends Command {
           false
         )
         .setFooter(`User created at:`)
-        .setTimestamp(author.createdAt);
+        .setTimestamp(author.createdAt)
     } else {
       try {
-        playStat = member.presence.game.name;
+        playStat = member.presence.game.name
       } catch (e) {
-        playStat = `nothing`;
+        playStat = `nothing`
       }
-      let user = member.user;
+      const user = member.user
 
       if (user.bot) {
-        bot = `Yes`;
+        bot = `Yes`
       } else {
-        bot = `No`;
+        bot = `No`
       }
 
       embed
@@ -109,15 +109,15 @@ module.exports = class UserInfoCommand extends Command {
         )
         .addField(`Are they a **bot user**?`, `**${bot}**`, false)
         .setFooter(`User created at:`)
-        .setTimestamp(user.createdAt);
+        .setTimestamp(user.createdAt)
     }
-    msg.say(embed);
+    msg.say(embed)
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}
