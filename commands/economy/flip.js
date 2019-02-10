@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
-let allowed = [
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
+const allowed = [
   `p`,
   `pins`,
   `tails`,
@@ -15,10 +15,10 @@ let allowed = [
   `heatspreader`,
   `ihs`,
   `hs`
-];
+]
 
 module.exports = class FlipCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `flip`,
       group: `economy`,
@@ -41,36 +41,36 @@ module.exports = class FlipCommand extends Command {
           error: `Invalid side. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { bet, gstate }) {
-    let cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`;
-    let cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`;
-    let key = `${msg.guild.id}-${msg.author.id}`;
-    let enmap = this.client.points;
-    let cf = coinFlip();
-    let gstateConv;
-    let embed = new RichEmbed()
+  run (msg, { bet, gstate }) {
+    const cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`
+    const cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`
+    const key = `${msg.guild.id}-${msg.author.id}`
+    const enmap = this.client.points
+    const cf = coinFlip()
+    let gstateConv
+    const embed = new RichEmbed()
       .setTitle(`Flip result:`)
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
-      .setColor(randomHexColor());
+      .setColor(randomHexColor())
 
-    function coinFlip() {
-      return Math.floor(Math.random() * 2) === 0;
+    function coinFlip () {
+      return Math.floor(Math.random() * 2) === 0
     }
 
     try {
       if (allowed.slice(0, 4).includes(gstate.toLowerCase())) {
-        gstateConv = true;
+        gstateConv = true
       } else {
-        gstateConv = false;
+        gstateConv = false
       }
       if (enmap.get(key, `points`) < bet) {
-        return msg.reply(`Insufficent funds.`);
+        return msg.reply(`Insufficent funds.`)
       }
       if (gstateConv === cf) {
-        let toAdd = Math.floor(bet * 1.5);
-        enmap.math(key, `+`, toAdd, `points`);
+        const toAdd = Math.floor(bet * 1.5)
+        enmap.math(key, `+`, toAdd, `points`)
         embed
           .setDescription(
             `${
@@ -81,9 +81,9 @@ module.exports = class FlipCommand extends Command {
               toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
             } (Total: ${enmap.get(key, `points`)})`
           )
-          .setImage(cf === true ? cpub : cpuf);
+          .setImage(cf === true ? cpub : cpuf)
       } else {
-        enmap.math(key, `-`, bet, `points`);
+        enmap.math(key, `-`, bet, `points`)
         embed
           .setDescription(
             `${
@@ -94,20 +94,20 @@ module.exports = class FlipCommand extends Command {
               bet === 1 ? `${bet} point!` : `${bet} points!`
             } (Total: ${enmap.get(key, `points`)})`
           )
-          .setImage(cf === true ? cpub : cpuf);
+          .setImage(cf === true ? cpub : cpuf)
       }
-      msg.say({ embed });
+      msg.say({ embed })
     } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      );
+      )
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

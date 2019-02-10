@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class PC2Command extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `pc2`,
       group: `pc`,
@@ -23,43 +23,43 @@ module.exports = class PC2Command extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { user }) {
-    const fs = require(`fs`);
-    let readFrom = `${__dirname}/../../conf2`;
+  run (msg, { user }) {
+    const fs = require(`fs`)
+    const readFrom = `${__dirname}/../../conf2`
 
-    function retrievePC(user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(
+    function retrievePC (user) {
+      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone (
         err,
         data
       ) {
         if (err) {
-          return msg.reply(`This person doesn't have a configuration yet!`);
+          return msg.reply(`This person doesn't have a configuration yet!`)
         } else {
           const embed = new RichEmbed()
             .setTitle(`Here's ${user.username}'s configuration!`)
             .setAuthor(user.username, user.displayAvatarURL)
             .setDescription(`${data}`)
-            .setColor(randomHexColor());
+            .setColor(randomHexColor())
           msg.channel.send({
             embed
-          });
+          })
         }
-      });
+      })
     }
 
     if (user === ``) {
-      retrievePC(msg.author);
+      retrievePC(msg.author)
     } else {
-      retrievePC(user);
+      retrievePC(user)
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

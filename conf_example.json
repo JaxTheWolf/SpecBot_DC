@@ -1,8 +1,8 @@
 {
-  "token": "Your bot token",
+  "disableEveryone": true,
   "owner": "Your owner ID",
   "prefix": "Prefix",
-  "unknownCommandResponse": false,
-  "disableEveryone": true,
-  "timeZone": "Continent/City"
+  "timeZone": "Continent/City",
+  "token": "Your bot token",
+  "unknownCommandResponse": false
 }

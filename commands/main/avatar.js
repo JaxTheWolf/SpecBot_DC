@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class AvatarCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `avatar`,
       aliases: [`pfp`],
@@ -24,31 +24,31 @@ module.exports = class AvatarCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { user }) {
-    let embed = new RichEmbed();
+  run (msg, { user }) {
+    const embed = new RichEmbed()
 
     if (user === ``) {
       embed
         .setTitle(`Here's your avatar:`)
         .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(msg.author.displayAvatarURL)
-        .setColor(randomHexColor());
+        .setColor(randomHexColor())
     } else {
       embed
         .setTitle(`Here's ${user.username}'s avatar:`)
         .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(user.displayAvatarURL)
-        .setColor(randomHexColor());
+        .setColor(randomHexColor())
     }
-    msg.say(embed);
+    msg.say(embed)
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

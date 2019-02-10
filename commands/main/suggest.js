@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class SuggestCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `suggest`,
       aliases: [`sugg`, `request`, `featurereq`, `suggestion`],
@@ -13,17 +13,17 @@ module.exports = class SuggestCommand extends Command {
       memberName: `suggest`,
       description: `Suggest a feature for SpecBot.`,
       examples: [`suggest pc edits`]
-    });
+    })
   }
-  run(msg) {
+  run (msg) {
     msg.say(
       `Suggest new features here! https://goo.gl/forms/4LEfWSqBWHgi3umX2`
-    );
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    )
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

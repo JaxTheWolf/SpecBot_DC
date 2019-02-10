@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class ServerCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `server`,
       group: `pc`,
@@ -23,43 +23,43 @@ module.exports = class ServerCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { user }) {
-    const fs = require(`fs`);
-    let readFrom = `${__dirname}/../../server`;
+  run (msg, { user }) {
+    const fs = require(`fs`)
+    const readFrom = `${__dirname}/../../server`
 
-    function retrieveServer(user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone(err, data) {
+    function retrieveServer (user) {
+      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone (err, data) {
         if (err) {
           msg.reply(
             `This person doesn't have a server or they haven't saved it yet!`
-          );
-          console.log(err);
+          )
+          console.log(err)
         } else {
           const embed = new RichEmbed()
             .setTitle(`Here's ${user.username}'s server!`)
             .setAuthor(user.username, user.displayAvatarURL)
             .setDescription(`${data}`)
-            .setColor(randomHexColor());
+            .setColor(randomHexColor())
           msg.channel.send({
             embed
-          });
+          })
         }
-      });
+      })
     }
 
     if (user === ``) {
-      retrieveServer(msg.author);
+      retrieveServer(msg.author)
     } else {
-      retrieveServer(user);
+      retrieveServer(user)
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

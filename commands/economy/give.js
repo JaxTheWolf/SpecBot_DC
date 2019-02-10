@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class GiveCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `give`,
       group: `economy`,
@@ -27,37 +27,37 @@ module.exports = class GiveCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { amount, user }) {
-    let key = `${msg.guild.id}-${msg.author.id}`;
-    let enmap = this.client.points;
+  run (msg, { amount, user }) {
+    let key = `${msg.guild.id}-${msg.author.id}`
+    const enmap = this.client.points
 
     try {
       if (enmap.get(key, `points`) < amount) {
-        return msg.reply(`Insufficent funds`);
+        return msg.reply(`Insufficent funds`)
       }
 
-      enmap.math(key, `-`, amount, `points`);
-      key = `${msg.guild.id}-${user.id}`;
-      enmap.math(key, `+`, amount, `points`);
-      msg.reply(`Gave user **${user.username} ${amount}** points!`);
+      enmap.math(key, `-`, amount, `points`)
+      key = `${msg.guild.id}-${user.id}`
+      enmap.math(key, `+`, amount, `points`)
+      msg.reply(`Gave user **${user.username} ${amount}** points!`)
       user.send(
         `**${msg.author.username}** gave you **${
           amount
         }** points! (Total: **${enmap.get(key, `points`)}**)`
-      );
+      )
     } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      );
+      )
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

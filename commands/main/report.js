@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class ReportCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `report`,
       aliases: [`repo`, `specbotreport`, `spreport`, `sprepo`],
@@ -38,13 +38,13 @@ module.exports = class ReportCommand extends Command {
           error: `Reply with yes/no.`
         }
       ]
-    });
+    })
   }
-  run(msg, { user, reason, confirm }) {
-    let guildOwner = msg.guild.owner.user;
+  run (msg, { user, reason, confirm }) {
+    const guildOwner = msg.guild.owner.user
 
     if (confirm === `no`) {
-      return msg.reply(`Cancelled command.`);
+      return msg.reply(`Cancelled command.`)
     } else {
       const embed = new RichEmbed()
         .setAuthor(
@@ -62,22 +62,22 @@ module.exports = class ReportCommand extends Command {
           ` you may want to "punish" the author (**${msg.author.tag}**).`,
           false
         )
-        .setFooter(new Date(), user.displayAvatarURL);
-      /*msg.say(embed); uncomment this for debugging purposes.*/
+        .setFooter(new Date(), user.displayAvatarURL)
+      /* msg.say(embed); uncomment this for debugging purposes. */
       guildOwner
         .send(embed)
         .then(
           msg.reply(
             `User \`${user.tag}\` has been reported to the server owner!`
           )
-        );
+        )
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

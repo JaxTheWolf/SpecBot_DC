@@ -1,12 +1,12 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-const jimp = require(`jimp`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+const jimp = require(`jimp`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class PointsCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `points`,
       group: `economy`,
@@ -23,42 +23,42 @@ module.exports = class PointsCommand extends Command {
           error: `Invalid user mention. Please try again.`
         }
       ]
-    });
+    })
   }
-  run(msg, { member }) {
-    let key;
-    let client = this.client;
+  run (msg, { member }) {
+    let key
+    const client = this.client
 
-    function sendCard(user, key) {
-      let images = [
+    function sendCard (user, key) {
+      const images = [
         `${__dirname}/raw/rect.png`,
         user.displayAvatarURL,
         `${__dirname}/raw/mask.png`
-      ];
-      let jimps = [];
-      let bg, avatar, mask;
-      let points = client.points.get(key, `points`);
-      let level = client.points.get(key, `level`);
+      ]
+      const jimps = []
+      let bg, avatar, mask
+      const points = client.points.get(key, `points`)
+      const level = client.points.get(key, `level`)
 
       for (let i = 0; i < images.length; i++) {
-        jimps.push(jimp.read(images[i]));
+        jimps.push(jimp.read(images[i]))
       }
 
       Promise.all(jimps)
         .then(data => {
-          return Promise.all(jimps);
+          bg = data[0]
+          avatar = data[1]
+          mask = data[2]
+          return Promise.all(jimps)
         })
-        .then(data => {
-          bg = data[0];
-          avatar = data[1];
-          mask = data[2];
-          return jimp.loadFont(`${__dirname}/font/noto_sans_ui_16_b.fnt`);
+        .then(() => {
+          return jimp.loadFont(`${__dirname}/font/noto_sans_ui_16_b.fnt`)
         })
         .then(font => {
-          let circleAvatar = avatar
+          const circleAvatar = avatar
             .clone()
             .resize(80, 80)
-            .mask(mask, 0, 0);
+            .mask(mask, 0, 0)
           bg
             .composite(circleAvatar, 10, 10)
             .print(font, 100, 22, `Points: ${points}`)
@@ -72,33 +72,33 @@ module.exports = class PointsCommand extends Command {
                   }),
                 1000
               )
-            );
-        });
+            )
+        })
     }
 
     try {
       if (member === ``) {
-        key = `${msg.guild.id}-${msg.author.id}`;
-        sendCard(msg.author, key);
+        key = `${msg.guild.id}-${msg.author.id}`
+        sendCard(msg.author, key)
       } else {
         try {
-          key = `${msg.guild.id}-${member.user.id}`;
-          sendCard(member.user, key);
+          key = `${msg.guild.id}-${member.user.id}`
+          sendCard(member.user, key)
         } catch (e) {
-          msg.say(`This user doesn't have any points!`);
+          msg.say(`This user doesn't have any points!`)
         }
       }
     } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      );
+      )
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

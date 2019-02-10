@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class ServerCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `delserver`,
       group: `pc`,
@@ -21,35 +21,35 @@ module.exports = class ServerCommand extends Command {
           error: `Reply with yes/no.`
         }
       ]
-    });
+    })
   }
-  run(msg, { confirm }) {
+  run (msg, { confirm }) {
     if (confirm === `no`) {
-      return msg.reply(`Cancelled command.`);
+      return msg.reply(`Cancelled command.`)
     } else {
-      const fs = require(`fs`);
-      let owner = msg.author;
-      let delFrom = `${__dirname}/../../server`;
+      const fs = require(`fs`)
+      const owner = msg.author
+      const delFrom = `${__dirname}/../../server`
 
-      fs.unlink(`${delFrom}/${owner.id}.txt`, function onError(err) {
+      fs.unlink(`${delFrom}/${owner.id}.txt`, function onError (err) {
         if (err) {
-          console.log(err);
+          console.log(err)
           msg.reply(
             `You don't have a server saved yet or an error has occured. (\`${
               err
             }\`)`
-          );
+          )
         } else {
-          msg.reply(`Your server has been successcully deleted!`);
+          msg.reply(`Your server has been successcully deleted!`)
         }
-      });
+      })
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

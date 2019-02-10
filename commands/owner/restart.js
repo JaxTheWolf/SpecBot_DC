@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class RestartCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `restart`,
       group: `owner`,
@@ -13,40 +13,40 @@ module.exports = class RestartCommand extends Command {
       description: `Restarts the systemd service or the nodejs process.`,
       ownerOnly: true,
       examples: [`restart`]
-    });
+    })
   }
-  run(msg) {
-    let shell = require(`shelljs`);
+  run (msg) {
+    const shell = require(`shelljs`)
+    function resNow () {
+      shell.exec(
+        `systemctl restart bot`,
+        { shell: `/bin/bash` },
+        function onDone (code, stdout) {
+          msg.say(stdout)
+        }
+      )
+    }
 
     if (process.platform !== `win32`) {
-      function resNow() {
-        shell.exec(
-          `systemctl restart bot`,
-          { shell: `/bin/bash` },
-          function onDone(code, stdout, stderr) {
-            msg.say(stdout);
-          }
-        );
-      }
-      msg.say(`Restarting...`);
-      setTimeout(resNow, 1000);
+      msg.say(`Restarting...`)
+      setTimeout(resNow, 1000)
     } else {
-      msg.say(`Not implemented`);
-      /*msg.say(`Restarting...`);
+      msg.say(`Not implemented`)
+      /* msg.say(`Restarting...`);
       shell.exec(
         `cd scripts && taskkill /f /im node.exe && start run.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
         function(code, stdout, stderr) {
           msg.say(stdout);
         }
-      );*/
+      ); */
     }
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

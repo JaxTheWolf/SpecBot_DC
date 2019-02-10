@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class XYZCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `emotes`,
       group: `info`,
@@ -13,23 +13,23 @@ module.exports = class XYZCommand extends Command {
       description: `Sends a message containing all server emotes.`,
       guildOnly: true,
       examples: [`emotes`]
-    });
+    })
   }
-  run(msg) {
-    function fetchEmojis(guild) {
-      let emojiList = guild.emojis.map(e => e.toString()).join(" ");
+  run (msg) {
+    function fetchEmojis (guild) {
+      const emojiList = guild.emojis.map((e) => e.toString()).join(` `)
       return emojiList === ``
         ? `This server doesn't have any custom emotes.`
-        : emojiList;
+        : emojiList
     }
 
-    msg.say(fetchEmojis(msg.guild));
+    msg.say(fetchEmojis(msg.guild))
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

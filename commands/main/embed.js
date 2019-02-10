@@ -1,13 +1,13 @@
-const { Command } = require(`discord.js-commando`);
-const { RichEmbed } = require(`discord.js`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
-let randomHexColor = require(`random-hex-color`);
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 
 module.exports = class SayCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `embed`,
       group: `main`,
@@ -22,35 +22,35 @@ module.exports = class SayCommand extends Command {
           type: `string`
         }
       ]
-    });
+    })
   }
-  run(msg, { say }) {
-    msg.delete();
-    let toSay = new RichEmbed();
-    let author = msg.author;
+  run (msg, { say }) {
+    msg.delete()
+    const toSay = new RichEmbed()
+    const author = msg.author
 
-    function checkAnon(toCheck) {
-      if (toCheck.includes(`///anon`)) return true;
-      else return false;
+    function checkAnon (toCheck) {
+      if (toCheck.includes(`///anon`)) return true
+      else return false
     }
 
     if (!checkAnon(msg.content)) {
       toSay
         .setAuthor(`${author.username} says:`, author.displayAvatarURL)
         .setDescription(say)
-        .setColor(randomHexColor());
+        .setColor(randomHexColor())
     } else {
       toSay
         .setDescription(say.replace(`///anon`, ``))
-        .setColor(randomHexColor());
+        .setColor(randomHexColor())
     }
-    msg.say(toSay);
+    msg.say(toSay)
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}

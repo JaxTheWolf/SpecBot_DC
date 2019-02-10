@@ -1,11 +1,11 @@
-const { Command } = require(`discord.js-commando`);
-const { options } = require(`../../options`);
-const log = require(`node-file-logger`);
-log.SetUserOptions(options);
-let path = require(`path`);
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../options`)
+const log = require(`node-file-logger`)
+log.SetUserOptions(options)
+const path = require(`path`)
 
 module.exports = class SetServerCommand extends Command {
-  constructor(client) {
+  constructor (client) {
     super(client, {
       name: `setserver`,
       group: `pc`,
@@ -20,30 +20,30 @@ module.exports = class SetServerCommand extends Command {
           infinite: true
         }
       ]
-    });
+    })
   }
-  run(msg, { serverconf }) {
-    let content = `Server: \n${serverconf
+  run (msg, { serverconf }) {
+    const content = `Server: \n${serverconf
       .toString()
       .split(`,`)
-      .join(`\n`)}`;
-    let owner = msg.author;
-    let fs = require(`fs`);
-    let writeTo = `${__dirname}/../../server`;
+      .join(`\n`)}`
+    const owner = msg.author
+    const fs = require(`fs`)
+    const writeTo = `${__dirname}/../../server`
 
-    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError(err) {
+    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError (err) {
       if (err) {
-        msg.say(`There was a problem while saving your file. (\`${err}\`)`);
+        msg.say(`There was a problem while saving your file. (\`${err}\`)`)
       } else {
-        return msg.say(`Configuration saved succesfully!`);
+        return msg.say(`Configuration saved succesfully!`)
       }
-    });
+    })
 
-    let toLog = `${path.basename(__filename, `.js`)} was used by ${
+    const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
-    }.`;
+    }.`
 
-    console.log(toLog);
-    log.Info(toLog);
+    console.log(toLog)
+    log.Info(toLog)
   }
-};
+}
