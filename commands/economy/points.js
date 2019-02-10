@@ -29,7 +29,7 @@ module.exports = class PointsCommand extends Command {
     let key;
     let client = this.client;
 
-    function generateCard(user, key) {
+    function sendCard(user, key) {
       let images = [
         `${__dirname}/raw/rect.png`,
         user.displayAvatarURL,
@@ -63,24 +63,27 @@ module.exports = class PointsCommand extends Command {
             .composite(circleAvatar, 10, 10)
             .print(font, 100, 22, `Points: ${points}`)
             .print(font, 100, 52, `Level: ${level}`)
-            .write(`${__dirname}/export/card${user.id}.png`);
+            .writeAsync(`${__dirname}/export/card${user.id}.png`)
+            .then(
+              setTimeout(
+                () =>
+                  msg.say({
+                    file: `${__dirname}/export/card${msg.author.id}.png`
+                  }),
+                1000
+              )
+            );
         });
     }
 
     try {
       if (member === ``) {
         key = `${msg.guild.id}-${msg.author.id}`;
-        generateCard(msg.author, key);
-        setTimeout(function sendCard() {
-          msg.say({ file: `${__dirname}/export/card${msg.author.id}.png` });
-        }, 2000);
+        sendCard(msg.author, key);
       } else {
         try {
           key = `${msg.guild.id}-${member.user.id}`;
-          generateCard(member.user, key);
-          setTimeout(function sendCard() {
-            msg.say({ file: `${__dirname}/export/card${member.user.id}.png` });
-          }, 2000);
+          sendCard(member.user, key);
         } catch {
           msg.say(`This user doesn't have any points!`);
         }
