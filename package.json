@@ -1,6 +1,6 @@
 {
   "name": "specbot_dc",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A simple Discord bot to save and show peoples' PC/Setup configurations.",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "discord.js-commando": "^0.10.0",
     "enmap": "^4.7.0",
     "erlpack": "github:discordapp/erlpack",
+    "jimp": "^0.6.0",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.2.2",
     "node-file-logger": "^0.9.5",
