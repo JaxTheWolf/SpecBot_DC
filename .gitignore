@@ -7,10 +7,8 @@ conf.json
 # ignore bot's settings DB
 settings.sqlite3
 
-# ignore conf folders
-*.txt
-
 # ignore logfiles
 logs
 
+# ignore enmap data
 data
