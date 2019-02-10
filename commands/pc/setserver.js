@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../options`)
+const { setConf } = require(`../../libs/setConf`)
+const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -27,18 +28,7 @@ module.exports = class SetServerCommand extends Command {
       .toString()
       .split(`,`)
       .join(`\n`)}`
-    const owner = msg.author
-    const fs = require(`fs`)
-    const writeTo = `${__dirname}/../../server`
-
-    fs.writeFile(`${writeTo}/${owner.id}.txt`, content, function onError (err) {
-      if (err) {
-        msg.say(`There was a problem while saving your file. (\`${err}\`)`)
-      } else {
-        return msg.say(`Configuration saved succesfully!`)
-      }
-    })
-
+    setConf(msg, content, `server`, __dirname)
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
     }.`

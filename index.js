@@ -4,7 +4,7 @@ const {
   prefix,
   disableEveryone,
   unknownCommandResponse
-} = require(`./conf.json`)
+} = require(`./configs/conf.json`)
 const { CommandoClient } = require(`discord.js-commando`)
 const path = require(`path`)
 const fs = require(`fs`)
