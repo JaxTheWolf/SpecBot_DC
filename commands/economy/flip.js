@@ -97,7 +97,7 @@ module.exports = class FlipCommand extends Command {
           .setImage(cf === true ? cpub : cpuf);
       }
       msg.say({ embed });
-    } catch {
+    } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
       );
