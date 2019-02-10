@@ -1,6 +1,7 @@
 const { Command } = require(`discord.js-commando`);
 const { options } = require(`../../options`);
 const log = require(`node-file-logger`);
+const jimp = require(`jimp`);
 log.SetUserOptions(options);
 let path = require(`path`);
 
@@ -26,33 +27,60 @@ module.exports = class PointsCommand extends Command {
   }
   run(msg, { member }) {
     let key;
+    let client = this.client;
+
+    function generateCard(user, key) {
+      let images = [
+        `${__dirname}/raw/rect.png`,
+        user.displayAvatarURL,
+        `${__dirname}/raw/mask.png`
+      ];
+      let jimps = [];
+      let bg, avatar, mask;
+      let points = client.points.get(key, `points`);
+      let level = client.points.get(key, `level`);
+
+      for (let i = 0; i < images.length; i++) {
+        jimps.push(jimp.read(images[i]));
+      }
+
+      Promise.all(jimps)
+        .then(data => {
+          return Promise.all(jimps);
+        })
+        .then(data => {
+          bg = data[0];
+          avatar = data[1];
+          mask = data[2];
+          return jimp.loadFont(`${__dirname}/font/noto_sans_ui_16_b.fnt`);
+        })
+        .then(font => {
+          let circleAvatar = avatar
+            .clone()
+            .resize(80, 80)
+            .mask(mask, 0, 0);
+          bg
+            .composite(circleAvatar, 10, 10)
+            .print(font, 100, 22, `Points: ${points}`)
+            .print(font, 100, 52, `Level: ${level}`)
+            .write(`${__dirname}/export/card${user.id}.png`);
+        });
+    }
+
     try {
       if (member === ``) {
         key = `${msg.guild.id}-${msg.author.id}`;
-        msg.reply(
-          `You currently have **${this.client.points.get(
-            key,
-            `points`
-          )}** points, and are level **${this.client.points.get(
-            key,
-            `level`
-          )}**!`
-        );
+        generateCard(msg.author, key);
+        setTimeout(function sendCard() {
+          msg.say({ file: `${__dirname}/export/card${msg.author.id}.png` });
+        }, 2000);
       } else {
         try {
           key = `${msg.guild.id}-${member.user.id}`;
-
-          msg.reply(
-            `**${
-              member.user.username
-            }** currently has **${this.client.points.get(
-              key,
-              `points`
-            )}** points, and is level **${this.client.points.get(
-              key,
-              `level`
-            )}**!`
-          );
+          generateCard(member.user, key);
+          setTimeout(function sendCard() {
+            msg.say({ file: `${__dirname}/export/card${member.user.id}.png` });
+          }, 2000);
         } catch {
           msg.say(`This user doesn't have any points!`);
         }
