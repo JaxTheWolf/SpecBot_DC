@@ -47,7 +47,7 @@ module.exports = class GiveCommand extends Command {
           amount
         }** points! (Total: **${enmap.get(key, `points`)}**)`
       );
-    } catch {
+    } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
       );

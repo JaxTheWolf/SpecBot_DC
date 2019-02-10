@@ -42,7 +42,7 @@ module.exports = class UserInfoCommand extends Command {
       let authorMember = msg.guild.members.get(author.id);
       try {
         playStat = authorMember.presence.game.name;
-      } catch {
+      } catch (e) {
         playStat = `nothing`;
       }
 
@@ -75,7 +75,7 @@ module.exports = class UserInfoCommand extends Command {
     } else {
       try {
         playStat = member.presence.game.name;
-      } catch {
+      } catch (e) {
         playStat = `nothing`;
       }
       let user = member.user;

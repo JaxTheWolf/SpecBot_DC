@@ -46,7 +46,7 @@ module.exports = class AnnounceCommand extends Command {
           }
         });
       });
-    } catch (err) {
+    } catch (e) {
       let toLog = `Could not send message to a (few) guild(s)!`;
       console.log(toLog);
       log.Info(toLog);

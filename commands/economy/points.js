@@ -84,11 +84,11 @@ module.exports = class PointsCommand extends Command {
         try {
           key = `${msg.guild.id}-${member.user.id}`;
           sendCard(member.user, key);
-        } catch {
+        } catch (e) {
           msg.say(`This user doesn't have any points!`);
         }
       }
-    } catch {
+    } catch (e) {
       msg.reply(
         `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
       );
