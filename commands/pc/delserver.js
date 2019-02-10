@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../options`)
+const { delConf } = require(`../../libs/delConf`)
+const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -24,26 +25,7 @@ module.exports = class ServerCommand extends Command {
     })
   }
   run (msg, { confirm }) {
-    if (confirm === `no`) {
-      return msg.reply(`Cancelled command.`)
-    } else {
-      const fs = require(`fs`)
-      const owner = msg.author
-      const delFrom = `${__dirname}/../../server`
-
-      fs.unlink(`${delFrom}/${owner.id}.txt`, function onError (err) {
-        if (err) {
-          console.log(err)
-          msg.reply(
-            `You don't have a server saved yet or an error has occured. (\`${
-              err
-            }\`)`
-          )
-        } else {
-          msg.reply(`Your server has been successcully deleted!`)
-        }
-      })
-    }
+    delConf(msg, confirm, __dirname, `server`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

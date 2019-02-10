@@ -1,10 +1,9 @@
 const { Command } = require(`discord.js-commando`)
-const { RichEmbed } = require(`discord.js`)
-const { options } = require(`../../options`)
+const { sendConf } = require(`../../libs/sendConf`)
+const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
-const randomHexColor = require(`random-hex-color`)
 
 module.exports = class PC2Command extends Command {
   constructor (client) {
@@ -26,34 +25,7 @@ module.exports = class PC2Command extends Command {
     })
   }
   run (msg, { user }) {
-    const fs = require(`fs`)
-    const readFrom = `${__dirname}/../../conf2`
-
-    function retrievePC (user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone (
-        err,
-        data
-      ) {
-        if (err) {
-          return msg.reply(`This person doesn't have a configuration yet!`)
-        } else {
-          const embed = new RichEmbed()
-            .setTitle(`Here's ${user.username}'s configuration!`)
-            .setAuthor(user.username, user.displayAvatarURL)
-            .setDescription(`${data}`)
-            .setColor(randomHexColor())
-          msg.channel.send({
-            embed
-          })
-        }
-      })
-    }
-
-    if (user === ``) {
-      retrievePC(msg.author)
-    } else {
-      retrievePC(user)
-    }
+    sendConf(msg, user, `conf2`, __dirname)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

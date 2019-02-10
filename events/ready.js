@@ -6,7 +6,7 @@ module.exports = client => {
     )
   }
 
-  const { options } = require(`../options`)
+  const { options } = require(`../configs/options`)
   const log = require(`node-file-logger`)
   log.SetUserOptions(options)
 

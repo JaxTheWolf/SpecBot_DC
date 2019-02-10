@@ -1,7 +1,7 @@
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../options`)
+const { fetchAnimalFact } = require(`../../libs/animalFactFetcher`)
+const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
-const https = require(`https`)
 log.SetUserOptions(options)
 const path = require(`path`)
 
@@ -17,20 +17,7 @@ module.exports = class DogFactCommand extends Command {
     })
   }
   run (msg) {
-    const requestURL = `https://some-random-api.ml/dogfact`
-    https
-      .get(requestURL, function onDone (response) {
-        let data = ``
-        response.on(`data`, chunk => {
-          data += chunk
-        })
-        response.on(`end`, () => {
-          msg.say(`🐶 | ${JSON.parse(data).fact}`)
-        })
-      })
-      .on(`error`, err => {
-        msg.say(`An error has occured. (${err.message})`)
-      })
+    fetchAnimalFact(msg, `🐶`, `https://some-random-api.ml/dogfact`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

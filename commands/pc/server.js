@@ -1,10 +1,9 @@
 const { Command } = require(`discord.js-commando`)
-const { RichEmbed } = require(`discord.js`)
-const { options } = require(`../../options`)
+const { sendConf } = require(`../../libs/sendConf`)
+const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
-const randomHexColor = require(`random-hex-color`)
 
 module.exports = class ServerCommand extends Command {
   constructor (client) {
@@ -26,34 +25,7 @@ module.exports = class ServerCommand extends Command {
     })
   }
   run (msg, { user }) {
-    const fs = require(`fs`)
-    const readFrom = `${__dirname}/../../server`
-
-    function retrieveServer (user) {
-      fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone (err, data) {
-        if (err) {
-          msg.reply(
-            `This person doesn't have a server or they haven't saved it yet!`
-          )
-          console.log(err)
-        } else {
-          const embed = new RichEmbed()
-            .setTitle(`Here's ${user.username}'s server!`)
-            .setAuthor(user.username, user.displayAvatarURL)
-            .setDescription(`${data}`)
-            .setColor(randomHexColor())
-          msg.channel.send({
-            embed
-          })
-        }
-      })
-    }
-
-    if (user === ``) {
-      retrieveServer(msg.author)
-    } else {
-      retrieveServer(user)
-    }
+    sendConf(msg, user, `server`, __dirname)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

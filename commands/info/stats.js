@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../options`)
+const { options } = require(`../../configs/options`)
 const Discord = require(`discord.js`)
 const moment = require(`moment`)
 require(`moment-duration-format`)
@@ -35,16 +35,8 @@ module.exports = class StatsCommand extends Command {
 
     msg.say(
       `---STATISTICS---
-      • Mem Used (bot only) :: ${(
-    process.memoryUsage().heapUsed /
-        1024 /
-        1024
-  ).toFixed(2)} MB
-      • Mem Used (total)    :: ${(
-    process.memoryUsage().rss /
-        1024 /
-        1024
-  ).toFixed(2)} MB
+      • Mem Used (bot only) :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
+      • Mem Used (total)    :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB
       • Uptime              :: ${duration}
       • Users               :: ${this.client.users.size.toLocaleString()}
       • Servers             :: ${this.client.guilds.size.toLocaleString()}
