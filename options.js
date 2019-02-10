@@ -1,4 +1,7 @@
+const { timeZone } = require(`./conf.json`);
+
 exports.options = {
+  timeZone: timeZone,
   folderPath: "./logs/",
   dateBasedFileNaming: true,
   fileNamePrefix: "DailyLogs_",
