@@ -10,7 +10,7 @@ exports.sendImg = function (msg, reqUrl, footer, field) {
       })
       response.on(`end`, () => {
         const embed = new RichEmbed()
-          .setImage(JSON.parse(data).field)
+          .setImage(JSON.parse(data)[field])
           .setFooter(footer)
           .setColor(randomHexColor())
         msg.say(embed)

@@ -1,4 +1,4 @@
-exports.fetchText = function (msg, emote, reqUrl) {
+exports.fetchText = function (msg, emote, reqUrl, field) {
   const https = require(`https`)
 
   https
@@ -8,7 +8,7 @@ exports.fetchText = function (msg, emote, reqUrl) {
         data += chunk
       })
       response.on(`end`, () => {
-        msg.say(`${emote} | ${JSON.parse(data).fact}`)
+        msg.say(`${emote} | ${JSON.parse(data)[field]}`)
       })
     })
 }

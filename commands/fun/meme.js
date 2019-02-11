@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { sendImg } = require(`../../imageFetcher`)
+const { sendImg } = require(`../../libs/imageFetcher`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
@@ -16,7 +16,7 @@ module.exports = class MemeCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/meme`, `Images are fetched from https://some-random-api.ml`, `link`)
+    sendImg(msg, `https://some-random-api.ml/meme`, `Images are fetched from https://some-random-api.ml`, `url`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

@@ -17,7 +17,7 @@ module.exports = class catFactCommand extends Command {
     })
   }
   run (msg) {
-    fetchText(msg, `🐱`, `https://some-random-api.ml/catfact`)
+    fetchText(msg, `🐱`, `https://some-random-api.ml/catfact`, `fact`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
