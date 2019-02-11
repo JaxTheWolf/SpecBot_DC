@@ -1,7 +1,7 @@
 const { Command } = require(`discord.js-commando`)
+const { fetchText } = require(`../../libs/textFetcher`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
-const https = require(`https`)
 log.SetUserOptions(options)
 const path = require(`path`)
 
@@ -16,20 +16,7 @@ module.exports = class JokeCommand extends Command {
     })
   }
   run (msg) {
-    const requestURL = `https://some-random-api.ml/meme`
-    https
-      .get(requestURL, function onDone (response) {
-        let data = ``
-        response.on(`data`, chunk => {
-          data += chunk
-        })
-        response.on(`end`, () => {
-          msg.say(`😆 | ${JSON.parse(data).text}`)
-        })
-      })
-      .on(`error`, err => {
-        msg.say(`An error has occured. (${err.message})`)
-      })
+    fetchText(msg, `😆`, `https://some-random-api.ml/meme`, `text`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { sendImg } = require(`../../libs/animalImageFetcher`)
+const { sendImg } = require(`../../libs/imageFetcher`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
@@ -17,7 +17,7 @@ module.exports = class DogCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://dog.ceo/api/breeds/image/random`, `Images are fetched from https://dog.ceo`)
+    sendImg(msg, `https://dog.ceo/api/breeds/image/random`, `Images are fetched from https://dog.ceo`, `message`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username

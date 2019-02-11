@@ -19,10 +19,10 @@ module.exports = class UpdateCommand extends Command {
     const shell = require(`shelljs`)
     if (process.platform !== `win32`) {
       shell.exec(
-        `cd scripts/ && sh update.sh`,
+        `cd scripts/ && sh update.sh | tail -10`,
         { shell: `/bin/bash` },
         function onDone (code, stdout) {
-          msg.say(stdout)
+          msg.say(`... ${stdout}`)
         }
       )
     } else {
