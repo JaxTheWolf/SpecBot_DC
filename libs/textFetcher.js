@@ -8,7 +8,10 @@ exports.fetchText = function (msg, emote, reqUrl, field) {
         data += chunk
       })
       response.on(`end`, () => {
-        msg.say(`${emote} | ${JSON.parse(data)[field]}`)
+        const getDeepProp = (obj, path) => (
+          path.split('.').reduce((acc, part) => acc && acc[part], obj)
+        )
+        msg.say(`${emote} | ${getDeepProp(JSON.parse(data), field)}`)
       })
     })
 }
