@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { fetchAnimalFact } = require(`../../libs/animalFactFetcher`)
+const { fetchText } = require(`../../libs/textFetcher`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
@@ -17,7 +17,7 @@ module.exports = class DogFactCommand extends Command {
     })
   }
   run (msg) {
-    fetchAnimalFact(msg, `🐶`, `https://some-random-api.ml/dogfact`)
+    fetchText(msg, `🐶`, `https://some-random-api.ml/dogfact`)
 
     const toLog = `${path.basename(__filename, `.js`)} was used by ${
       msg.author.username
