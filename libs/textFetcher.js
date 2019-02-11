@@ -1,4 +1,4 @@
-exports.fetchAnimalFact = function (msg, emote, reqUrl) {
+exports.fetchText = function (msg, emote, reqUrl) {
   const https = require(`https`)
 
   https
