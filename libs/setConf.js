@@ -3,19 +3,13 @@ exports.setConf = function (msg, content, conf, dirname) {
   const owner = msg.author
   const db = new sqlite3.Database(`${dirname}/../../DBs/${conf}.sqlite3`)
 
-  db.run(`SELECT * FROM configs WHERE id = ${owner.id}`, function onDone (row) {
-    if (row === null) {
-      return msg.say(`You already have a configuration!`)
+  db.run(`INSERT INTO configs(id, conf) VALUES ('${owner.id}', '${content}')`, function onDone (err, row) {
+    if (err === null) {
+      msg.say(`Configuration saved succesfully!`)
+    } else if (err.code === `SQLITE_CONSTRAINT`) {
+      return msg.say(`You already have a configuration set!`)
     } else {
-      db.run(`INSERT INTO configs(id, conf) VALUES ('${owner.id}', '${content}')`, function onDone (err, row) {
-        if (err === null) {
-          msg.say(`Configuration saved succesfully!`)
-        } else if (err.code === `SQLITE_CONSTRAINT`) {
-          return msg.say(`You already have a configuration set!`)
-        } else {
-          return msg.say(`There was a problem while saving your config. (\`${err.message}\`)`)
-        }
-      })
+      return msg.say(`There was a problem while saving your config. (\`${err.message}\`)`)
     }
   })
 }
