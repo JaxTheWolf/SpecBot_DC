@@ -51,7 +51,7 @@ const Commando = require(`discord.js-commando`)
 client
   .setProvider(
     sqlite
-      .open(path.join(__dirname, `settings.sqlite3`))
+      .open(path.join(`${__dirname}/DBs`, `settings.sqlite3`))
       .then(db => new Commando.SQLiteProvider(db))
   )
   .catch(console.error)
