@@ -1,25 +1,22 @@
 exports.sendConf = function (msg, user, conf, dirname) {
-  const fs = require(`fs`)
   const { RichEmbed } = require(`discord.js`)
   const randomHexColor = require(`random-hex-color`)
-  const readFrom = `${dirname}/../../${conf}`
+  const sqlite3 = require(`sqlite3`)
+  const db = new sqlite3.Database(`${dirname}/../../DBs/${conf}.sqlite3`)
 
   function retrievePC (user) {
-    fs.readFile(`${readFrom}/${user.id}.txt`, `utf8`, function onDone (
-      err,
-      data
-    ) {
-      if (err) {
+    db.get(`SELECT conf FROM configs WHERE id = ${user.id}`, function onDone (err, row) {
+      if (err || typeof row === `undefined`) {
         return msg.reply(`This person doesn't have a configuration yet!`)
+      } else if (err) {
+        return msg.say(`An error has occured. (\`${err.message}\`)`)
       } else {
         const embed = new RichEmbed()
           .setTitle(`Here's ${user.username}'s configuration!`)
           .setAuthor(user.username, user.displayAvatarURL)
-          .setDescription(`${data}`)
+          .setDescription(`${row.conf}`)
           .setColor(randomHexColor())
-        msg.channel.send({
-          embed
-        })
+        msg.channel.send({ embed })
       }
     })
   }

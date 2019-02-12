@@ -1,9 +1,9 @@
 exports.editConf = function (msg, component, newCmp, dirname, conf) {
-  const fs = require(`fs`)
+  const sqlite3 = require(`sqlite3`)
   const owner = msg.author
   const rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`)
   let res
-  const dir = `${dirname}/../../${conf}`
+  const db = new sqlite3.Database(`${dirname}/../../DBs/${conf}.sqlite3`)
   const allowed = [
     `CPU`,
     `GPU`,
@@ -23,17 +23,13 @@ exports.editConf = function (msg, component, newCmp, dirname, conf) {
   if (!allowed.includes(component.toUpperCase())) {
     return msg.reply(`\`${component}\` is not a valid component!`)
   } else {
-    fs.readFile(`${dir}/${owner.id}.txt`, `utf8`, function onDone (err, data) {
+    db.get(`SELECT conf FROM configs WHERE id = ${owner.id}`, function onDone (err, row) {
       if (err) {
-        msg.reply(
-          `You don't have a configuration yet or an error has occured.`
-        )
-        console.log(err)
         res = null
+        return msg.reply(`You don't have a configuration yet or an error has occured.`)
       } else {
-        res = data.replace(rx, `${component.toUpperCase()}: ${newCmp}`)
-
-        fs.writeFile(`${dir}/${owner.id}.txt`, res, function onDone (err) {
+        res = row.conf.replace(rx, `${component.toUpperCase()}: ${newCmp}`)
+        db.run(`UPDATE configs SET conf = '${res}' WHERE id = '${owner.id}'`, function onDone (err) {
           if (err) {
             return msg.say(
               `There was a problem while saving your file. (\`${err}\`)`

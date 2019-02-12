@@ -1,7 +1,8 @@
 module.exports = (client, msg) => {
   const Enmap = require(`enmap`)
   client.points = new Enmap({
-    name: `points`
+    name: `points`,
+    dataDir: `${__dirname}/../DBs/points`
   })
 
   if (msg.author.bot) return
