@@ -1,9 +1,9 @@
 exports.setConf = function (msg, content, conf, dirname) {
   const sqlite3 = require(`sqlite3`)
   const owner = msg.author
-  const db = new sqlite3.Database(`${dirname}/../../DBs/${conf}.sqlite3`)
+  const db = new sqlite3.Database(`${dirname}/../../DBs/configurations.sqlite3`)
 
-  db.run(`INSERT INTO configs(id, conf) VALUES ('${owner.id}', '${content}')`, function onDone (err, row) {
+  db.run(`INSERT INTO ${conf}(id, conf) VALUES ('${owner.id}', '${content}');`, function onDone (err, row) {
     if (err === null) {
       msg.say(`Configuration saved succesfully!`)
     } else if (err.code === `SQLITE_CONSTRAINT`) {
