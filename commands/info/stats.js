@@ -1,5 +1,7 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { version } = require(`../../package.json`)
+const sqlite3 = require(`sqlite3`)
 const Discord = require(`discord.js`)
 const moment = require(`moment`)
 require(`moment-duration-format`)
@@ -22,17 +24,6 @@ module.exports = class StatsCommand extends Command {
       .duration(this.client.uptime)
       .format(` D [days], H [hrs], m [mins], s [secs]`)
 
-    let dir
-
-    const fs = require(`fs`)
-    dir = `${__dirname}/../../conf1`
-    const pc1 = fs.readdirSync(dir).length - 1
-    dir = `${__dirname}/../../conf2`
-    const pc2 = fs.readdirSync(dir).length - 1
-    dir = `${__dirname}/../../server`
-    const servers = fs.readdirSync(dir).length - 1
-    const { version } = require(`../../package.json`)
-
     msg.say(
       `---STATISTICS---
       • Mem Used (bot only) :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
@@ -41,9 +32,6 @@ module.exports = class StatsCommand extends Command {
       • Users               :: ${this.client.users.size.toLocaleString()}
       • Servers             :: ${this.client.guilds.size.toLocaleString()}
       • Channels            :: ${this.client.channels.size.toLocaleString()}
-      • PC1 Confs           :: ${pc1}
-      • PC2 Confs           :: ${pc2}
-      • Server Confs        :: ${servers}
       • Bot version         :: v${version}
       • Discord.js          :: v${Discord.version}
       • Node                :: ${process.version}`,
