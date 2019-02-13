@@ -11,31 +11,13 @@ module.exports = client => {
   const log = require(`node-file-logger`)
   log.SetUserOptions(options)
 
-  const createTable = (db) => {
-    db.run(`CREATE TABLE IF NOT EXISTS configs(id INTEGER PRIMARY KEY, conf TEXT NOT NULL)`)
-  }
-
-  const conf1DB = new sqlite3.Database(`./DBs/conf1.sqlite3`, (err) => {
+  const db = new sqlite3.Database(`./DBs/configurations.sqlite3`, (err) => {
     if (err) {
       console.log(`Error when creating the database`, err)
     } else {
-      createTable(conf1DB)
-    }
-  })
-
-  const conf2DB = new sqlite3.Database(`./DBs/conf2.sqlite3`, (err) => {
-    if (err) {
-      console.log(`Error when creating the database`, err)
-    } else {
-      createTable(conf2DB)
-    }
-  })
-
-  const serverDB = new sqlite3.Database(`./DBs/server.sqlite3`, (err) => {
-    if (err) {
-      console.log(`Error when creating the database`, err)
-    } else {
-      createTable(serverDB)
+      db.run(`CREATE TABLE IF NOT EXISTS conf1(id INTEGER PRIMARY KEY, conf TEXT NOT NULL);`)
+      db.run(`CREATE TABLE IF NOT EXISTS conf2(id INTEGER PRIMARY KEY, conf TEXT NOT NULL);`)
+      db.run(`CREATE TABLE IF NOT EXISTS server(id INTEGER PRIMARY KEY, conf TEXT NOT NULL);`)
     }
   })
 
