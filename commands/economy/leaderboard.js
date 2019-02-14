@@ -1,6 +1,7 @@
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
 const { options } = require(`../../configs/options`)
+const SQLite = require(`better-sqlite3`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -20,22 +21,17 @@ module.exports = class LeaderboardCommand extends Command {
   }
   run (msg) {
     try {
-      const filtered = this.client.points
-        .filter(p => p.guild === msg.guild.id)
-        .array()
-      const sorted = filtered.sort((a, b) => b.points - a.points)
-      const top10 = sorted.splice(0, 10)
+      const sql = new SQLite(`${__dirname}/../../DBs/scores.sqlite3`)
+      const top10 = sql.prepare('SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;').all(msg.guild.id)
+
       const embed = new RichEmbed()
-        .setTitle(`Leaderboard`)
+        .setTitle('Leaderboard')
         .setAuthor(this.client.user.username, this.client.user.avatarURL)
         .setDescription(`Our top 10 points leaders!`)
         .setColor(randomHexColor())
+
       for (const data of top10) {
-        embed.addField(
-          this.client.users.get(data.user).tag,
-          `**${data.points}** points (level **${data.level}**)`,
-          true
-        )
+        embed.addField(this.client.users.get(data.user).tag, `${data.points} points (level ${data.level})`)
       }
       msg.say({ embed })
     } catch (e) {

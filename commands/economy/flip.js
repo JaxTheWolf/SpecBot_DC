@@ -44,10 +44,23 @@ module.exports = class FlipCommand extends Command {
     })
   }
   run (msg, { bet, gstate }) {
+    const score = this.client.getScore.get(msg.author.id, msg.guild.id)
+    function setPoints (userScore, operation, amount) {
+      switch (operation) {
+      case `-`:
+        userScore.points -= amount
+        break
+      case `+`:
+        userScore.points += amount
+      }
+    }
+    function updateLevel (userScore) {
+      const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
+      userScore.level = userLevel < 1 ? 1 : userLevel
+    }
+
     const cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`
     const cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`
-    const key = `${msg.guild.id}-${msg.author.id}`
-    const enmap = this.client.points
     const cf = coinFlip()
     let gstateConv
     const embed = new RichEmbed()
@@ -65,12 +78,13 @@ module.exports = class FlipCommand extends Command {
       } else {
         gstateConv = false
       }
-      if (enmap.get(key, `points`) < bet) {
+      if (score.points < bet) {
         return msg.reply(`Insufficent funds.`)
       }
       if (gstateConv === cf) {
         const toAdd = Math.floor(bet * 1.5)
-        enmap.math(key, `+`, toAdd, `points`)
+        setPoints(score, `+`, toAdd)
+        this.client.setScore.run(score)
         embed
           .setDescription(
             `${
@@ -79,11 +93,12 @@ module.exports = class FlipCommand extends Command {
                 : `Overclock is stable!`
             } +${
               toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
-            } (Total: ${enmap.get(key, `points`)})`
+            } (Total: ${score.points})`
           )
           .setImage(cf === true ? cpub : cpuf)
       } else {
-        enmap.math(key, `-`, bet, `points`)
+        setPoints(score, `-`, bet)
+        this.client.setScore.run(score)
         embed
           .setDescription(
             `${
@@ -92,7 +107,7 @@ module.exports = class FlipCommand extends Command {
                 : `You fried the poor CPU!`
             } -${
               bet === 1 ? `${bet} point!` : `${bet} points!`
-            } (Total: ${enmap.get(key, `points`)})`
+            } (Total: ${score.points})`
           )
           .setImage(cf === true ? cpub : cpuf)
       }
