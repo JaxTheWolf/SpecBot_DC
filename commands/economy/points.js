@@ -26,10 +26,9 @@ module.exports = class PointsCommand extends Command {
     })
   }
   run (msg, { member }) {
-    let key
     const client = this.client
 
-    function sendCard (user, key) {
+    function sendCard (user) {
       const images = [
         `${__dirname}/raw/rect.png`,
         user.displayAvatarURL,
@@ -37,8 +36,8 @@ module.exports = class PointsCommand extends Command {
       ]
       const jimps = []
       let bg, avatar, mask
-      const points = client.points.get(key, `points`)
-      const level = client.points.get(key, `level`)
+      const points = client.getScore.get(user.id, msg.guild.id).points
+      const level = client.getScore.get(user.id, msg.guild.id).level
 
       for (let i = 0; i < images.length; i++) {
         jimps.push(jimp.read(images[i]))
@@ -68,9 +67,9 @@ module.exports = class PointsCommand extends Command {
               setTimeout(
                 () =>
                   msg.say({
-                    file: `${__dirname}/export/card${msg.author.id}.png`
+                    file: `${__dirname}/export/card${user.id}.png`
                   }),
-                1000
+                500
               )
             )
         })
@@ -78,12 +77,10 @@ module.exports = class PointsCommand extends Command {
 
     try {
       if (member === ``) {
-        key = `${msg.guild.id}-${msg.author.id}`
-        sendCard(msg.author, key)
+        sendCard(msg.author)
       } else {
         try {
-          key = `${msg.guild.id}-${member.user.id}`
-          sendCard(member.user, key)
+          sendCard(member.user)
         } catch (e) {
           msg.say(`This user doesn't have any points!`)
         }
