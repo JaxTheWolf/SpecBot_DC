@@ -1,40 +1,24 @@
 module.exports = (client, msg) => {
-  const Enmap = require(`enmap`)
-  client.points = new Enmap({
-    name: `points`,
-    dataDir: `${__dirname}/../DBs/points`
-  })
-
   if (msg.author.bot) return
   if (msg.guild) {
-    (async function () {
-      await client.points.defer
-      const key = `${msg.guild.id}-${msg.author.id}`
-
-      client.points.ensure(key, {
+    let score = client.getScore.get(msg.author.id, msg.guild.id)
+    if (!score) {
+      score = {
+        id: `${msg.guild.id}-${msg.author.id}`,
         user: msg.author.id,
         guild: msg.guild.id,
         points: 0,
         level: 1
-      })
-
-      client.points.inc(key, `points`)
-
-      const curLevel = Math.floor(
-        0.25 * Math.sqrt(client.points.get(key, `points`))
-      )
-
-      if (client.points.get(key, `level`) < curLevel) {
-        msg.reply(`You've leveled up to level **${curLevel}**!`)
-        client.points.set(key, curLevel, `level`)
       }
-      client.points.set(
-        key,
-        Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))) === 0
-          ? 1
-          : Math.floor(0.25 * Math.sqrt(client.points.get(key, `points`))),
-        `level`
-      )
-    })()
+    }
+    score.points++
+
+    const curLevel = Math.floor(0.25 * Math.sqrt(score.points))
+
+    if (score.level < curLevel) {
+      score.level++
+      msg.reply(`You've leveled up to level **${curLevel}**`)
+    }
+    client.setScore.run(score)
   }
 }
