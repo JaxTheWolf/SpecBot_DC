@@ -18,11 +18,9 @@
   "homepage": "https://jaxthewolf.github.io/SpecBot_DC/",
   "dependencies": {
     "@discordjs/uws": "^11.149.1",
-    "better-sqlite-pool": "^0.2.0",
-    "count-files": "^2.6.2",
+    "better-sqlite3": "^5.4.0",
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
-    "enmap": "^4.7.0",
     "erlpack": "github:discordapp/erlpack",
     "jimp": "^0.6.0",
     "moment": "^2.24.0",
