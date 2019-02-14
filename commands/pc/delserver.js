@@ -16,7 +16,7 @@ module.exports = class ServerCommand extends Command {
       args: [
         {
           key: `confirm`,
-          prompt: `Do you want to proceed? (true = yes, false = no)`,
+          prompt: `Do you want to proceed? (yes or no)`,
           type: `string`,
           oneOf: [`yes`, `no`],
           error: `Reply with yes/no.`
