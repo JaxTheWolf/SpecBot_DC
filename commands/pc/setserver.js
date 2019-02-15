@@ -29,11 +29,7 @@ module.exports = class SetServerCommand extends Command {
       .split(`,`)
       .join(`\n`)}`
     setConf(msg, content, `server`, __dirname)
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
 
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

@@ -11,8 +11,6 @@ module.exports = (client, guild) => {
   log.SetUserOptions(options)
 
   setActivity()
-  const toLog = `Left guild "${guild.name}".`
 
-  console.log(toLog)
-  log.Info(toLog)
+  log.Info(`Left guild "${guild.name}".`)
 }

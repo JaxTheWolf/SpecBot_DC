@@ -46,16 +46,9 @@ module.exports = class AnnounceCommand extends Command {
         })
       })
     } catch (e) {
-      const toLog = `Could not send message to a (few) guild(s)!`
-      console.log(toLog)
-      log.Info(toLog)
+      log.Info(`Could not send message to a (few) guild(s)!`)
     }
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

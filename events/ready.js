@@ -30,8 +30,5 @@ module.exports = client => {
   client.setScore = sql.prepare(`INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);`)
   setActivity()
 
-  const toLog = `Ready!`
-
-  console.log(toLog)
-  log.Info(toLog)
+  log.Info(`Ready!`)
 }
