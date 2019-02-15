@@ -25,11 +25,6 @@ module.exports = class EightBallCommand extends Command {
   run (msg, { question }) {
     fetchText(msg, `🎱`, `https://8ball.delegator.com/magic/JSON/${encodeURI(question)}`, `magic.answer`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

@@ -123,11 +123,6 @@ module.exports = class Setpc2Command extends Command {
 
     setConf(msg, content, `conf2`, __dirname)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

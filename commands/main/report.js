@@ -59,25 +59,13 @@ module.exports = class ReportCommand extends Command {
         .addField(`Channel:`, `**${msg.channel.name}**`, false)
         .addField(
           `If you feel that this report is unnecessary and/or you believe the command has been abused:`,
-          ` you may want to "punish" the author (**${msg.author.tag}**).`,
-          false
-        )
+          ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
         .setFooter(new Date(), user.displayAvatarURL)
-      /* msg.say(embed); uncomment this for debugging purposes. */
       guildOwner
         .send(embed)
-        .then(
-          msg.reply(
-            `User \`${user.tag}\` has been reported to the server owner!`
-          )
-        )
+        .then(msg.reply(`User \`${user.tag}\` has been reported to the server owner!`))
     }
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

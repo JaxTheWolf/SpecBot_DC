@@ -27,11 +27,6 @@ module.exports = class DelPC2Command extends Command {
   run (msg, { confirm }) {
     delConf(msg, confirm, __dirname, `conf2`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

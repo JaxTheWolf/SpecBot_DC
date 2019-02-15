@@ -18,19 +18,9 @@ module.exports = class GitHubCommand extends Command {
 
   run (msg) {
     msg
-      .say(
-        `GitHub repository can be found here: https://github.com/JaxTheWolf/SpecBot_DC`
-      )
-      .then(
-        msg.say(
-          `Homepage can be found here: https://JaxTheWolf.github.io/SpecBot_DC`
-        )
-      )
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
+      .say(`GitHub repository can be found here: https://github.com/JaxTheWolf/SpecBot_DC`)
+      .then(msg.say(`Homepage can be found here: https://JaxTheWolf.github.io/SpecBot_DC`))
 
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

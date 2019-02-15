@@ -19,11 +19,6 @@ module.exports = class CatCommand extends Command {
   run (msg) {
     sendImg(msg, `https://some-random-api.ml/catimg`, `Images are fetched from https://some-random-api.ml`, `link`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

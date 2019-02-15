@@ -19,11 +19,6 @@ module.exports = class DogCommand extends Command {
   run (msg) {
     sendImg(msg, `https://dog.ceo/api/breeds/image/random`, `Images are fetched from https://dog.ceo`, `message`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

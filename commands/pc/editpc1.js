@@ -33,11 +33,6 @@ module.exports = class EditPC1Comand extends Command {
   run (msg, { component, newCmp }) {
     editConf(msg, component, newCmp, __dirname, `conf1`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

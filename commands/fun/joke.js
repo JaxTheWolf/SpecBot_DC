@@ -18,11 +18,6 @@ module.exports = class JokeCommand extends Command {
   run (msg) {
     fetchText(msg, `😆`, `https://some-random-api.ml/meme`, `text`)
 
-    const toLog = `${path.basename(__filename, `.js`)} was used by ${
-      msg.author.username
-    }.`
-
-    console.log(toLog)
-    log.Info(toLog)
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }
