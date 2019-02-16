@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.8.1, https://mobirise.com -->
+  <!-- Site made with Mobirise Website Builder v4.9.3, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v4.8.1, mobirise.com">
+  <meta name="generator" content="Mobirise v4.9.3, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/specbot-snip-1.png" type="image/x-icon">
   <meta name="description" content="Web Site Builder Description">
@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/soundcloud-plugin/style.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
@@ -48,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link text-black display-4" href="page2.html">
-                        Change Log</a>
+                        Changelog</a>
                 </li></ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="index.html"><span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                     </a></div>
@@ -56,620 +58,809 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobiri.se/t">amp template</a></section><section class="toggle1 cid-rdy02PAnri" id="toggle1-8">
+<section class="engine"><a href="https://mobirise.info/q">free responsive website templates</a></section><section class="header1 cid-riejptTuLp mbr-parallax-background" id="header16-11">
 
     
 
-    
-        <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       <h2 class="mbr-section-title pb-5 mbr-fonts-style display-2">
-                            Commands</h2>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_18" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>delPC1/2</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to delete your existing configuration.&nbsp;<br>Usage: *delPC1, *delPC2</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_18" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>setPC1/2</h4>
-                                </a>
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(85, 180, 212);">
+    </div>
 
-                            </div>
-                            <div id="collapse2_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to set your configuration. The bot will ask you your parts list, and will automatically put them together.<br>Usage: *setPC1, *setPC2<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_18" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>PC1/2</h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to see someone's configuration.<br>Usage: *PC1 @User#0000, *PC2 @User#0000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_18" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>credits</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to see the creators of this bot.<br>Usage: *credits<br>Aliases: *creds, *authors</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_18" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>help</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to display a list of available commands, or detailed information for a specified command.<br>Usage: *help, *help [command]</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_18" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>avatar</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_18" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to display someone's avatar on discord.<br>Usage: *avatar @user#0000, *avatar user<br>Aliases: *pfp</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 align-center">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                    Commands</h1>
+                
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                    All @'s are unnecessary as SpecBot uses Fuzzy matching, e.g. the76i is the same as @the76i#1234</p>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-black-outline display-4" href="page2.html">Changelog</a></div>
             </div>
         </div>
+    </div>
+
 </section>
 
-<section class="toggle1 cid-rdy0nQord8" id="toggle1-9">
+<section class="section-table cid-riejyS4ACp" id="table1-12">
 
-    
-
-    
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          PC commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">PC commands are meant to save your configurations and allowing other people to look at it/them.</h3>
+      <div class="table-wrapper">
         <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_19" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>reply</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to test if the bot is working as intended. Bot will answer: "It's working!"<br>Usage: *reply</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_19" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>prefix</h4>
-                                </a>
-
-                            </div>
-                            <div id="collapse2_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this to show or set prefix.<br>Usage: *prefix -, *prefix<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_19" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>ping</h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this to receive bot's ping to Discord server.<br>Usage: *ping</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_19" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>groups</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this to receive a list of all command groups.<br>Usage: *groups</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_19" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>enable</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this to enable a command or a command group.<br>Usage: *enable main, *enable ping</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_19" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>disable</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_19" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this to disable a command or a command group.<br>Usage: *disable main, *disable ping</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
                 </div>
             </div>
+          </div>
         </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">DelPC1/2</td><td class="body-item mbr-fonts-style display-7">Delete your current configuration</td><td class="body-item mbr-fonts-style display-7">*delpc1, *delpc2<br></td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">SetPC1/2</td><td class="body-item mbr-fonts-style display-7">Add your current configuration</td><td class="body-item mbr-fonts-style display-7">*setpc1, *setpc2</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">PC1/2</td><td class="body-item mbr-fonts-style display-7">See someone's configuration</td><td class="body-item mbr-fonts-style display-7">*pc1 @someone#0000,<br>*pc2 @someone#0000,<br>*pc1, *pc2<br><br></td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">EditPC1/2</td><td class="body-item mbr-fonts-style display-7">Edit your current configuration</td><td class="body-item mbr-fonts-style display-7">*editpc1 RAM "HyperX Fury DDR4-2666 2x4GB"</td><td class="body-item mbr-fonts-style display-7">*edit1/2</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Setserver</td><td class="body-item mbr-fonts-style display-7">Set your (Hardware) server</td><td class="body-item mbr-fonts-style display-7">*setserver "Dual Xeon etc."</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Server</td><td class="body-item mbr-fonts-style display-7">See someone's (Hardware) server</td><td class="body-item mbr-fonts-style display-7">*server, *server @user#0000</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Delserver</td><td class="body-item mbr-fonts-style display-7">Delete your (Hardware) server configuration</td><td class="body-item mbr-fonts-style display-7">*delserver yes</td><td class="body-item mbr-fonts-style display-7">None</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
-<section class="toggle1 cid-rdy13DbMey" id="toggle1-a">
+<section class="section-table cid-rieAm6QYhy" id="table1-13">
 
-    
-
-    
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Owner commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Owner commands are meant for owner-only use. Mostly regarding the bot physically, updating without ssh etc.</h3>
+      <div class="table-wrapper">
         <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_20" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>reload</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to reload a command or a command group.<br>Usage: *reload main, *reload ping</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_20" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>load</h4>
-                                </a>
-
-                            </div>
-                            <div id="collapse2_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to load a command or a command group<br>Usage: *load main, *load ping<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_20" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>unload</h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to load a command or a command group.<br>Usage: *unload main, *unload ping</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_20" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>invite</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to invite SpecBot to your server.<br>Usage: *invite<br>Aliases: *inv, *summon</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_20" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>embed</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to test if embeds are bugged out etc.<br>Usage: *embed [text]</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_20" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>say</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_20" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to make the bot say anything.<br>Usage: *say [text]<br>Aliases: *repeat, *msg</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
                 </div>
             </div>
+          </div>
         </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Announce</td><td class="body-item mbr-fonts-style display-7">Announce something to all servers bot is in</td><td class="body-item mbr-fonts-style display-7">*announce something</td><td class="body-item mbr-fonts-style display-7">*ann, *announcement</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Restart</td><td class="body-item mbr-fonts-style display-7">Restart the bot</td><td class="body-item mbr-fonts-style display-7">*restart</td><td class="body-item mbr-fonts-style display-7">*reboot</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Status</td><td class="body-item mbr-fonts-style display-7">Get status of the bot</td><td class="body-item mbr-fonts-style display-7">*status</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Update</td><td class="body-item mbr-fonts-style display-7">Pull the Github repository and update the bot</td><td class="body-item mbr-fonts-style display-7">*update</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Enable</td><td class="body-item mbr-fonts-style display-7">Enable any disabled command or command group</td><td class="body-item mbr-fonts-style display-7">*enable setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Disable</td><td class="body-item mbr-fonts-style display-7">Disable any enabled command or command group</td><td class="body-item mbr-fonts-style display-7">*disable setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Load</td><td class="body-item mbr-fonts-style display-7">Load any unloaded command</td><td class="body-item mbr-fonts-style display-7">*load setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Unload</td><td class="body-item mbr-fonts-style display-7">Unload any loaded command</td><td class="body-item mbr-fonts-style display-7">*unload setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Reload</td><td class="body-item mbr-fonts-style display-7">Reload a command or command group</td><td class="body-item mbr-fonts-style display-7">*reload setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Eval</td><td class="body-item mbr-fonts-style display-7">Execute JavaScript code</td><td class="body-item mbr-fonts-style display-7">*eval msg.say('yeet')</td><td class="body-item mbr-fonts-style display-7">None</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
-<section class="toggle1 cid-reRNVVtbnr" id="toggle1-j">
+<section class="section-table cid-rieAq4UWhm" id="table1-14">
 
-    
-
-    
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Main commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Main commands are commands for random use cases.</h3>
+      <div class="table-wrapper">
         <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_21" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>announce</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Announces message to all servers the bot is in. Only @oko123#8509 and @The76i#1234 can use this, so owner-only.<br>Aliases: *ann, *announcement</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_21" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>editPC1</h4>
-                                </a>
-
-                            </div>
-                            <div id="collapse2_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to edit your current configuration.<br>Usage: *editpc1 CPU i5-8600k, *editpc2 CPU i5-8600k<br>Aliases: *edit1, *edit2</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_21" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>suggest<br></h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to suggest a feature for SpecBot.<br>Usage: *suggest<br>Aliases: *sugg, *featurereq, *request, *suggestion</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_21" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>report</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to report someone.<br>Usage: *report @user#0000 offensive memes<br>Aliases: *repo, *specbotreport, *sprepo, *spreport<br>Answers for confirmation: True, False<br>ABUSE OF THIS COMMAND CAN RESULT IN A PUNISHMENT!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_21" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>donate</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to donate to developers of SpecBot. All donations are appreciated!
-<br>You can also donate through this link: <a href="https://ko-fi.com/specbot" target="_blank">https://ko-fi.com/specbot</a>
-<br>Usage: *donate
-<br>Aliases: *contribute, *support<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_21" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>update</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_21" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">This command is used to update the bot. OWNER ONLY!<br>Usage: *update</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
                 </div>
             </div>
+          </div>
         </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Avatar</td><td class="body-item mbr-fonts-style display-7">Get someone's profile picture</td><td class="body-item mbr-fonts-style display-7">*avatar, *avatar @someone#0000</td><td class="body-item mbr-fonts-style display-7">*pfp</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Base</td><td class="body-item mbr-fonts-style display-7">Useless command-wise, this is a template ("base.js" is a file in commands on Github) for creating your own commands</td><td class="body-item mbr-fonts-style display-7">*base</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Credits</td><td class="body-item mbr-fonts-style display-7">See credits of SpecBot</td><td class="body-item mbr-fonts-style display-7">*credits</td><td class="body-item mbr-fonts-style display-7">*creds, *authors</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Donate</td><td class="body-item mbr-fonts-style display-7">Get link to SpecBot donation page, ALL donations are appreciated!</td><td class="body-item mbr-fonts-style display-7">*donate</td><td class="body-item mbr-fonts-style display-7">*contribute, *support</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Embed</td><td class="body-item mbr-fonts-style display-7">Embed anything you say</td><td class="body-item mbr-fonts-style display-7">*embed</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Github</td><td class="body-item mbr-fonts-style display-7">Get Github repository link</td><td class="body-item mbr-fonts-style display-7">*github</td><td class="body-item mbr-fonts-style display-7">*gh, *gith</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Invite</td><td class="body-item mbr-fonts-style display-7">Generate invite link to invite SpecBot to your own server</td><td class="body-item mbr-fonts-style display-7">*invite</td><td class="body-item mbr-fonts-style display-7">*inv, *summon</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Purge</td><td class="body-item mbr-fonts-style display-7">Purge selected amount of messages, Manage messages permission required.</td><td class="body-item mbr-fonts-style display-7">*purge 3</td><td class="body-item mbr-fonts-style display-7">*del</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Reply</td><td class="body-item mbr-fonts-style display-7">Debug command, bot will answer if it's working</td><td class="body-item mbr-fonts-style display-7">*reply</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Report</td><td class="body-item mbr-fonts-style display-7">Report someone to owner of the server. Read instructions carefully!</td><td class="body-item mbr-fonts-style display-7">*report @user#0000 "hate messages" yes</td><td class="body-item mbr-fonts-style display-7">*repo, *specbotreport, *spreport, *sprepo</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Say</td><td class="body-item mbr-fonts-style display-7">Make bot say anything you say</td><td class="body-item mbr-fonts-style display-7">*say something</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Suggest</td><td class="body-item mbr-fonts-style display-7">Suggest a feature to SpecBot or give feedback. Please read the questions carefully!</td><td class="body-item mbr-fonts-style display-7">*suggest</td><td class="body-item mbr-fonts-style display-7">*sugg, *request, *featurereq, *suggestion</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
-<section class="toggle1 cid-rf34IVa6oW" id="toggle1-l">
+<section class="section-table cid-rieAsfoiFV" id="table1-15">
 
-    
-
-    
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Informative commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Informative commands are meant for getting information from someone/something easily</h3>
+      <div class="table-wrapper">
         <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_22" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>restart</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       This command is used to restart the bot. OWNER ONLY! Currently Linux-only.<br>Usage: *restart</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_22" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>guildinfo</h4>
-                                </a>
-
-                            </div>
-                            <div id="collapse2_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to get info of current server.<br>Usage: *guildinfo<br>Aliases: *ginfo, *guild_info, *g_info</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_22" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>uptime</h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to get current uptime of the bot.<br>Usage: *uptime<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_22" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>userinfo</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to get user's info.<br>Usage: *userinfo, *userinfo @user#0000<br>Aliases: *uinfo, *user_info, *u_info</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_22" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>status</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to get status of the bot. OWNER ONLY! Linux-only.<br>Usage: *status<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_22" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>github</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_22" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to see the link to the GitHub page<br>Usage: *github<br>Aliases: *gh, *gith</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
                 </div>
             </div>
+          </div>
         </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Emotes</td><td class="body-item mbr-fonts-style display-7">Get list of server's custom emojis</td><td class="body-item mbr-fonts-style display-7">*emotes</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Guildinfo</td><td class="body-item mbr-fonts-style display-7">Get info of current server</td><td class="body-item mbr-fonts-style display-7">*guildinfo</td><td class="body-item mbr-fonts-style display-7">*ginfo, *guild_info, *g_info, *server_info, *sinfo, *s_info</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Guildlist</td><td class="body-item mbr-fonts-style display-7">Get list of servers bot is in</td><td class="body-item mbr-fonts-style display-7">*guildlist</td><td class="body-item mbr-fonts-style display-7">*guilds. *glist, *servers, *slist</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Stats</td><td class="body-item mbr-fonts-style display-7">Get bot statistics</td><td class="body-item mbr-fonts-style display-7">*stats</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Userinfo</td><td class="body-item mbr-fonts-style display-7">Get info from selected user</td><td class="body-item mbr-fonts-style display-7">*userinfo @user#0000</td><td class="body-item mbr-fonts-style display-7">*uinfo, *user_info, *u_info</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
-<section class="toggle1 cid-rfISaAKnuz" id="toggle1-u">
+<section class="section-table cid-rieAvLtBcr" id="table1-16">
 
-    
-
-    
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Fun commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Fun commands are meant to get you laughing. Have fun!</h3>
+      <div class="table-wrapper">
         <div class="container">
-            <div class="media-container-row">
-                <div class="col-12 col-md-8">
-                    <div class="section-head text-center space30">
-                       
-                    </div>
-                    <div class="clearfix"></div>
-                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse1_23" aria-expanded="false" aria-controls="collapse1">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>guildlist</h4>
-                                </a>
-                            </div>
-                            <div id="collapse1_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to see all the guilds the bot is in<br>Usage: *guildlist<br>Aliases: *guilds, *glist</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse2_23" aria-expanded="false" aria-controls="collapse2">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>emotes</h4>
-                                </a>
-
-                            </div>
-                            <div id="collapse2_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to see all the emojis of the server<br>Usage: *emotes<br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse3_23" aria-expanded="false" aria-controls="collapse3">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>flip</h4>
-                                </a>
-                            </div>
-                            <div id="collapse3_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to flip a coin (CPU), If you guess the coin state, your bet gets doubled.<br>Usage: *flip 10 pins, *flip 10 h<br>pins = tails in this case</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse4_23" aria-expanded="false" aria-controls="collapse4">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>give</h4>
-                                </a>
-                            </div>
-                            <div id="collapse4_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to give points to someone.<br>Usage: *give 10 @user#0000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse5_23" aria-expanded="false" aria-controls="collapse5">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>leaderboard</h4>
-                                </a>
-                            </div>
-                            <div id="collapse5_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">
-                                       Use this command to see top 10 active chatters of the server.<br>Usage: *leaderboard<br>Aliases: *lb, *leaders, *top10, *top</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-parent="#accordion" data-core="" href="#collapse6_23" aria-expanded="false" aria-controls="collapse6">
-                                    <h4 class="mbr-fonts-style display-5">
-                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>points</h4>
-                                </a>
-                            </div>
-                            <div id="collapse6_23" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body p-4">
-                                    <p class="mbr-fonts-style panel-text display-7">Use this command to see your current amount of points.<br>Usage: *points, *points @user#0000</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
                 </div>
             </div>
+          </div>
         </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">8ball</td><td class="body-item mbr-fonts-style display-7">Ask a question and 8ball will answer</td><td class="body-item mbr-fonts-style display-7">*8ball "Am I dumb?"</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Joke</td><td class="body-item mbr-fonts-style display-7">Get a random joke</td><td class="body-item mbr-fonts-style display-7">*joke</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Meme</td><td class="body-item mbr-fonts-style display-7">Get a random meme</td><td class="body-item mbr-fonts-style display-7">*meme</td><td class="body-item mbr-fonts-style display-7">None</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section-table cid-rieAxKNpPQ" id="table1-17">
+
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Economy commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Economy commands are meant for "betting" and competiting.</h3>
+      <div class="table-wrapper">
+        <div class="container">
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Flip</td><td class="body-item mbr-fonts-style display-7">Flip a coin/CPU and bet for points</td><td class="body-item mbr-fonts-style display-7">*flip 100 pins, *flip 100 IHS</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Give</td><td class="body-item mbr-fonts-style display-7">Give points to someone</td><td class="body-item mbr-fonts-style display-7">*give 1000 @user#0000</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Leaderboard</td><td class="body-item mbr-fonts-style display-7">See Top 10 users point-wise</td><td class="body-item mbr-fonts-style display-7">*leaderboard</td><td class="body-item mbr-fonts-style display-7">*lb, * leaders, *top10, *top</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Points</td><td class="body-item mbr-fonts-style display-7">See amount of points and level and rank on current server</td><td class="body-item mbr-fonts-style display-7">*points, *points @user#0000</td><td class="body-item mbr-fonts-style display-7">None</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section-table cid-rieAAJAgBf" id="table1-18">
+
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Animal commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Animal commands are meant for getting random pictures and facts of animals</h3>
+      <div class="table-wrapper">
+        <div class="container">
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">
+                      Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Bird</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a bird</td><td class="body-item mbr-fonts-style display-7">*bird</td><td class="body-item mbr-fonts-style display-7">*birb, *birdie</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Cat</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a cat</td><td class="body-item mbr-fonts-style display-7">*cat</td><td class="body-item mbr-fonts-style display-7">*kitty, *puss, *pussy, *kitten, *pussycat</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Dog</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a dog</td><td class="body-item mbr-fonts-style display-7">*dog</td><td class="body-item mbr-fonts-style display-7">*doggie, *puppy, *pupper, *dawg, *doggo, *doge</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Fox</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a fox</td><td class="body-item mbr-fonts-style display-7">*fox</td><td class="body-item mbr-fonts-style display-7">*foxxo, *foxxie, *fex, *orange_doggo, *foxy, *weird_doggo</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Panda</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a panda</td><td class="body-item mbr-fonts-style display-7">*panda</td><td class="body-item mbr-fonts-style display-7">*pandabear, *bamboo_muncher</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Pikachu</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a pikachu</td><td class="body-item mbr-fonts-style display-7">*pikachu</td><td class="body-item mbr-fonts-style display-7">*chu, *pika, *owo</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Redpanda</td><td class="body-item mbr-fonts-style display-7">Get a random photo of a redpanda</td><td class="body-item mbr-fonts-style display-7">*redpanda</td><td class="body-item mbr-fonts-style display-7">*redfatdoggo, *redbamboo_muncher</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Pandafact</td><td class="body-item mbr-fonts-style display-7">Get a random panda fact</td><td class="body-item mbr-fonts-style display-7">*pandafact</td><td class="body-item mbr-fonts-style display-7">*bamboo_muncherfact, *pandabearfact, *fatdoggofact</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Dogfact</td><td class="body-item mbr-fonts-style display-7">Get a random dog fact</td><td class="body-item mbr-fonts-style display-7">*dogfact</td><td class="body-item mbr-fonts-style display-7">*doggiefact, *puppyfact, *pupperfact, *dawgfact, *doggofact, *dogefact</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Catfact</td><td class="body-item mbr-fonts-style display-7">Get a random cat fact</td><td class="body-item mbr-fonts-style display-7">*catfact</td><td class="body-item mbr-fonts-style display-7">*kittyfact, *pussfact, *pussyfact, *catfacts, *kittenfact, *pussycatfact</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section-table cid-rieKRXCrmx" id="table1-19">
+
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          Utility commands</h2>
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            Utility command are meant for setting up the bot, debugging and getting help</h3>
+      <div class="table-wrapper">
+        <div class="container">
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Command</th><th class="head-item mbr-fonts-style display-7">Description</th><th class="head-item mbr-fonts-style display-7">
+                      Usage</th><th class="head-item mbr-fonts-style display-7">
+                      Aliases</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Help</td><td class="body-item mbr-fonts-style display-7">Get list of all commands and their descriptions</td><td class="body-item mbr-fonts-style display-7">*help, *help setpc1</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Prefix</td><td class="body-item mbr-fonts-style display-7">Set prefix of SpecBot. Base prefix is "-"<br></td><td class="body-item mbr-fonts-style display-7">*prefix !<br></td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Ping</td><td class="body-item mbr-fonts-style display-7">Ping the bot</td><td class="body-item mbr-fonts-style display-7">*ping</td><td class="body-item mbr-fonts-style display-7">None</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">Groups</td><td class="body-item mbr-fonts-style display-7">See the command groups</td><td class="body-item mbr-fonts-style display-7">*groups</td><td class="body-item mbr-fonts-style display-7">None</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
 
@@ -680,7 +871,9 @@
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/dropdown/js/script.min.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/parallax/jarallax.min.js"></script>
+  <script src="assets/datatables/jquery.data-tables.min.js"></script>
+  <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
   
