@@ -11,8 +11,8 @@ module.exports = class EightBallCommand extends Command {
       name: `8ball`,
       group: `fun`,
       memberName: `8ball`,
-      description: `A base command to copy.`,
-      examples: [`base`],
+      description: `Ask a question and 8ball will answer`,
+      examples: [`-8ball Am I dumb?`],
       args: [
         {
           key: `question`,
