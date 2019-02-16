@@ -12,7 +12,8 @@ module.exports = class RestartCommand extends Command {
       memberName: `restart`,
       description: `Restarts the systemd service or the nodejs process.`,
       ownerOnly: true,
-      examples: [`restart`]
+      examples: [`restart`],
+      aliases: [`reboot`]
     })
   }
   run (msg) {
