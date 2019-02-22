@@ -1,24 +1,24 @@
 exports.sendConf = function (msg, user, conf, dirname) {
   const { RichEmbed } = require(`discord.js`)
   const randomHexColor = require(`random-hex-color`)
-  const sqlite3 = require(`sqlite3`)
-  const db = new sqlite3.Database(`${dirname}/../../DBs/configurations.sqlite3`)
+  const SQLite = require(`better-sqlite3`)
+  const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
 
   function retrievePC (user) {
-    db.get(`SELECT conf FROM ${conf} WHERE id = ${user.id};`, function onDone (err, row) {
-      if (err || typeof row === `undefined`) {
+    try {
+      const embed = new RichEmbed()
+        .setTitle(`Here's ${user.username}'s configuration!`)
+        .setAuthor(user.username, user.displayAvatarURL)
+        .setDescription(`${db.prepare(`SELECT conf FROM ${conf} WHERE id = '${user.id}';`).get().conf}`)
+        .setColor(randomHexColor())
+      msg.channel.send({ embed })
+    } catch (e) {
+      if (e || typeof row === `undefined`) {
         return msg.reply(`This person doesn't have a configuration yet!`)
-      } else if (err) {
-        return msg.say(`An error has occured. (\`${err.message}\`)`)
-      } else {
-        const embed = new RichEmbed()
-          .setTitle(`Here's ${user.username}'s configuration!`)
-          .setAuthor(user.username, user.displayAvatarURL)
-          .setDescription(`${row.conf}`)
-          .setColor(randomHexColor())
-        msg.channel.send({ embed })
+      } else if (e) {
+        return msg.say(`An error has occured. (\`${e.message}\`)`)
       }
-    })
+    }
   }
 
   if (user === ``) {

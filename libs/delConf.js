@@ -2,16 +2,14 @@ exports.delConf = function (msg, confirm, dirname, conf) {
   if (confirm === `no`) {
     return msg.reply(`Cancelled command.`)
   } else {
-    const sqlite3 = require(`sqlite3`)
-    const owner = msg.author
-    const db = new sqlite3.Database(`${dirname}/../../DBs/configurations.sqlite3`)
+    const SQLite = require(`better-sqlite3`)
+    const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
 
-    db.run(`DELETE FROM ${conf} WHERE id = ${owner.id};`, function onDone (err) {
-      if (err) {
-        return msg.reply(`You don't have a configuration yet or an error has occured. (\`${err.message}\`)`)
-      } else {
-        msg.reply(`Your configuration has been successcully deleted!`)
-      }
-    })
+    try {
+      db.prepare(`DELETE FROM ${conf} WHERE id = '${msg.author.id}';`).run()
+      msg.reply(`Your configuration has been successcully deleted!`)
+    } catch (e) {
+      return msg.reply(`You don't have a configuration yet or an error has occured. (\`${e.message}\`)`)
+    }
   }
 }

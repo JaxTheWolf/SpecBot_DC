@@ -17,7 +17,7 @@ module.exports = class BirdCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/birbimg`, `Images are fetched from https://some-random-api.ml`, `link`)
+    sendImg(msg, `https://some-random-api.ml/birbimg`, `link`)
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }

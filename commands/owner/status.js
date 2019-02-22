@@ -24,8 +24,7 @@ module.exports = class StatusCommand extends Command {
         { shell: `/bin/bash` },
         function onDone (code, stdout) {
           msg.say(`... ${stdout}`)
-        }
-      )
+        })
     } else {
       msg.say(`wip`)
     }

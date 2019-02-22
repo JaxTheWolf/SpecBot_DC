@@ -57,9 +57,7 @@ module.exports = class ReportCommand extends Command {
         .addField(`Reason:`, `**${reason}**`, false)
         .addField(`Guild:`, `**${msg.guild.name}**`, false)
         .addField(`Channel:`, `**${msg.channel.name}**`, false)
-        .addField(
-          `If you feel that this report is unnecessary and/or you believe the command has been abused:`,
-          ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
+        .addField(`If you feel that this report is unnecessary and/or you believe the command has been abused:`, ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
         .setFooter(new Date(), user.displayAvatarURL)
       guildOwner
         .send(embed)

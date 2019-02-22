@@ -12,7 +12,7 @@ module.exports = class DogFactCommand extends Command {
       aliases: [`dogfact`, `doggiefact`, `puppyfact`, `pupperfact`, `dawgfact`, `doggofact`, `dogefact`],
       group: `animals`,
       memberName: `dogfacts`,
-      description: `Sends some random dog fact.`,
+      description: `Sends a random dog fact.`,
       examples: [`dogfact`]
     })
   }

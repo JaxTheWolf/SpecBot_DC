@@ -16,7 +16,7 @@ module.exports = class MemeCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/meme`, `Images are fetched from https://some-random-api.ml`, `url`)
+    sendImg(msg, `https://some-random-api.ml/meme`, `url`)
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }

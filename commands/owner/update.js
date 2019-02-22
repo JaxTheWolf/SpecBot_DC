@@ -23,16 +23,14 @@ module.exports = class UpdateCommand extends Command {
         { shell: `/bin/bash` },
         function onDone (code, stdout) {
           msg.say(`... ${stdout}`)
-        }
-      )
+        })
     } else {
       shell.exec(
         `cd scripts && .\\update.bat`,
         { shell: `C:\\Windows\\System32\\cmd.exe` },
         function onDone (code, stdout) {
           msg.say(stdout)
-        }
-      )
+        })
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)

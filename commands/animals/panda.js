@@ -17,7 +17,7 @@ module.exports = class PandaCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/pandaimg`, `Images are fetched from https://some-random-api.ml`, `link`)
+    sendImg(msg, `https://some-random-api.ml/pandaimg`, `link`)
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }

@@ -17,7 +17,7 @@ module.exports = class FoxCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/foximg`, `Images are fetched from https://some-random-api.ml`, `link`)
+    sendImg(msg, `https://some-random-api.ml/foximg`, `link`)
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }

@@ -18,11 +18,7 @@ module.exports = class InviteCommand extends Command {
   run (msg) {
     this.client
       .generateInvite([`SEND_MESSAGES`, `MANAGE_MESSAGES`])
-      .then(link =>
-        msg
-          .say(`Here's the invite link! ${link}`)
-          .then(msg.say(`I hope you'll enjoy the bot!`))
-      )
+      .then(link => msg.say(`Here's the invite link! ${link}`).then(msg.say(`I hope you'll enjoy the bot!`)))
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
