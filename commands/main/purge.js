@@ -35,13 +35,8 @@ module.exports = class PurgeCommand extends Command {
   async run (msg, { member, amount }) {
     let messages = await msg.channel.fetchMessages({ limit: 100 })
     const user = member.user
-    if (
-      !msg.guild.members
-        .get(msg.author.id)
-        .hasPermission(`MANAGE_MESSAGES`, false, true, true)
-    ) {
-      msg.say(`You don't have required permissions for this action!`)
-      return
+    if (!msg.guild.members.get(msg.author.id).hasPermission(`MANAGE_MESSAGES`, false, true, true)) {
+      return msg.say(`You don't have required permissions for this action!`)
     } else {
       if (member !== ``) {
         messages = messages.array().filter(m => m.author.id === user.id)

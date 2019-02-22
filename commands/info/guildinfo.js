@@ -57,22 +57,14 @@ module.exports = class GuildInfoCommand extends Command {
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setThumbnail(guild.iconURL)
       .addField(`Name:`, guild.name, false)
-      .addField(
-        `Owner:`,
-        `${guild.owner.user.tag} (${guild.owner.user.id})`,
-        false
-      )
+      .addField(`Owner:`, `${guild.owner.user.tag} (${guild.owner.user.id})`, false)
       .addField(`ID:`, guild.id, false)
       .addField(`Number of text channels:`, channCount(guild, `text`), false)
       .addField(`Number of voice channels:`, channCount(guild, `voice`), false)
       .addField(`Amount of members (total):`, guild.memberCount, false)
       .addField(`Bots:`, checkBots(guild), false)
       .addField(`Humans:`, checkMembers(guild), false)
-      .addField(
-        `Is this guild considered large? (250+ members):`,
-        guild.large,
-        false
-      )
+      .addField(`Is this guild considered large? (250+ members):`, guild.large, false)
       .addField(`Region:`, guild.region, false)
       .setFooter(`Guild created at:`)
       .setTimestamp(guild.createdAt)

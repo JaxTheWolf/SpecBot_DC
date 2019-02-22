@@ -52,6 +52,7 @@ module.exports = class FlipCommand extends Command {
         break
       case `+`:
         userScore.points += amount
+        break
       }
     }
     function updateLevel (userScore) {
@@ -84,38 +85,23 @@ module.exports = class FlipCommand extends Command {
       if (gstateConv === cf) {
         const toAdd = Math.floor(bet * 1.5)
         setPoints(score, `+`, toAdd)
+        updateLevel(score)
         this.client.setScore.run(score)
         embed
-          .setDescription(
-            `${
-              gstateConv === true
-                ? `CPU has been successfully inserted!`
-                : `Overclock is stable!`
-            } +${
-              toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`
-            } (Total: ${score.points})`
-          )
+          .setDescription(`${gstateConv === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +${toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`} (Total: ${score.points})`)
           .setImage(cf === true ? cpub : cpuf)
       } else {
         setPoints(score, `-`, bet)
+        updateLevel(score)
         this.client.setScore.run(score)
         embed
           .setDescription(
-            `${
-              gstateConv === true
-                ? `You've bent the pins :(`
-                : `You fried the poor CPU!`
-            } -${
-              bet === 1 ? `${bet} point!` : `${bet} points!`
-            } (Total: ${score.points})`
-          )
+            `${gstateConv === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -${bet === 1 ? `${bet} point!` : `${bet} points!`} (Total: ${score.points})`)
           .setImage(cf === true ? cpub : cpuf)
       }
       msg.say({ embed })
     } catch (e) {
-      msg.reply(
-        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      )
+      msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)

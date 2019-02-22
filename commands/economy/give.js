@@ -54,29 +54,23 @@ module.exports = class GiveCommand extends Command {
       const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
       userScore.level = userLevel < 1 ? 1 : userLevel
     }
-    setPoints(userScore, `+`, amount)
-    setPoints(authorScore, `-`, amount)
-
-    updateLevel(authorScore)
-    updateLevel(userScore)
-
-    this.client.setScore.run(userScore)
-    this.client.setScore.run(authorScore)
     try {
       if (authorScore.points < amount) {
         return msg.reply(`Insufficent funds`)
       }
+      setPoints(userScore, `+`, amount)
+      setPoints(authorScore, `-`, amount)
+
+      updateLevel(authorScore)
+      updateLevel(userScore)
+
+      this.client.setScore.run(userScore)
+      this.client.setScore.run(authorScore)
+
       msg.reply(`Gave user **${user.username} ${amount}** points!`)
-      user.send(
-        `**${msg.author.username}** gave you **${
-          amount
-        }** points! (Total: **${userScore.points}**)`
-      )
+      user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`)
     } catch (e) {
-      msg.reply(
-        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      )
-      console.log(e)
+      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)

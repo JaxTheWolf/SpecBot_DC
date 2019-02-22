@@ -63,15 +63,7 @@ module.exports = class PointsCommand extends Command {
             .print(font, 100, 22, `Points: ${points}`)
             .print(font, 100, 52, `Level: ${level}`)
             .writeAsync(`${__dirname}/export/card${user.id}.png`)
-            .then(
-              setTimeout(
-                () =>
-                  msg.say({
-                    file: `${__dirname}/export/card${user.id}.png`
-                  }),
-                500
-              )
-            )
+            .then(setTimeout(() => msg.say({ file: `${__dirname}/export/card${user.id}.png` }), 500))
         })
     }
 
@@ -82,13 +74,11 @@ module.exports = class PointsCommand extends Command {
         try {
           sendCard(member.user)
         } catch (e) {
-          msg.say(`This user doesn't have any points!`)
+          return msg.say(`This user doesn't have any points!`)
         }
       }
     } catch (e) {
-      msg.reply(
-        `An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`
-      )
+      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)

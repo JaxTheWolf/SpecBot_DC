@@ -52,24 +52,10 @@ module.exports = class UserInfoCommand extends Command {
         .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setThumbnail(author.displayAvatarURL)
         .addField(`Your **username** is:`, `**${author.username}**`, false)
-        .addField(
-          `Your **nickname** is:`,
-          authorMember.nickname === null
-            ? `**None**`
-            : `**${authorMember.nickname}**`,
-          false
-        )
+        .addField(`Your **nickname** is:`, authorMember.nickname === null ? `**None**` : `**${authorMember.nickname}**`, false)
         .addField(`Your **ID** is:`, `**${author.id}**`, false)
-        .addField(
-          `You have **joined** this guild at:`,
-          `**${authorMember.joinedAt}**`,
-          false
-        )
-        .addField(
-          `You are currently **${status[authorMember.presence.status]}**`,
-          `and **playing ${playStat}**`,
-          false
-        )
+        .addField(`You have **joined** this guild at:`, `**${authorMember.joinedAt}**`, false)
+        .addField(`You are currently **${status[authorMember.presence.status]}**`, `and **playing ${playStat}**`, false)
         .setFooter(`User created at:`)
         .setTimestamp(author.createdAt)
     } else {
@@ -85,28 +71,15 @@ module.exports = class UserInfoCommand extends Command {
       } else {
         bot = `No`
       }
-
       embed
         .setColor(randomHexColor())
         .setTitle(`Here's some info about **${user.tag}**:`)
         .setThumbnail(user.displayAvatarURL)
         .addField(`Their **username** is:`, `**${user.username}**`, false)
-        .addField(
-          `Their **nickname** is:`,
-          member.nickname === null ? `**None**` : `**${member.nickname}**`,
-          false
-        )
+        .addField(`Their **nickname** is:`, member.nickname === null ? `**None**` : `**${member.nickname}**`, false)
         .addField(`Their **ID** is:`, `**${user.id}**`, false)
-        .addField(
-          `They have **joined** this guild at:`,
-          `**${member.joinedAt}**`,
-          false
-        )
-        .addField(
-          `They are currently **${status[member.presence.status]}**`,
-          `and **playing ${playStat}**`,
-          false
-        )
+        .addField(`They have **joined** this guild at:`, `**${member.joinedAt}**`, false)
+        .addField(`They are currently **${status[member.presence.status]}**`, `and **playing ${playStat}**`, false)
         .addField(`Are they a **bot user**?`, `**${bot}**`, false)
         .setFooter(`User created at:`)
         .setTimestamp(user.createdAt)

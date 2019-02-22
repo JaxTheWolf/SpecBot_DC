@@ -24,8 +24,7 @@ module.exports = class RestartCommand extends Command {
         { shell: `/bin/bash` },
         function onDone (code, stdout) {
           msg.say(stdout)
-        }
-      )
+        })
     }
 
     if (process.platform !== `win32`) {
