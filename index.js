@@ -24,7 +24,7 @@ client.registry
     [`economy`, `Economy related commands.`],
     [`animals`, `All sorts of animal related commands.`],
     [`fun`, `Various fun commands.`],
-    /* [`mods`, `Moderation related commands.`], */
+    [`mods`, `Moderation related commands.`],
     [`owner`, `Owner-only commands.`],
     [`info`, `Informative commands.`]
   ])

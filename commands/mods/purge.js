@@ -9,7 +9,7 @@ module.exports = class PurgeCommand extends Command {
     super(client, {
       name: `purge`,
       aliases: [`del`],
-      group: `main`,
+      group: `mods`,
       memberName: `purge`,
       description: `Purges specified amount of messages.`,
       examples: [`purge @user#0000 52`, `purge 10`],
@@ -40,7 +40,7 @@ module.exports = class PurgeCommand extends Command {
     } else {
       if (member !== ``) {
         messages = messages.array().filter(m => m.author.id === user.id)
-        messages.length = amount
+        messages.length = amount + 1
       } else {
         messages = messages.array()
         messages.length = amount + 1
