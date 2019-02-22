@@ -12,6 +12,7 @@ module.exports = class GiveCommand extends Command {
       memberName: `give`,
       description: `Gives someone x points.`,
       examples: [`give 10 @user#0000`],
+      guildOnly: true,
       args: [
         {
           key: `amount`,

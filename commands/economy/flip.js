@@ -25,6 +25,7 @@ module.exports = class FlipCommand extends Command {
       memberName: `flip`,
       description: `Flips a coin. If you guess the coin state your bet gets multiplied by 1.5!`,
       examples: [`flip 10 pins (pins = tails in this case)`, `flip 10 p`],
+      guildOnly: true,
       args: [
         {
           key: `bet`,
