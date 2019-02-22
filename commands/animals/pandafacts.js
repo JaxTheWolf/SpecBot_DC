@@ -12,7 +12,7 @@ module.exports = class PandaFactCommand extends Command {
       aliases: [`bamboo_mucherfact`, `pandabeardfact`, `fatdoggofact`],
       group: `animals`,
       memberName: `pandafacts`,
-      description: `Sends some random panda fact.`,
+      description: `Sends a random panda fact.`,
       examples: [`pandafact`]
     })
   }
