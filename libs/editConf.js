@@ -1,9 +1,7 @@
 exports.editConf = function (msg, component, newCmp, dirname, conf) {
-  const sqlite3 = require(`sqlite3`)
-  const owner = msg.author
+  const SQLite = require(`better-sqlite3`)
   const rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`)
-  let res
-  const db = new sqlite3.Database(`${dirname}/../../DBs/configurations.sqlite3`)
+  const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
   const allowed = [
     `CPU`,
     `GPU`,
@@ -19,26 +17,22 @@ exports.editConf = function (msg, component, newCmp, dirname, conf) {
     `HEADSET`,
     `EXTRA`
   ]
+  let res
 
   if (!allowed.includes(component.toUpperCase())) {
     return msg.reply(`\`${component}\` is not a valid component!`)
   } else {
-    db.get(`SELECT conf FROM ${conf} WHERE id = ${owner.id};`, function onDone (err, row) {
-      if (err) {
-        res = null
-        return msg.reply(`You don't have a configuration yet or an error has occured. (\`${err.message}\`)`)
+    try {
+      const row = db.prepare(`SELECT conf FROM ${conf} WHERE id = '${msg.author.id}';`).get()
+      res = row.conf.replace(rx, `${component.toUpperCase()}: ${newCmp}`)
+      db.prepare(`UPDATE ${conf} SET conf = '${res}' WHERE id = '${msg.author.id}';`).run()
+      msg.reply(`Configuration updated succesfully!`)
+    } catch (e) {
+      if (e.message === `Cannot read property 'conf' of undefined`) {
+        return msg.reply(`You don't have a configuration yet!`)
       } else {
-        res = row.conf.replace(rx, `${component.toUpperCase()}: ${newCmp}`)
-        db.run(`UPDATE ${conf} SET conf = '${res}' WHERE id = '${owner.id}';`, function onDone (err) {
-          if (err) {
-            return msg.say(
-              `There was a problem while saving your file. (\`${err.message}\`)`
-            )
-          } else {
-            msg.say(`Configuration saved succesfully!`)
-          }
-        })
+        return msg.reply(`There was a problem while saving your configuration. (\`${e.message}\`)`)
       }
-    })
+    }
   }
 }

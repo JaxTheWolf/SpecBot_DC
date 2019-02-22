@@ -1,15 +1,15 @@
 exports.setConf = function (msg, content, conf, dirname) {
-  const sqlite3 = require(`sqlite3`)
-  const owner = msg.author
-  const db = new sqlite3.Database(`${dirname}/../../DBs/configurations.sqlite3`)
+  const SQLite = require(`better-sqlite3`)
+  const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
 
-  db.run(`INSERT INTO ${conf}(id, conf) VALUES ('${owner.id}', '${content}');`, function onDone (err, row) {
-    if (err === null) {
-      msg.say(`Configuration saved succesfully!`)
-    } else if (err.code === `SQLITE_CONSTRAINT`) {
-      return msg.say(`You already have a configuration set!`)
+  try {
+    db.prepare(`INSERT INTO ${conf}(id, conf) VALUES ('${msg.author.id}', '${content}');`).run()
+    msg.reply(`Configuration saved succesfully!`)
+  } catch (e) {
+    if (e.message === `UNIQUE constraint failed`) {
+      return msg.reply(`You alrewady own a configuration!`)
     } else {
-      return msg.say(`There was a problem while saving your config. (\`${err.message}\`)`)
+      return msg.reply(`An error has occured while saving your configuration. (\`${e.message}\`)`)
     }
-  })
+  }
 }
