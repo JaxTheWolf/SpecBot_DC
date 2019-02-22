@@ -6,7 +6,7 @@ exports.setConf = function (msg, content, conf, dirname) {
     db.prepare(`INSERT INTO ${conf}(id, conf) VALUES ('${msg.author.id}', '${content}');`).run()
     msg.reply(`Configuration saved succesfully!`)
   } catch (e) {
-    if (e.message === `UNIQUE constraint failed`) {
+    if (e.message.includes(`UNIQUE constraint failed`)) {
       return msg.reply(`You alrewady own a configuration!`)
     } else {
       return msg.reply(`An error has occured while saving your configuration. (\`${e.message}\`)`)

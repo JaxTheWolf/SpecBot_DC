@@ -1,7 +1,7 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
 const { version } = require(`../../package.json`)
-const sqlite3 = require(`sqlite3`)
+const SQLite = require(`better-sqlite3`)
 const Discord = require(`discord.js`)
 const moment = require(`moment`)
 require(`moment-duration-format`)
@@ -24,6 +24,10 @@ module.exports = class StatsCommand extends Command {
       .duration(this.client.uptime)
       .format(` D [days], H [hrs], m [mins], s [secs]`)
 
+    function countConfigs (conf) {
+      return new SQLite(`${__dirname}/../../DBs/configurations.sqlite3`).prepare(`SELECT COUNT(id) FROM ${conf}`).get()[`COUNT(id)`]
+    }
+
     msg.say(
       `---STATISTICS---
       • Mem Used (bot only) :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
@@ -32,9 +36,13 @@ module.exports = class StatsCommand extends Command {
       • Users               :: ${this.client.users.size.toLocaleString()}
       • Servers             :: ${this.client.guilds.size.toLocaleString()}
       • Channels            :: ${this.client.channels.size.toLocaleString()}
+      • PC1 confs           :: ${countConfigs(`conf1`)}
+      • PC2 confs           :: ${countConfigs(`conf2`)}
+      • Server confs        :: ${countConfigs(`server`)}
       • Bot version         :: v${version}
       • Discord.js          :: v${Discord.version}
-      • Node                :: ${process.version}`,
+      • Node                :: ${process.version}
+      • test                :: ${countConfigs(`conf1`)}`,
       { code: `asciidoc` }
     )
 
