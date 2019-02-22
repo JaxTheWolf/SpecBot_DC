@@ -1,4 +1,4 @@
-exports.sendImg = function (msg, reqUrl, footer, field) {
+exports.sendImg = function (msg, reqUrl, field) {
   const { RichEmbed } = require(`discord.js`)
   const https = require(`https`)
   const randomHexColor = require(`random-hex-color`)
@@ -11,7 +11,7 @@ exports.sendImg = function (msg, reqUrl, footer, field) {
       response.on(`end`, () => {
         const embed = new RichEmbed()
           .setImage(JSON.parse(data)[field])
-          .setFooter(footer)
+          .setFooter(`Images are fetched form ${reqUrl}.`)
           .setColor(randomHexColor())
         msg.say(embed)
       })
