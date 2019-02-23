@@ -12,7 +12,7 @@ module.exports = class DogCommand extends Command {
       aliases: [`dog`, `doggie`, `puppy`, `pupper`, `dawg`, `doggo`, `doge`],
       group: `animals`,
       memberName: `dog`,
-      description: `Sends a random image of a dog.`,
+      description: `Sends a random image of a dog`,
       examples: [`dog`]
     })
   }

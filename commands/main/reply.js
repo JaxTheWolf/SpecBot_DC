@@ -10,7 +10,7 @@ module.exports = class ReplyCommand extends Command {
       name: `reply`,
       group: `main`,
       memberName: `reply`,
-      description: `Replies with a Message.`,
+      description: `Replies with a Message`,
       examples: [`reply`]
     })
   }

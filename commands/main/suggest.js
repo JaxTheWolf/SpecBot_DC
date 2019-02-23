@@ -11,7 +11,7 @@ module.exports = class SuggestCommand extends Command {
       aliases: [`sugg`, `request`, `featurereq`, `suggestion`],
       group: `main`,
       memberName: `suggest`,
-      description: `Suggest a feature for SpecBot.`,
+      description: `Suggest a feature for SpecBot`,
       examples: [`suggest pc edits`]
     })
   }

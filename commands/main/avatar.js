@@ -13,7 +13,7 @@ module.exports = class AvatarCommand extends Command {
       aliases: [`pfp`],
       group: `main`,
       memberName: `avatar`,
-      description: `Shows your or mentioned user's avatar.`,
+      description: `Shows your or mentioned user's avatar`,
       examples: [`avatar @oko123#8509`],
       args: [
         {
@@ -28,19 +28,16 @@ module.exports = class AvatarCommand extends Command {
   }
   run (msg, { user }) {
     const embed = new RichEmbed()
-
+      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
+      .setColor(randomHexColor())
     if (user === ``) {
       embed
         .setTitle(`Here's your avatar:`)
-        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(msg.author.displayAvatarURL)
-        .setColor(randomHexColor())
     } else {
       embed
         .setTitle(`Here's ${user.username}'s avatar:`)
-        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
         .setImage(user.displayAvatarURL)
-        .setColor(randomHexColor())
     }
     msg.say(embed)
 

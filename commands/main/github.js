@@ -11,7 +11,7 @@ module.exports = class GitHubCommand extends Command {
       aliases: [`gh`, `gith`],
       group: `main`,
       memberName: `github`,
-      description: `Show the GitHub page of the bot.`,
+      description: `Show the GitHub page of the bot`,
       examples: [`github`]
     })
   }

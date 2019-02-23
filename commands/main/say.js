@@ -11,7 +11,7 @@ module.exports = class SayCommand extends Command {
       aliases: [`repeat`, `msg`],
       group: `main`,
       memberName: `say`,
-      description: `Repeats whatever you specify.`,
+      description: `Repeats whatever you specify`,
       examples: [`say oko sux`],
       clientPermissions: [`MANAGE_MESSAGES`],
       args: [

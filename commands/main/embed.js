@@ -12,7 +12,7 @@ module.exports = class SayCommand extends Command {
       name: `embed`,
       group: `main`,
       memberName: `embed`,
-      description: `Embeds whatever you specify.`,
+      description: `Embeds whatever you specify`,
       examples: [`embed lul`],
       clientPermissions: [`MANAGE_MESSAGES`],
       args: [

@@ -11,7 +11,7 @@ module.exports = class DonateCommand extends Command {
       aliases: [`contribute`, `support`],
       group: `main`,
       memberName: `donate`,
-      description: `Donate to developers of SpecBot.`,
+      description: `Donate to developers of SpecBot`,
       examples: [`donate`]
     })
   }

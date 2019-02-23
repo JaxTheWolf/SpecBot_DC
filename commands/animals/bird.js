@@ -12,7 +12,7 @@ module.exports = class BirdCommand extends Command {
       aliases: [`birb`, `birdie`],
       group: `animals`,
       memberName: `bird`,
-      description: `Sends a random image of a bird.`,
+      description: `Sends a random image of a bird`,
       examples: [`bird`]
     })
   }

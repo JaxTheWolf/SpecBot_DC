@@ -13,7 +13,7 @@ module.exports = class GuildListCommand extends Command {
       aliases: [`guilds`, `glist`, `servers`, `slist`],
       group: `info`,
       memberName: `guildlist`,
-      description: `Lists all the guilds the bot is in.`,
+      description: `Lists all the guilds the bot is in`,
       examples: [`guildlist`]
     })
   }

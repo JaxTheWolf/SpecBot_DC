@@ -12,7 +12,7 @@ module.exports = class PandaCommand extends Command {
       aliases: [`pandabear`, `bamboo_muncher`],
       group: `animals`,
       memberName: `panda`,
-      description: `Sends a random image of a panda.`,
+      description: `Sends a random image of a panda`,
       examples: [`panda`]
     })
   }

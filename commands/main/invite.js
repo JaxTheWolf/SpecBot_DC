@@ -11,7 +11,7 @@ module.exports = class InviteCommand extends Command {
       aliases: [`inv`, `summon`],
       group: `main`,
       memberName: `invite`,
-      description: `Replies with the bot's oauth2 link.`,
+      description: `Replies with the bot's oauth2 link`,
       examples: [`invite`]
     })
   }

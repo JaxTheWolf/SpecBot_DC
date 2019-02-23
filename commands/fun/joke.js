@@ -11,7 +11,7 @@ module.exports = class JokeCommand extends Command {
       name: `joke`,
       group: `fun`,
       memberName: `joke`,
-      description: `Sends a random joke.`,
+      description: `Sends a random joke`,
       examples: [`joke`]
     })
   }

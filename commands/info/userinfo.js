@@ -13,7 +13,7 @@ module.exports = class UserInfoCommand extends Command {
       aliases: [`uinfo`, `user_info`, `u_info`],
       group: `info`,
       memberName: `userinfo`,
-      description: `Sends info about you or the tagged user (if any).`,
+      description: `Sends info about you or the tagged user (if any)`,
       guildOnly: true,
       examples: [`userinfo @user0000`],
       args: [
