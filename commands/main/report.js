@@ -13,7 +13,7 @@ module.exports = class ReportCommand extends Command {
       aliases: [`repo`, `specbotreport`, `spreport`, `sprepo`],
       group: `main`,
       memberName: `report`,
-      description: `Reports a user to the server owner.`,
+      description: `Reports a user to the server owner`,
       examples: [
         `report @user#0000 "Hate messages" no`,
         `report @user0000 "no" yes`
@@ -41,16 +41,11 @@ module.exports = class ReportCommand extends Command {
     })
   }
   run (msg, { user, reason, confirm }) {
-    const guildOwner = msg.guild.owner.user
-
     if (confirm === `no`) {
       return msg.reply(`Cancelled command.`)
     } else {
       const embed = new RichEmbed()
-        .setAuthor(
-          `Report from ${msg.author.username}:`,
-          msg.author.displayAvatarURL
-        )
+        .setAuthor(`Report from ${msg.author.username}:`, msg.author.displayAvatarURL)
         .setDescription(`**Remember to punish the offending user if needed!**`)
         .setColor(randomHexColor())
         .addField(`User:`, `**${user.tag}**`, false)
@@ -59,7 +54,7 @@ module.exports = class ReportCommand extends Command {
         .addField(`Channel:`, `**${msg.channel.name}**`, false)
         .addField(`If you feel that this report is unnecessary and/or you believe the command has been abused:`, ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
         .setFooter(new Date(), user.displayAvatarURL)
-      guildOwner
+      msg.guild.owner.user
         .send(embed)
         .then(msg.reply(`User \`${user.tag}\` has been reported to the server owner!`))
     }
