@@ -11,8 +11,11 @@ module.exports = class PurgeCommand extends Command {
       aliases: [`del`],
       group: `mods`,
       memberName: `purge`,
-      description: `Purges specified amount of messages.`,
-      examples: [`purge @user#0000 52`, `purge 10`],
+      description: `Purges specified amount of messages`,
+      examples: [`purge 52 @user#0000`, `purge 10`],
+      userPermissions: [`MANAGE_MESSAGES`],
+      clientPermissions: [`MANAGE_MESSAGES`],
+      guildOnly: true,
       args: [
         {
           key: `amount`,
@@ -33,24 +36,20 @@ module.exports = class PurgeCommand extends Command {
     })
   }
   async run (msg, { member, amount }) {
-    let messages = await msg.channel.fetchMessages({ limit: 100 })
-    const user = member.user
-    if (!msg.guild.members.get(msg.author.id).hasPermission(`MANAGE_MESSAGES`, false, true, true)) {
-      return msg.say(`You don't have required permissions for this action!`)
+    msg.delete()
+    let messages = await msg.channel.fetchMessages({ limit: 99 })
+    if (member !== ``) {
+      messages = messages.array().filter(m => m.author.id === member.user.id)
+      messages.length = amount + 1
     } else {
-      if (member !== ``) {
-        messages = messages.array().filter(m => m.author.id === user.id)
-        messages.length = amount + 1
-      } else {
-        messages = messages.array()
-        messages.length = amount + 1
-      }
-
-      await msg.channel.bulkDelete(messages)
-      await msg
-        .say(`Deleted ${messages.length} messages!`)
-        .then(m => m.delete(2500))
+      messages = messages.array()
+      messages.length = amount + 1
     }
+
+    await msg.channel.bulkDelete(messages)
+    await msg
+      .say(`Deleted ${messages.length - 1} messages!`)
+      .then(m => m.delete(2500))
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
