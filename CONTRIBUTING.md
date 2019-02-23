@@ -1,3 +1,3 @@
--Instead of opening an issue to request a feature, please use the -suggest command or go to: "https://goo.gl/forms/4LEfWSqBWHgi3umX2"
--To invite the bot to discord server, please use the -invite command or go to this link: "https://discordapp.com/oauth2/authorize?client_id=526900054162931752&permissions=10240&scope=bot"
+-Instead of opening an issue to request a feature, please use the -suggest command or go to: "[https://goo.gl/forms/4LEfWSqBWHgi3umX2]"
+-To invite the bot to discord server, please use the -invite command or go to this link: "[https://discordapp.com/oauth2/authorize?client_id=526900054162931752&permissions=10246&scope=bot]"
 -Don't open an issue unless you are sure about it, the bot will say to contact owners. And if it doesn't use your brain and think if its needed to open an issue.
