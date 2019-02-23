@@ -41,8 +41,7 @@ module.exports = class StatsCommand extends Command {
       • Server confs        :: ${countConfigs(`server`)}
       • Bot version         :: v${version}
       • Discord.js          :: v${Discord.version}
-      • Node                :: ${process.version}
-      • test                :: ${countConfigs(`conf1`)}`,
+      • Node                :: ${process.version}`,
       { code: `asciidoc` }
     )
 
