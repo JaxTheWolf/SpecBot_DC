@@ -14,7 +14,7 @@ module.exports = class LeaderboardCommand extends Command {
       aliases: [`lb`, `leaders`, `top10`, `top`],
       group: `economy`,
       memberName: `leaderboard`,
-      description: `Shows the top 10 users (points-wise).`,
+      description: `Shows the top 10 users (points-wise)`,
       guildOnly: true,
       examples: [`leaderboard`]
     })

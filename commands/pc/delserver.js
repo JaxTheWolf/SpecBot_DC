@@ -11,7 +11,7 @@ module.exports = class ServerCommand extends Command {
       name: `delserver`,
       group: `pc`,
       memberName: `delserver`,
-      description: `Deletes your server.`,
+      description: `Deletes your server`,
       examples: [`delserver yes`],
       args: [
         {

@@ -11,7 +11,7 @@ module.exports = class CreditsCommand extends Command {
       aliases: [`creds`, `authors`],
       group: `main`,
       memberName: `credits`,
-      description: `Credits creators.`,
+      description: `Credits creators`,
       examples: [`credits`]
     })
   }

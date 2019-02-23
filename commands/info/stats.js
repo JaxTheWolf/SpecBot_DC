@@ -15,7 +15,7 @@ module.exports = class StatsCommand extends Command {
       name: `stats`,
       group: `info`,
       memberName: `stats`,
-      description: `Shows the bot statistics.`,
+      description: `Shows the bot statistics`,
       examples: [`stats`]
     })
   }

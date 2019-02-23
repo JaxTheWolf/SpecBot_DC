@@ -12,7 +12,7 @@ module.exports = class FoxCommand extends Command {
       aliases: [`foxxo`, `foxxie`, `fex`, `orange_doggo`, `foxy`, `weird_doggo`],
       group: `animals`,
       memberName: `fox`,
-      description: `Sends a random image of a fox.`,
+      description: `Sends a random image of a fox`,
       examples: [`fox`]
     })
   }

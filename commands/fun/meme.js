@@ -11,7 +11,7 @@ module.exports = class MemeCommand extends Command {
       name: `meme`,
       group: `fun`,
       memberName: `meme`,
-      description: `Sends a random meme.`,
+      description: `Sends a random meme`,
       examples: [`meme`]
     })
   }

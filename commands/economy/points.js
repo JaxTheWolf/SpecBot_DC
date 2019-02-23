@@ -11,7 +11,7 @@ module.exports = class PointsCommand extends Command {
       name: `points`,
       group: `economy`,
       memberName: `points`,
-      description: `Shows how many points you have.`,
+      description: `Shows how many points you have`,
       guildOnly: true,
       examples: [`points`, `points @user#0000`],
       args: [

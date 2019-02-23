@@ -11,7 +11,7 @@ module.exports = class AnnounceCommand extends Command {
       aliases: [`ann`, `announcement`],
       group: `owner`,
       memberName: `announce`,
-      description: `Annonuces a message to every guild the bot is in (Owner only).`,
+      description: `Annonuces a message to every guild the bot is in (Owner only)`,
       examples: [`announce Bot will be down for a few minutes!`],
       ownerOnly: true,
       args: [

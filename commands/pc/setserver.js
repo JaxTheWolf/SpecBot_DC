@@ -11,7 +11,7 @@ module.exports = class SetServerCommand extends Command {
       name: `setserver`,
       group: `pc`,
       memberName: `setserver`,
-      description: `Sets a server.`,
+      description: `Sets a server`,
       examples: [`setserver`],
       args: [
         {

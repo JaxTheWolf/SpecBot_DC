@@ -12,7 +12,7 @@ module.exports = class CatCommand extends Command {
       aliases: [`kitty`, `puss`, `pussy`, `cat`, `kitten`, `pussycat`],
       group: `animals`,
       memberName: `cat`,
-      description: `Sends a random image of a cat.`,
+      description: `Sends a random image of a cat`,
       examples: [`cat`]
     })
   }

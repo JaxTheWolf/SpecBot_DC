@@ -12,7 +12,7 @@ module.exports = class PikachuCommand extends Command {
       aliases: [`chu`, `pika`, `owo`],
       group: `animals`,
       memberName: `pikachu`,
-      description: `Sends a random image of Pikachu.`,
+      description: `Sends a random image of Pikachu`,
       examples: [`pikachu`]
     })
   }

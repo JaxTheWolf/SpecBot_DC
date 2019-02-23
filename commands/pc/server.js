@@ -11,7 +11,7 @@ module.exports = class ServerCommand extends Command {
       name: `server`,
       group: `pc`,
       memberName: `server`,
-      description: `Replies with a user's server.`,
+      description: `Replies with a user's server`,
       examples: [`server @oko123#8509`],
       args: [
         {
