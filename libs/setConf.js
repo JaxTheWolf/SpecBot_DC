@@ -7,7 +7,7 @@ exports.setConf = function (msg, content, conf, dirname) {
     msg.reply(`Configuration saved succesfully!`)
   } catch (e) {
     if (e.message.includes(`UNIQUE constraint failed`)) {
-      return msg.reply(`You alrewady own a configuration!`)
+      return msg.reply(`You already own a configuration!`)
     } else {
       return msg.reply(`An error has occured while saving your configuration. (\`${e.message}\`)`)
     }
