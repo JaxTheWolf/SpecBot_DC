@@ -5,12 +5,12 @@ path="$1/backups"
 backdir="../backups"
 
 createBackup() {
-  cd "../DBs"
+  cd "../DBs" || exit
   sqlite3 configurations.sqlite3 ".backup $fn"
   mv "$fn" "$1/$fn"
 }
 
-if [ -z $1 ]
+if [ -z "$1" ]
 then
   if [ -d $backdir ]
   then
@@ -21,12 +21,12 @@ then
   fi
   exit 0
 else
-  if [ -d $path ]
+  if [ -d "$path" ]
   then
-    createBackup $path
+    createBackup "$path"
   else
-    mkdir -p $path
-    createBackup $path
+    mkdir -p "$path"
+    createBackup "$path"
   fi
   exit 0
 fi
