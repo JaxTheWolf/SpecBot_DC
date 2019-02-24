@@ -1,17 +1,32 @@
 #!/usr/bin/env bash
 
-FN=backup_$(date +"%F").sqlite3
+fn="backup_$(date +"%F").sqlite3"
+path="$1/backups"
+backdir="../backups"
 
 createBackup() {
-  cd ../DBs
-  sqlite3 configurations.sqlite3 ".backup $FN"
-  mv $FN ../backups/$FN
+  cd "../DBs"
+  sqlite3 configurations.sqlite3 ".backup $fn"
+  mv "$fn" "$1/$fn"
 }
 
-if [ -d "../backups" ]
+if [ -z $1 ]
 then
-  createBackup
+  if [ -d $backdir ]
+  then
+    createBackup $backdir
+  else
+    mkdir -p $backdir
+    createBackup $backdir
+  fi
+  exit 0
 else
-  mkdir ../backups
-  createBackup
+  if [ -d $path ]
+  then
+    createBackup $path
+  else
+    mkdir -p $path
+    createBackup $path
+  fi
+  exit 0
 fi
