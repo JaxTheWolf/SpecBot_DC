@@ -9,7 +9,14 @@ module.exports = class FoxCommand extends Command {
   constructor (client) {
     super(client, {
       name: `fox`,
-      aliases: [`foxxo`, `foxxie`, `fex`, `orange_doggo`, `foxy`, `weird_doggo`],
+      aliases: [
+        `foxxo`,
+        `foxxie`,
+        `fex`,
+        `orange_doggo`,
+        `foxy`,
+        `weird_doggo`
+      ],
       group: `animals`,
       memberName: `fox`,
       description: `Sends a random image of a fox`,
@@ -17,8 +24,8 @@ module.exports = class FoxCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/foximg`, `link`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return sendImg(msg, `https://some-random-api.ml/foximg`, `link`)
   }
 }

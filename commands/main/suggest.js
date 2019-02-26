@@ -16,8 +16,8 @@ module.exports = class SuggestCommand extends Command {
     })
   }
   run (msg) {
-    msg.say(`Suggest new features here! https://goo.gl/forms/4LEfWSqBWHgi3umX2`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(`Suggest new features here! https://goo.gl/forms/4LEfWSqBWHgi3umX2`)
   }
 }

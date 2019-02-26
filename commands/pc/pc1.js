@@ -25,8 +25,8 @@ module.exports = class PC1Command extends Command {
     })
   }
   run (msg, { user }) {
-    sendConf(msg, user, `conf1`, __dirname)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return sendConf(msg, user, `conf1`, __dirname)
   }
 }

@@ -37,6 +37,9 @@ module.exports = class PurgeCommand extends Command {
   }
   async run (msg, { member, amount }) {
     msg.delete()
+
+    await log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
     let messages = await msg.channel.fetchMessages({ limit: 99 })
     if (member !== ``) {
       messages = messages.array().filter(m => m.author.id === member.user.id)
@@ -47,10 +50,8 @@ module.exports = class PurgeCommand extends Command {
     }
 
     await msg.channel.bulkDelete(messages)
-    await msg
+    return msg
       .say(`Deleted ${messages.length - 1} messages!`)
       .then(m => m.delete(2500))
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

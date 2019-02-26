@@ -18,15 +18,15 @@ module.exports = class GuildListCommand extends Command {
     })
   }
   run (msg) {
-    const guildlist = this.client.guilds.map((g) => g.name).join(`\n`)
+    const guildlist = this.client.guilds.map(g => g.name).join(`\n`)
     const embed = new RichEmbed()
       .setColor(randomHexColor())
       .setTitle(`Here's the list of guilds the bot is in:`)
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setDescription(guildlist)
 
-    msg.say(embed)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(embed)
   }
 }

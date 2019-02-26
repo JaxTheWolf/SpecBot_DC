@@ -32,14 +32,17 @@ module.exports = class KickCommand extends Command {
     })
   }
   run (msg, { member, reason }) {
-    member.kick(reason).then(m => {
-      if (reason !== `Kicked by SpecBot.`) {
-        log.Info(`Kicked member "${m.user.tag}" from guild "${msg.guild.name}". Reason: "${reason}"`)
-      }
-      msg.reply(`👢 | Member **${m.user.tag}** wask kicked. Reason: **${reason}**`)
-    }).catch(err => {
-      msg.say(`Couldn't kick member **${member.user.tag}**. Reason: **${err.message}**`)
-    })
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return member.kick(reason)
+      .then(m => {
+        if (reason !== `Kicked by SpecBot.`) {
+          log.Info(`Kicked member "${m.user.tag}" from guild "${msg.guild.name}". Reason: "${reason}"`)
+        }
+        msg.reply(`👢 | Member **${m.user.tag}** wask kicked. Reason: **${reason}**`)
+      })
+      .catch(err => {
+        msg.say(`Couldn't kick member **${member.user.tag}**. Reason: **${err.message}**`)
+      })
   }
 }

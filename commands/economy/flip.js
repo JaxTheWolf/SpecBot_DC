@@ -46,6 +46,7 @@ module.exports = class FlipCommand extends Command {
   }
   run (msg, { bet, gstate }) {
     const score = this.client.getScore.get(msg.author.id, msg.guild.id)
+
     function setPoints (userScore, operation, amount) {
       switch (operation) {
       case `-`:
@@ -63,16 +64,14 @@ module.exports = class FlipCommand extends Command {
 
     const cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`
     const cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`
-    const cf = coinFlip()
+    const cf = () => {
+      return Math.floor(Math.random() * 2) === 0
+    }
     let gstateConv
     const embed = new RichEmbed()
       .setTitle(`Flip result:`)
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())
-
-    function coinFlip () {
-      return Math.floor(Math.random() * 2) === 0
-    }
 
     try {
       if (allowed.slice(0, 4).includes(gstate.toLowerCase())) {
@@ -96,15 +95,13 @@ module.exports = class FlipCommand extends Command {
         updateLevel(score)
         this.client.setScore.run(score)
         embed
-          .setDescription(
-            `${gstateConv === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -${bet === 1 ? `${bet} point!` : `${bet} points!`} (Total: ${score.points})`)
+          .setDescription(`${gstateConv === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -${bet === 1 ? `${bet} point!` : `${bet} points!`} (Total: ${score.points})`)
           .setImage(cf === true ? cpub : cpuf)
       }
-      msg.say({ embed })
+      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      return msg.say({ embed })
     } catch (e) {
-      msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
+      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

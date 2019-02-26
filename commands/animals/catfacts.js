@@ -9,7 +9,14 @@ module.exports = class catFactCommand extends Command {
   constructor (client) {
     super(client, {
       name: `catfact`,
-      aliases: [`kittyfact`, `pussfact`, `pussyfact`, `catfacts`, `kittenfact`, `pussycatfact`],
+      aliases: [
+        `kittyfact`,
+        `pussfact`,
+        `pussyfact`,
+        `catfacts`,
+        `kittenfact`,
+        `pussycatfact`
+      ],
       group: `animals`,
       memberName: `catfacts`,
       description: `Sends a random dog fact`,
@@ -17,8 +24,8 @@ module.exports = class catFactCommand extends Command {
     })
   }
   run (msg) {
-    fetchText(msg, `🐱`, `https://some-random-api.ml/catfact`, `fact`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return fetchText(msg, `🐱`, `https://some-random-api.ml/catfact`, `fact`)
   }
 }

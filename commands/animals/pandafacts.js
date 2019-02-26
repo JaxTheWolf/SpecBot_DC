@@ -17,8 +17,8 @@ module.exports = class PandaFactCommand extends Command {
     })
   }
   run (msg) {
-    fetchText(msg, `🐼`, `https://some-random-api.ml/pandafact`, `fact`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return fetchText(msg, `🐼`, `https://some-random-api.ml/pandafact`, `fact`)
   }
 }

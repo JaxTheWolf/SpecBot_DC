@@ -17,8 +17,8 @@ module.exports = class XYZCommand extends Command {
     })
   }
   run (msg) {
-    msg.say(`Change me you fool`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(`Change me you fool`)
   }
 }

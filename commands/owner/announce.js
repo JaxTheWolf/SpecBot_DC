@@ -37,8 +37,8 @@ module.exports = class AnnounceCommand extends Command {
                   c.permissionsFor(this.client.user).has(`SEND_MESSAGES`) ===
                   true
                 ) {
-                  c.send(message)
                   found = 1
+                  return c.send(message)
                 }
               }
             }

@@ -31,8 +31,8 @@ module.exports = class EditPC1Comand extends Command {
     })
   }
   run (msg, { component, newCmp }) {
-    editConf(msg, component, newCmp, __dirname, `conf1`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return editConf(msg, component, newCmp, __dirname, `conf1`)
   }
 }

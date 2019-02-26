@@ -25,8 +25,8 @@ module.exports = class ServerCommand extends Command {
     })
   }
   run (msg, { confirm }) {
-    delConf(msg, confirm, __dirname, `server`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return delConf(msg, confirm, __dirname, `server`)
   }
 }

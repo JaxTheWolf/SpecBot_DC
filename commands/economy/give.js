@@ -68,12 +68,11 @@ module.exports = class GiveCommand extends Command {
       this.client.setScore.run(userScore)
       this.client.setScore.run(authorScore)
 
-      msg.reply(`Gave user **${user.username} ${amount}** points!`)
-      user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`)
+      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      return msg.reply(`Gave user **${user.username} ${amount}** points!`)
+        .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
     } catch (e) {
       return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

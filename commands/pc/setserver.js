@@ -28,8 +28,9 @@ module.exports = class SetServerCommand extends Command {
       .toString()
       .split(`,`)
       .join(`\n`)}`
-    setConf(msg, content, `server`, __dirname)
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return setConf(msg, content, `server`, __dirname)
   }
 }

@@ -32,17 +32,18 @@ module.exports = class SoftBanCommand extends Command {
     })
   }
   run (msg, { member, reason }) {
-    const memberTag = member.user.tag
-    member.ban({ days: 1, reason: reason })
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return member.ban({ days: 1, reason: reason })
       .then(m => msg.guild.unban(member.user, reason))
       .then(m => {
         if (reason !== `Softbanned by SpecBot.`) {
-          log.Info(`Softbanned user ${memberTag}. Reason: ${reason}`)
+          log.Info(`Softbanned user ${member.user.tag}. Reason: ${reason}`)
         }
-        msg.reply(`🔨 | Softbanned member **${memberTag}**. Reason: **${reason}**`)
-      }).catch(err => {
-        msg.say(`Couldn't softban member **${memberTag}**. Reason: **${err.message}**`)
+        msg.reply(`🔨 | Softbanned member **${member.user.tag}**. Reason: **${reason}**`)
       })
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      .catch(err => {
+        msg.say(`Couldn't softban member **${member.user.tag}**. Reason: **${err.message}**`)
+      })
   }
 }

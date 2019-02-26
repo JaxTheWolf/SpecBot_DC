@@ -17,8 +17,8 @@ module.exports = class DogCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://dog.ceo/api/breeds/image/random`, `message`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return sendImg(msg, `https://dog.ceo/api/breeds/image/random`, `message`)
   }
 }

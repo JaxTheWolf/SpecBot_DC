@@ -26,9 +26,7 @@ module.exports = class PointsCommand extends Command {
     })
   }
   run (msg, { member }) {
-    const client = this.client
-
-    function sendCard (user) {
+    function sendCard (user, client) {
       const images = [
         `${__dirname}/raw/rect.png`,
         user.displayAvatarURL,
@@ -58,8 +56,7 @@ module.exports = class PointsCommand extends Command {
             .clone()
             .resize(80, 80)
             .mask(mask, 0, 0)
-          bg
-            .composite(circleAvatar, 10, 10)
+          bg.composite(circleAvatar, 10, 10)
             .print(font, 100, 22, `Points: ${points}`)
             .print(font, 100, 52, `Level: ${level}`)
             .writeAsync(`${__dirname}/export/card${user.id}.png`)
@@ -67,12 +64,13 @@ module.exports = class PointsCommand extends Command {
         })
     }
 
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
     try {
       if (member === ``) {
-        sendCard(msg.author)
+        return sendCard(msg.author, this.client)
       } else {
         try {
-          sendCard(member.user)
+          return sendCard(member.user, this.client)
         } catch (e) {
           return msg.say(`This user doesn't have any points!`)
         }
@@ -80,7 +78,5 @@ module.exports = class PointsCommand extends Command {
     } catch (e) {
       return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

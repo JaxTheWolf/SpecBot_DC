@@ -19,19 +19,17 @@ module.exports = class RestartCommand extends Command {
   run (msg) {
     const shell = require(`shelljs`)
     function resNow () {
-      shell.exec(
-        `systemctl restart bot`,
-        { shell: `/bin/bash` },
-        function onDone (code, stdout) {
-          msg.say(stdout)
-        })
+      shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+        log.Info(`Restarting!`)
+      })
     }
 
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
     if (process.platform !== `win32`) {
-      msg.say(`Restarting...`)
-      setTimeout(resNow, 1000)
+      return msg.say(`Restarting...`).then(setTimeout(resNow, 1000))
     } else {
-      msg.say(`Not implemented`)
+      return msg.say(`Not implemented`)
       /* msg.say(`Restarting...`);
       shell.exec(
         `cd scripts && taskkill /f /im node.exe && start run.bat`,
@@ -41,7 +39,5 @@ module.exports = class RestartCommand extends Command {
         }
       ); */
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

@@ -22,7 +22,9 @@ module.exports = class LeaderboardCommand extends Command {
   run (msg) {
     try {
       const sql = new SQLite(`${__dirname}/../../DBs/scores.sqlite3`)
-      const top10 = sql.prepare('SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;').all(msg.guild.id)
+      const top10 = sql
+        .prepare('SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;')
+        .all(msg.guild.id)
 
       const embed = new RichEmbed()
         .setTitle('Leaderboard')
@@ -33,11 +35,10 @@ module.exports = class LeaderboardCommand extends Command {
       for (const data of top10) {
         embed.addField(this.client.users.get(data.user).tag, `**${data.points}** points (level **${data.level}**)`)
       }
-      msg.say({ embed })
+      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      return msg.say({ embed })
     } catch (e) {
       return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying. Error: (${e})`)
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

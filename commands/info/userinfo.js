@@ -28,64 +28,66 @@ module.exports = class UserInfoCommand extends Command {
     })
   }
   run (msg, { member }) {
+    function isBot (user) {
+      return isBot === false ? `**No**` : `**Yes**`
+    }
+
+    function getNick (user) {
+      return user.nickname === null ? `**None**` : `**${user.nickname}**`
+    }
+
+    function getPlayStat (user) {
+      return user.presence.game.name === null
+        ? `**nothing**`
+        : `**${user.presence.game.name}**`
+    }
+
+    function getStatus (user) {
+      let status
+      switch (user.presence.status) {
+      case `online`:
+        status = `**Online**`
+        break
+      case `idle`:
+        status = `**Idle**`
+        break
+      case `dnd`:
+        status = `**Do Not Disturb**`
+        break
+      case `offline`:
+        status = `**Offline/Invisible**`
+        break
+      }
+      return status
+    }
     const embed = new RichEmbed()
-    let playStat, bot
-    const status = {
-      online: `Online`,
-      idle: `Idle`,
-      dnd: `Do Not Disturb`,
-      offline: `Offline/Invisible`
-    }
-
+      .setFooter(`User created at`)
+      .setColor(randomHexColor())
+      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
     if (member === ``) {
-      const author = msg.author
-      const authorMember = msg.guild.members.get(author.id)
-      try {
-        playStat = authorMember.presence.game.name
-      } catch (e) {
-        playStat = `nothing`
-      }
-
       embed
-        .setColor(randomHexColor())
         .setTitle(`Here's some info about you:`)
-        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
-        .setThumbnail(author.displayAvatarURL)
-        .addField(`Your **username** is:`, `**${author.username}**`, false)
-        .addField(`Your **nickname** is:`, authorMember.nickname === null ? `**None**` : `**${authorMember.nickname}**`, false)
-        .addField(`Your **ID** is:`, `**${author.id}**`, false)
-        .addField(`You have **joined** this guild at:`, `**${authorMember.joinedAt}**`, false)
-        .addField(`You are currently **${status[authorMember.presence.status]}**`, `and **playing ${playStat}**`, false)
-        .setFooter(`User created at:`)
-        .setTimestamp(author.createdAt)
+        .setThumbnail(msg.author.displayAvatarURL)
+        .addField(`Your **username** is:`, `**${msg.author.username}**`, false)
+        .addField(`Your **nickname** is:`, getNick(msg.guild.member(msg.author)), false)
+        .addField(`Your **ID** is:`, `**${msg.author.id}**`, false)
+        .addField(`You have **joined** this guild at:`, `**${msg.guild.member(msg.author).joinedAt}**`, false)
+        .addField(`You are currently ${getStatus(msg.guild.member(msg.author))}`, `and playing ${getPlayStat(msg.guild.member(msg.author))}`, false)
+        .setTimestamp(msg.author.createdAt)
     } else {
-      try {
-        playStat = member.presence.game.name
-      } catch (e) {
-        playStat = `nothing`
-      }
-      const user = member.user
-
-      if (user.bot) {
-        bot = `Yes`
-      } else {
-        bot = `No`
-      }
       embed
-        .setColor(randomHexColor())
-        .setTitle(`Here's some info about **${user.tag}**:`)
-        .setThumbnail(user.displayAvatarURL)
-        .addField(`Their **username** is:`, `**${user.username}**`, false)
-        .addField(`Their **nickname** is:`, member.nickname === null ? `**None**` : `**${member.nickname}**`, false)
-        .addField(`Their **ID** is:`, `**${user.id}**`, false)
+        .setTitle(`Here's some info about **${member.user.tag}**:`)
+        .setThumbnail(member.user.displayAvatarURL)
+        .addField(`Their **username** is:`, `**${member.user.username}**`, false)
+        .addField(`Their **nickname** is:`, getNick(member), false)
+        .addField(`Their **ID** is:`, `**${member.user.id}**`, false)
         .addField(`They have **joined** this guild at:`, `**${member.joinedAt}**`, false)
-        .addField(`They are currently **${status[member.presence.status]}**`, `and **playing ${playStat}**`, false)
-        .addField(`Are they a **bot user**?`, `**${bot}**`, false)
-        .setFooter(`User created at:`)
-        .setTimestamp(user.createdAt)
+        .addField(`They are currently ${getStatus(member)}`, `and playing ${getPlayStat(member)}`, false)
+        .addField(`Are they a **bot user**?`, isBot(member.user), false)
+        .setTimestamp(member.user.createdAt)
     }
-    msg.say(embed)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(embed)
   }
 }

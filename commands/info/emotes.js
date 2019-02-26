@@ -17,12 +17,12 @@ module.exports = class XYZCommand extends Command {
   }
   run (msg) {
     function fetchEmojis (guild) {
-      const emojiList = guild.emojis.map((e) => e.toString()).join(` `)
+      const emojiList = guild.emojis.map(e => e.toString()).join(` `)
       return emojiList === `` ? `This server doesn't have any custom emotes.` : emojiList
     }
 
-    msg.say(fetchEmojis(msg.guild))
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(fetchEmojis(msg.guild))
   }
 }

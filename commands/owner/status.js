@@ -19,14 +19,11 @@ module.exports = class StatusCommand extends Command {
     const shell = require(`shelljs`)
 
     if (process.platform !== `win32`) {
-      shell.exec(
-        `systemctl status bot | tail -10`,
-        { shell: `/bin/bash` },
-        function onDone (code, stdout) {
-          msg.say(`... ${stdout}`)
-        })
+      shell.exec(`systemctl status bot | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+        return msg.say(`...\n${stdout}`, { code: `asciidoc` })
+      })
     } else {
-      msg.say(`wip`)
+      return msg.say(`wip`)
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)

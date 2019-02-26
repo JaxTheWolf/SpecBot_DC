@@ -39,8 +39,8 @@ module.exports = class AvatarCommand extends Command {
         .setTitle(`Here's ${user.username}'s avatar:`)
         .setImage(user.displayAvatarURL)
     }
-    msg.say(embed)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(embed)
   }
 }

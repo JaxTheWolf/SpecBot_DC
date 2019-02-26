@@ -54,11 +54,11 @@ module.exports = class ReportCommand extends Command {
         .addField(`Channel:`, `**${msg.channel.name}**`, false)
         .addField(`If you feel that this report is unnecessary and/or you believe the command has been abused:`, ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
         .setFooter(new Date(), user.displayAvatarURL)
-      msg.guild.owner.user
-        .send(embed)
+
+      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+      return msg.guild.owner.user.send(embed)
         .then(msg.reply(`User \`${user.tag}\` has been reported to the server owner!`))
     }
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }
