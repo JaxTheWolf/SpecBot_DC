@@ -25,10 +25,14 @@ module.exports = class StatsCommand extends Command {
       .format(` D [days], H [hrs], m [mins], s [secs]`)
 
     function countConfigs (conf) {
-      return new SQLite(`${__dirname}/../../DBs/configurations.sqlite3`).prepare(`SELECT COUNT(id) FROM ${conf}`).get()[`COUNT(id)`]
+      return new SQLite(`${__dirname}/../../DBs/configurations.sqlite3`)
+        .prepare(`SELECT COUNT(id) FROM ${conf}`)
+        .get()[`COUNT(id)`]
     }
 
-    msg.say(
+    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(
       `---STATISTICS---
       • Mem Used (bot only) :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
       • Mem Used (total)    :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB
@@ -44,7 +48,5 @@ module.exports = class StatsCommand extends Command {
       • Node                :: ${process.version}`,
       { code: `asciidoc` }
     )
-
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

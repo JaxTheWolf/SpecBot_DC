@@ -32,15 +32,18 @@ module.exports = class UnbanCommand extends Command {
     })
   }
   run (msg, { user, reason }) {
-    msg.guild.unban(user, reason).then(() => {
-      if (reason !== `Unbanned by SpecBot.`) {
-        log.Info(`Unbanned user ${user.tag}. Reason: ${reason}`)
-      }
-      msg.reply(`🔨 | Unbanned user **${user.tag}**. Reason: **${reason}**.`)
-    }).catch(err => {
-      msg.say(`Couldn't unban user **${user.tag}**. Reason: **${err.message}**`)
-    })
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.guild
+      .unban(user, reason)
+      .then(() => {
+        if (reason !== `Unbanned by SpecBot.`) {
+          log.Info(`Unbanned user ${user.tag}. Reason: ${reason}`)
+        }
+        msg.reply(`🔨 | Unbanned user **${user.tag}**. Reason: **${reason}**.`)
+      })
+      .catch(err => {
+        msg.say(`Couldn't unban user **${user.tag}**. Reason: **${err.message}**`)
+      })
   }
 }

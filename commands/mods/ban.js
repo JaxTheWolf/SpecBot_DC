@@ -39,14 +39,17 @@ module.exports = class BanCommand extends Command {
     })
   }
   run (msg, { member, length, reason }) {
-    member.ban({ days: length, reason: reason }).then(m => {
-      if (reason !== `Banned by SpecBot.`) {
-        log.Info(`Banned member "${m.user.tag}" from guild "${msg.guild.name}" for "${length}" days. Reason: "${reason}"`)
-      }
-      msg.reply(`🔨 | Member **${m.user.tag}** was banned for **${length} ${length === 0 || length > 1 ? `days` : `day`}**. Reason: **${reason}**`)
-    }).catch(err => {
-      msg.say(`Couldn't ban member **${member.user.tag}**. Reason: **${err.message}**`)
-    })
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return member.ban({ days: length, reason: reason })
+      .then(m => {
+        if (reason !== `Banned by SpecBot.`) {
+          log.Info(`Banned member "${m.user.tag}" from guild "${msg.guild.name}" for "${length}" days. Reason: "${reason}"`)
+        }
+        msg.reply(`🔨 | Member **${m.user.tag}** was banned for **${length} ${length === 0 || length > 1 ? `days` : `day`}**. Reason: **${reason}**`)
+      })
+      .catch(err => {
+        msg.say(`Couldn't ban member **${member.user.tag}**. Reason: **${err.message}**`)
+      })
   }
 }

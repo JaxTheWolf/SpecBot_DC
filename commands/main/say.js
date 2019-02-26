@@ -24,9 +24,8 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    msg.delete()
-    msg.say(say)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.delete().then(msg.say(say))
   }
 }

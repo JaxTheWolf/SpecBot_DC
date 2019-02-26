@@ -113,16 +113,10 @@ module.exports = class Setpc1Command extends Command {
       EXTRA
     }
   ) {
-    const content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${
-      CASE
-    }\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${
-      STORAGE
-    }\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${
-      HEADSET
-    }\nEXTRA: ${EXTRA}`
-
-    setConf(msg, content, `conf1`, __dirname)
+    const content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return setConf(msg, content, `conf1`, __dirname)
   }
 }

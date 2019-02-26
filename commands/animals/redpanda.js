@@ -17,8 +17,8 @@ module.exports = class RedPandaCommand extends Command {
     })
   }
   run (msg) {
-    sendImg(msg, `https://some-random-api.ml/redpandaimg`, `link`)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return sendImg(msg, `https://some-random-api.ml/redpandaimg`, `link`)
   }
 }

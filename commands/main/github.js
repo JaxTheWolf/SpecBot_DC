@@ -17,10 +17,9 @@ module.exports = class GitHubCommand extends Command {
   }
 
   run (msg) {
-    msg
-      .say(`GitHub repository can be found here: https://github.com/JaxTheWolf/SpecBot_DC`)
-      .then(msg.say(`Homepage can be found here: https://JaxTheWolf.github.io/SpecBot_DC`))
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
+    return msg.say(`GitHub repository can be found here: https://github.com/JaxTheWolf/SpecBot_DC`)
+      .then(msg.say(`Homepage can be found here: https://JaxTheWolf.github.io/SpecBot_DC`))
   }
 }

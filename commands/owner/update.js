@@ -18,19 +18,13 @@ module.exports = class UpdateCommand extends Command {
   run (msg) {
     const shell = require(`shelljs`)
     if (process.platform !== `win32`) {
-      shell.exec(
-        `cd scripts/ && sh update.sh | tail -10`,
-        { shell: `/bin/bash` },
-        function onDone (code, stdout) {
-          msg.say(`... ${stdout}`)
-        })
+      shell.exec(`cd scripts/ && sh update.sh | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+        return msg.say(`...\n${stdout}`, { code: `asciidoc` })
+      })
     } else {
-      shell.exec(
-        `cd scripts && .\\update.bat`,
-        { shell: `C:\\Windows\\System32\\cmd.exe` },
-        function onDone (code, stdout) {
-          msg.say(stdout)
-        })
+      shell.exec(`cd scripts && .\\update.bat`, { shell: `C:\\Windows\\System32\\cmd.exe` }, function onDone (code, stdout) {
+        return msg.say(`...\n${stdout}`, { code: `asciidoc` })
+      })
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
