@@ -5,9 +5,10 @@ const {
   disableEveryone,
   unknownCommandResponse
 } = require(`./configs/conf.json`)
-const { CommandoClient } = require(`discord.js-commando`)
+const { CommandoClient, SQLiteProvider } = require(`discord.js-commando`)
 const path = require(`path`)
 const fs = require(`fs`)
+const sqlite = require(`sqlite`)
 
 const client = new CommandoClient({
   commandPrefix: prefix,
@@ -30,7 +31,7 @@ client.registry
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
-    eval: false
+    eval_: false
   })
   .registerCommandsIn(path.join(__dirname, `commands`))
 
@@ -45,18 +46,12 @@ fs.readdir(`./events/`, (err, files) => {
   })
 })
 
-const sqlite = require(`sqlite`)
-const Commando = require(`discord.js-commando`)
-
-client
-  .setProvider(
-    sqlite
-      .open(path.join(`${__dirname}/DBs`, `settings.sqlite3`))
-      .then(db => new Commando.SQLiteProvider(db))
-  )
+client.setProvider(
+  sqlite.open(path.join(`${__dirname}/DBs`, `settings.sqlite3`))
+    .then(db => new SQLiteProvider(db)))
   .catch(console.error)
 
-const cleanupFunc = async code => {
+async function cleanupFunc (code) {
   await client.destroy()
   process.exit(code)
 }
