@@ -1,12 +1,6 @@
 module.exports = client => {
-  function setActivity () {
-    const { version } = require(`../package.json`)
-    client.user.setActivity(
-      `in ${client.guilds.size} servers|-help|v.${version}`
-    )
-  }
-
   const { options } = require(`../configs/options`)
+  const { setActivity } = require(`../libs/eventLibs`)
   const SQLite = require(`better-sqlite3`)
   const sql = new SQLite(`./DBs/scores.sqlite3`)
   const log = require(`node-file-logger`)
@@ -28,7 +22,7 @@ module.exports = client => {
   // And then we have two prepared statements to get and set the score data.
   client.getScore = sql.prepare(`SELECT * FROM scores WHERE user = ? AND guild = ?`)
   client.setScore = sql.prepare(`INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);`)
-  setActivity()
+  setActivity(client)
 
   log.Info(`Ready!`)
 }
