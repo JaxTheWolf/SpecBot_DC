@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { fetchText } = require(`../../libs/textFetcher`)
+const { fetchText } = require(`../../libs/jsonLibs`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)

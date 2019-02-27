@@ -21,6 +21,7 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([
     [`main`, `"Main" commands.`],
+    [`settings`, `Guild specific settings`],
     [`pc`, `General stuff about computers.`],
     [`economy`, `Economy related commands.`],
     [`animals`, `All sorts of animal related commands.`],
