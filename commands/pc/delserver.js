@@ -1,5 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { delConf } = require(`../../libs/delConf`)
+const { delConf } = require(`../../libs/pcLibs`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
