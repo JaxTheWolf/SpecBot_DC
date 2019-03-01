@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -27,9 +28,9 @@ module.exports = class RestartCommand extends Command {
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     if (process.platform !== `win32`) {
-      return msg.say(`Restarting...`).then(setTimeout(resNow, 1000))
+      return sendSuccessEmbed(msg, `Restarting...`, ``).then(setTimeout(resNow, 1000))
     } else {
-      return msg.say(`Not implemented`)
+      return sendSuccessEmbed(msg, `Not implemented **yet**`, ``)
       /* msg.say(`Restarting...`);
       shell.exec(
         `cd scripts && taskkill /f /im node.exe && start run.bat`,

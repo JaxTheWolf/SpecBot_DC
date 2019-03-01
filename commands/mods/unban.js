@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -41,9 +42,11 @@ module.exports = class UnbanCommand extends Command {
           log.Info(`Unbanned user ${user.tag}. Reason: ${reason}`)
         }
         msg.reply(`🔨 | Unbanned user **${user.tag}**. Reason: **${reason}**.`)
+        return sendSuccessEmbed(msg, `🔨 Unbanned user **${user.tag}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.say(`Couldn't unban user **${user.tag}**. Reason: **${err.message}**`)
+        msg.delete().catch()
+        return sendErrorEmbed(msg, `❌ Couldn't unban user **${user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }
 }

@@ -1,6 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
-const { RichEmbed } = require(`discord.js`)
+const { sendSimpleEmbededMessage } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -19,14 +19,8 @@ module.exports = class GuildListCommand extends Command {
   }
   run (msg) {
     const guildlist = this.client.guilds.map(g => g.name).join(`\n`)
-    const embed = new RichEmbed()
-      .setColor(randomHexColor())
-      .setTitle(`Here's the list of guilds the bot is in:`)
-      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
-      .setDescription(guildlist)
-
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    return msg.say(embed)
+    return sendSimpleEmbededMessage(msg, guildlist, randomHexColor().replace(`#`, `0x`), `Here's the list of guilds the bot is in:`)
   }
 }

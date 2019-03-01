@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -40,9 +41,11 @@ module.exports = class KickCommand extends Command {
           log.Info(`Kicked member "${m.user.tag}" from guild "${msg.guild.name}". Reason: "${reason}"`)
         }
         msg.reply(`👢 | Member **${m.user.tag}** wask kicked. Reason: **${reason}**`)
+        return sendSuccessEmbed(msg, `👢  Member **${m.user.tag}** wask kicked.`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.say(`Couldn't kick member **${member.user.tag}**. Reason: **${err.message}**`)
+        msg.delete().catch()
+        return sendErrorEmbed(msg, `❌ Couldn't kick member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }
 }

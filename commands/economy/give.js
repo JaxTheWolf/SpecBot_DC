@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -57,7 +58,7 @@ module.exports = class GiveCommand extends Command {
     }
     try {
       if (authorScore.points < amount) {
-        return msg.reply(`Insufficent funds`)
+        return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)
       }
       setPoints(userScore, `+`, amount)
       setPoints(authorScore, `-`, amount)
@@ -69,10 +70,11 @@ module.exports = class GiveCommand extends Command {
       this.client.setScore.run(authorScore)
 
       log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-      return msg.reply(`Gave user **${user.username} ${amount}** points!`)
+      return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
         .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
     } catch (e) {
-      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
+      msg.delete()
+      return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }
 }

@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 const jimp = require(`jimp`)
 log.SetUserOptions(options)
@@ -72,11 +73,13 @@ module.exports = class PointsCommand extends Command {
         try {
           return sendCard(member.user, this.client)
         } catch (e) {
-          return msg.say(`This user doesn't have any points!`)
+          msg.delete()
+          return sendErrorEmbed(msg, `❌ This user doesn't have any points!`, ``, 7500)
         }
       }
     } catch (e) {
-      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying.`)
+      msg.delete()
+      return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }
 }
