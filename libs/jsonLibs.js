@@ -1,8 +1,8 @@
 const https = require(`https`)
 
 exports.sendImg = function (msg, reqUrl, field) {
-  const { sendEmbeddedImage, sendErrorEmbed } = require(`./embeds`)
   const randomHexColor = require(`random-hex-color`)
+  const { sendEmbeddedImage, sendErrorEmbed } = require(`./embeds`)
 
   https.get(reqUrl, function onDone (response) {
     let data = ``

@@ -1,23 +1,23 @@
+const SQLite = require(`better-sqlite3`)
+const log = require(`node-file-logger`)
+const { basename } = require(`path`)
+const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-const SQLite = require(`better-sqlite3`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
-const randomHexColor = require(`random-hex-color`)
 
 module.exports = class LeaderboardCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `leaderboard`,
       aliases: [`lb`, `leaders`, `top10`, `top`],
-      group: `economy`,
-      memberName: `leaderboard`,
       description: `Shows the top 10 users (points-wise)`,
+      examples: [`leaderboard`],
+      group: `economy`,
       guildOnly: true,
-      examples: [`leaderboard`]
+      memberName: `leaderboard`,
+      name: `leaderboard`
     })
   }
   run (msg) {
@@ -28,15 +28,15 @@ module.exports = class LeaderboardCommand extends Command {
         .all(msg.guild.id)
 
       const embed = new RichEmbed()
-        .setTitle('Leaderboard')
         .setAuthor(this.client.user.username, this.client.user.avatarURL)
-        .setDescription(`Our top 10 points leaders!`)
         .setColor(randomHexColor())
+        .setDescription(`Our top 10 points leaders!`)
+        .setTitle('Leaderboard')
 
       for (const data of top10) {
         embed.addField(this.client.users.get(data.user).tag, `**${data.points}** points (level **${data.level}**)`)
       }
-      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
       return msg.say({ embed })
     } catch (e) {
       msg.delete()

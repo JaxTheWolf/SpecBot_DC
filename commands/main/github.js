@@ -1,23 +1,23 @@
-const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { options } = require(`../../configs/options`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class GitHubCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `github`,
       aliases: [`gh`, `gith`],
+      description: `Show the GitHub page of the bot`,
+      examples: [`github`],
       group: `main`,
       memberName: `github`,
-      description: `Show the GitHub page of the bot`,
-      examples: [`github`]
+      name: `github`
     })
   }
 
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(`GitHub repository can be found here: https://github.com/JaxTheWolf/SpecBot_DC`)
       .then(msg.say(`Homepage can be found here: https://JaxTheWolf.github.io/SpecBot_DC`))

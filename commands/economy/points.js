@@ -1,27 +1,27 @@
+const jimp = require(`jimp`)
+const log = require(`node-file-logger`)
+const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
-const jimp = require(`jimp`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class PointsCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `points`,
-      group: `economy`,
-      memberName: `points`,
       description: `Shows how many points you have`,
-      guildOnly: true,
       examples: [`points`, `points @user#0000`],
+      group: `economy`,
+      guildOnly: true,
+      memberName: `points`,
+      name: `points`,
       args: [
         {
+          default: ``,
+          error: `Invalid user mention. Please try again.`,
           key: `member`,
           prompt: `Whose info would you want to see?`,
-          default: ``,
-          type: `member`,
-          error: `Invalid user mention. Please try again.`
+          type: `member`
         }
       ]
     })
@@ -34,9 +34,9 @@ module.exports = class PointsCommand extends Command {
         `${__dirname}/raw/mask.png`
       ]
       const jimps = []
-      let bg, avatar, mask
-      const points = client.getScore.get(user.id, msg.guild.id).points
       const level = client.getScore.get(user.id, msg.guild.id).level
+      const points = client.getScore.get(user.id, msg.guild.id).points
+      let bg, avatar, mask
 
       for (let i = 0; i < images.length; i++) {
         jimps.push(jimp.read(images[i]))
@@ -65,7 +65,7 @@ module.exports = class PointsCommand extends Command {
         })
     }
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
     try {
       if (member === ``) {
         return sendCard(msg.author, this.client)
@@ -73,12 +73,12 @@ module.exports = class PointsCommand extends Command {
         try {
           return sendCard(member.user, this.client)
         } catch (e) {
-          msg.delete()
+          msg.delete().catch()
           return sendErrorEmbed(msg, `❌ This user doesn't have any points!`, ``, 7500)
         }
       }
     } catch (e) {
-      msg.delete()
+      msg.delete().catch()
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }

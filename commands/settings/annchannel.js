@@ -1,33 +1,33 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class AnnchannelCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `annchannel`,
-      group: `settings`,
-      memberName: `annchannel`,
       description: `Sets or shows a channel where SpecBot announcements will be sent`,
       examples: [`annchannel set #announcements`, `annchannel show`],
+      group: `settings`,
       guildOnly: true,
+      memberName: `annchannel`,
+      name: `annchannel`,
       args: [
         {
+          error: `Invalid operation! Please try again (set/show)`,
           key: `operation`,
-          prompt: `What would you like to do? (set/show)`,
-          type: `string`,
           oneOf: [`set`, `show`],
-          error: `Invalid operation! Please try again (set/show)`
+          prompt: `What would you like to do? (set/show)`,
+          type: `string`
         },
         {
+          default: ``,
+          error: `Invalid channel!`,
           key: `channel`,
           prompt: `What should the channel where SpecBot posts announcements be?`,
-          type: `channel`,
-          default: ``,
-          error: `Invalid channel!`
+          type: `channel`
         }
       ]
     })
@@ -38,7 +38,7 @@ module.exports = class AnnchannelCommand extends Command {
   }
 
   run (msg, { channel, operation }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     if (channel !== `` && operation === `set`) {
       if (channel.type !== `text`) {

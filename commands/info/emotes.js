@@ -1,19 +1,19 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class XYZCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `emotes`,
-      group: `info`,
-      memberName: `emotes`,
       description: `Sends a message containing all server emotes`,
+      examples: [`emotes`],
+      group: `info`,
       guildOnly: true,
-      examples: [`emotes`]
+      memberName: `emotes`,
+      name: `emotes`
     })
   }
   run (msg) {
@@ -29,7 +29,7 @@ module.exports = class XYZCommand extends Command {
       }
     }
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return fetchEmojis(msg.guild)
   }
