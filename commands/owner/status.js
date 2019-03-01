@@ -1,31 +1,30 @@
-const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { exec } = require(`shelljs`)
+const { options } = require(`../../configs/options`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class StatusCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `status`,
+      description: `Shows the status of the \`bot\` systemd service (Linux only, also systemd only)`,
+      examples: [`status`],
       group: `owner`,
       memberName: `status`,
-      description: `Shows the status of the \`bot\` systemd service (Linux only, also systemd only)`,
-      ownerOnly: true,
-      examples: [`status`]
+      name: `status`,
+      ownerOnly: true
     })
   }
   run (msg) {
-    const shell = require(`shelljs`)
-
     if (process.platform !== `win32`) {
-      shell.exec(`systemctl status bot | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`systemctl status bot | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
         return msg.say(`...\n${stdout}`, { code: `asciidoc` })
       })
     } else {
       return msg.say(`wip`)
     }
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

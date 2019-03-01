@@ -1,12 +1,9 @@
 exports.sendSimpleEmbededMessage = function (msg, text, color, title, timeout = 0) {
   const promise = msg.embed({
-    title: title,
+    author: { name: `${msg.author.username} `, icon_url: msg.author.displayAvatarURL },
     color: parseInt(color),
-    author: {
-      name: `${msg.author.username} `,
-      icon_url: msg.author.displayAvatarURL
-    },
-    description: `${text}`
+    description: `${text}`,
+    title: title
   })
   if (timeout !== 0) {
     promise.then((reply) => {
@@ -26,13 +23,10 @@ exports.sendSuccessEmbed = function (msg, title, text, timeout = 0) {
 
 exports.sendEmbeddedImage = function (msg, footUrl, url, color, title = ``) {
   return msg.embed({
+    author: { name: `${msg.author.username}`, icon_url: msg.author.displayAvatarURL },
     color: parseInt(color),
-    title: title,
-    author: {
-      name: `${msg.author.username}`,
-      icon_url: msg.author.displayAvatarURL
-    },
+    footer: { text: footUrl === `` ? `` : `Images are fetched from ${footUrl}.` },
     image: { url },
-    footer: { text: footUrl === `` ? `` : `Images are fetched from ${footUrl}.` }
+    title: title
   })
 }

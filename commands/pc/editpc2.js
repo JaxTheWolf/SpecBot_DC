@@ -1,21 +1,21 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
 const { editConf } = require(`../../libs/pcLibs`)
 const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class EditPC2Comand extends Command {
   constructor (client) {
     super(client, {
-      name: `editpc2`,
-      aliases: [`edit2`],
-      group: `pc`,
-      memberName: `editpc2`,
-      description: `Edits your second configuration`,
       examples: [
         `editpc1 GPU "Radeon R4" (Wrap arguments with spaces in quotes)`
       ],
+      aliases: [`edit2`],
+      description: `Edits your second configuration`,
+      group: `pc`,
+      memberName: `editpc2`,
+      name: `editpc2`,
       args: [
         {
           key: `component`,
@@ -31,7 +31,7 @@ module.exports = class EditPC2Comand extends Command {
     })
   }
   run (msg, { component, newCmp }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return editConf(msg, component, newCmp, __dirname, `conf2`)
   }

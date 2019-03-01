@@ -1,5 +1,5 @@
 const SQLite = require(`better-sqlite3`)
-const { sendErrorEmbed, sendSuccessEmbed, sendSimpleEmbededMessage } = require(`./embeds`)
+const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed } = require(`./embeds`)
 
 exports.delConf = function (msg, confirm, dirname, conf) {
   if (confirm === `no`) {
@@ -17,23 +17,23 @@ exports.delConf = function (msg, confirm, dirname, conf) {
 }
 
 exports.editConf = function (msg, component, newCmp, dirname, conf) {
+  const allowed = [
+    `CASE`,
+    `COOLER`,
+    `CPU`,
+    `EXTRA`,
+    `GPU`,
+    `HEADSET`,
+    `KEYBOARD`,
+    `MOBO`,
+    `MOUSE`,
+    `PSU`,
+    `RAM`,
+    `SCREEN`,
+    `STORAGE`
+  ]
   const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
   const rx = new RegExp(`^` + component + `:([\\s\\w].+)$`, `gmi`)
-  const allowed = [
-    `CPU`,
-    `GPU`,
-    `RAM`,
-    `CASE`,
-    `MOBO`,
-    `PSU`,
-    `COOLER`,
-    `STORAGE`,
-    `SCREEN`,
-    `KEYBOARD`,
-    `MOUSE`,
-    `HEADSET`,
-    `EXTRA`
-  ]
   let res
 
   if (!allowed.includes(component.toUpperCase())) {

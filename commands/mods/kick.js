@@ -3,7 +3,7 @@ const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
+const { basename } = require(`path`)
 
 module.exports = class KickCommand extends Command {
   constructor (client) {
@@ -33,7 +33,7 @@ module.exports = class KickCommand extends Command {
     })
   }
   run (msg, { member, reason }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return member.kick(reason)
       .then(m => {

@@ -1,20 +1,20 @@
 const {
-  token,
+  disableEveryone,
   owner,
   prefix,
-  disableEveryone,
+  token,
   unknownCommandResponse
 } = require(`./configs/conf.json`)
-const { CommandoClient, SQLiteProvider } = require(`discord.js-commando`)
-const path = require(`path`)
 const fs = require(`fs`)
 const sqlite = require(`sqlite`)
+const { CommandoClient, SQLiteProvider } = require(`discord.js-commando`)
+const { join } = require(`path`)
 
 const client = new CommandoClient({
   commandPrefix: prefix,
-  unknownCommandResponse: unknownCommandResponse,
+  disableEveryone: disableEveryone,
   owner: owner,
-  disableEveryone: disableEveryone
+  unknownCommandResponse: unknownCommandResponse
 })
 
 client.registry
@@ -34,7 +34,7 @@ client.registry
   .registerDefaultCommands({
     eval_: false
   })
-  .registerCommandsIn(path.join(__dirname, `commands`))
+  .registerCommandsIn(join(__dirname, `commands`))
 
 fs.readdir(`./events/`, (err, files) => {
   if (err) return console.error(err)
@@ -48,7 +48,7 @@ fs.readdir(`./events/`, (err, files) => {
 })
 
 client.setProvider(
-  sqlite.open(path.join(`${__dirname}/DBs`, `settings.sqlite3`))
+  sqlite.open(join(`${__dirname}/DBs`, `settings.sqlite3`))
     .then(db => new SQLiteProvider(db)))
   .catch(console.error)
 
@@ -57,8 +57,8 @@ async function cleanupFunc (code) {
   process.exit(code)
 }
 
-process.once(`exit`, cleanupFunc)
 process.once(`SIGINT`, cleanupFunc)
 process.once(`SIGTERM`, cleanupFunc)
+process.once(`exit`, cleanupFunc)
 
 client.login(token)

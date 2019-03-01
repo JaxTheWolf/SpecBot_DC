@@ -1,22 +1,22 @@
-const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { options } = require(`../../configs/options`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class CreditsCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `credits`,
       aliases: [`creds`, `authors`],
+      description: `Credits creators`,
+      examples: [`credits`],
       group: `main`,
       memberName: `credits`,
-      description: `Credits creators`,
-      examples: [`credits`]
+      name: `credits`
     })
   }
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(`SpecBot is coded by Roman Lubij, oko123#8509 and Designed by Jonne-Patrik Savimäki, The76i#1234, artwork by CrazyPenguin01#7682`)
       .then(msg.say(`Homepage: https://jaxthewolf.github.io/SpecBot_DC/`))

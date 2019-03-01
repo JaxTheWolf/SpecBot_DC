@@ -1,18 +1,18 @@
-const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { options } = require(`../../configs/options`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class AnnounceCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `announce`,
       aliases: [`ann`, `announcement`],
-      group: `owner`,
-      memberName: `announce`,
       description: `Annonuces a message to every guild the bot is in (Owner only)`,
       examples: [`announce Bot will be down for a few minutes!`],
+      group: `owner`,
+      memberName: `announce`,
+      name: `announce`,
       ownerOnly: true,
       args: [
         {
@@ -24,7 +24,7 @@ module.exports = class AnnounceCommand extends Command {
     })
   }
   run (msg, { message }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     this.client.guilds.map(guild => {
       const channel = this.client.channels.get(this.client.provider.get(guild, `annchan`, null))

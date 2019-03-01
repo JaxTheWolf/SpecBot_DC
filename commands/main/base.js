@@ -1,23 +1,23 @@
-const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { options } = require(`../../configs/options`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class XYZCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `base`,
       aliases: [`base1`],
+      description: `A base command to copy`,
+      examples: [`base`],
       group: `main`,
       memberName: `base`,
-      description: `A base command to copy`,
-      examples: [`base`]
+      name: `base`
       // args: [{}]
     })
   }
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(`Change me you fool`)
   }

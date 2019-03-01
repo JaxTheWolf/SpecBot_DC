@@ -3,7 +3,7 @@ const { options } = require(`../../configs/options`)
 const { sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
+const { basename } = require(`path`)
 
 module.exports = class PurgeCommand extends Command {
   constructor (client) {
@@ -39,7 +39,7 @@ module.exports = class PurgeCommand extends Command {
   async run (msg, { member, amount }) {
     msg.delete()
 
-    await log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    await log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     let messages = await msg.channel.fetchMessages({ limit: 99 })
     if (member !== ``) {

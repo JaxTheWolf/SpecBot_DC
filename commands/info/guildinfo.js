@@ -1,28 +1,28 @@
+const log = require(`node-file-logger`)
+const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
-const randomHexColor = require(`random-hex-color`)
 
 module.exports = class GuildInfoCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `guildinfo`,
       aliases: [
+        `g_info`,
         `ginfo`,
         `guild_info`,
-        `g_info`,
+        `s_info`,
         `server_info`,
-        `sinfo`,
-        `s_info`
+        `sinfo`
       ],
-      group: `info`,
-      memberName: `guildinfo`,
       description: `Shows information about the guild`,
+      examples: [`guildinfo`],
+      group: `info`,
       guildOnly: true,
-      examples: [`guildinfo`]
+      memberName: `guildinfo`,
+      name: `guildinfo`
     })
   }
   run (msg) {
@@ -68,7 +68,7 @@ module.exports = class GuildInfoCommand extends Command {
       .setFooter(`Guild created at:`)
       .setTimestamp(msg.guild.createdAt)
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(embed)
   }

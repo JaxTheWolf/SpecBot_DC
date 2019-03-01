@@ -1,23 +1,23 @@
+const log = require(`node-file-logger`)
+const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
 const { fetchText } = require(`../../libs/jsonLibs`)
 const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class PandaFactCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `pandafact`,
-      aliases: [`bamboo_muncherfact`, `pandabearfact`, `fatdoggofact`],
+      aliases: [`bamboo_muncherfact`, `fatdoggofact`, `pandabearfact`],
+      description: `Sends a random panda fact`,
+      examples: [`pandafact`],
       group: `animals`,
       memberName: `pandafacts`,
-      description: `Sends a random panda fact`,
-      examples: [`pandafact`]
+      name: `pandafact`
     })
   }
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return fetchText(msg, `🐼`, `https://some-random-api.ml/pandafact`, `fact`)
   }

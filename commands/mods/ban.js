@@ -3,7 +3,7 @@ const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
+const { basename } = require(`path`)
 
 module.exports = class BanCommand extends Command {
   constructor (client) {
@@ -40,7 +40,7 @@ module.exports = class BanCommand extends Command {
     })
   }
   run (msg, { member, length, reason }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return member.ban({ days: length, reason: reason })
       .then(m => {

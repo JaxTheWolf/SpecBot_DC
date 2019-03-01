@@ -1,18 +1,18 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class MuteAnnCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `muteann`,
+      description: `If you wish ot stop recieving SpecBot announcements in your server run this command. TO enable them; run it again`,
+      examples: [`muteann`],
       group: `settings`,
       memberName: `muteann`,
-      description: `If you wish ot stop recieving SpecBot announcements in your server run this command. TO enable them; run it again`,
-      examples: [`muteann`]
+      name: `muteann`
     })
   }
 
@@ -21,7 +21,7 @@ module.exports = class MuteAnnCommand extends Command {
   }
 
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     switch (this.client.provider.get(msg.guild, `muteann`, null)) {
     case null:

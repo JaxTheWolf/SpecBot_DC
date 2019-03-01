@@ -1,9 +1,9 @@
 module.exports = client => {
+  const SQLite = require(`better-sqlite3`)
+  const log = require(`node-file-logger`)
+  const sql = new SQLite(`./DBs/scores.sqlite3`)
   const { options } = require(`../configs/options`)
   const { setActivity } = require(`../libs/eventLibs`)
-  const SQLite = require(`better-sqlite3`)
-  const sql = new SQLite(`./DBs/scores.sqlite3`)
-  const log = require(`node-file-logger`)
   log.SetUserOptions(options)
 
   const confDB = new SQLite(`./DBs/configurations.sqlite3`)
@@ -19,7 +19,6 @@ module.exports = client => {
     sql.pragma(`journal_mode = wal`)
   }
 
-  // And then we have two prepared statements to get and set the score data.
   client.getScore = sql.prepare(`SELECT * FROM scores WHERE user = ? AND guild = ?`)
   client.setScore = sql.prepare(`INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);`)
   setActivity(client)

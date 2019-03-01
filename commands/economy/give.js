@@ -1,32 +1,32 @@
+const log = require(`node-file-logger`)
+const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class GiveCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `give`,
-      group: `economy`,
-      memberName: `give`,
       description: `Gives someone x points.`,
       examples: [`give 10 @user#0000`],
+      group: `economy`,
       guildOnly: true,
+      memberName: `give`,
+      name: `give`,
       args: [
         {
+          error: `You can only give 1 point or more!`,
           key: `amount`,
-          prompt: `How many point would you like to give?`,
-          type: `integer`,
           min: 1,
-          error: `You can only give 1 point or more!`
+          prompt: `How many point would you like to give?`,
+          type: `integer`
         },
         {
+          error: `Invalid user mention. Please try again.`,
           key: `user`,
           prompt: `Who would you like to give these points?`,
-          type: `user`,
-          error: `Invalid user mention. Please try again.`
+          type: `user`
         }
       ]
     })
@@ -60,16 +60,16 @@ module.exports = class GiveCommand extends Command {
       if (authorScore.points < amount) {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)
       }
-      setPoints(userScore, `+`, amount)
       setPoints(authorScore, `-`, amount)
+      setPoints(userScore, `+`, amount)
 
       updateLevel(authorScore)
       updateLevel(userScore)
 
-      this.client.setScore.run(userScore)
       this.client.setScore.run(authorScore)
+      this.client.setScore.run(userScore)
 
-      log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
       return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
         .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
     } catch (e) {

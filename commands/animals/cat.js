@@ -1,23 +1,23 @@
-const { Command } = require(`discord.js-commando`)
-const { sendImg } = require(`../../libs/jsonLibs`)
-const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
+const { basename } = require(`path`)
+const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../configs/options`)
+const { sendImg } = require(`../../libs/jsonLibs`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class CatCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `cat`,
       aliases: [`kitty`, `puss`, `pussy`, `cat`, `kitten`, `pussycat`],
+      description: `Sends a random image of a cat`,
+      examples: [`cat`],
       group: `animals`,
       memberName: `cat`,
-      description: `Sends a random image of a cat`,
-      examples: [`cat`]
+      name: `cat`
     })
   }
   run (msg) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return sendImg(msg, `https://some-random-api.ml/catimg`, `link`)
   }

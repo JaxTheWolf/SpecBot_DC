@@ -1,20 +1,20 @@
+const log = require(`node-file-logger`)
+const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
-const randomHexColor = require(`random-hex-color`)
 
 module.exports = class SayCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `embed`,
-      group: `main`,
-      memberName: `embed`,
+      clientPermissions: [`MANAGE_MESSAGES`],
       description: `Embeds whatever you specify`,
       examples: [`embed lul`],
-      clientPermissions: [`MANAGE_MESSAGES`],
+      group: `main`,
+      memberName: `embed`,
+      name: `embed`,
       args: [
         {
           key: `say`,
@@ -25,7 +25,7 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    msg.delete()
+    msg.delete().catch()
     const toSay = new RichEmbed()
 
     function checkAnon (toCheck) {
@@ -36,15 +36,15 @@ module.exports = class SayCommand extends Command {
     if (!checkAnon(msg.content)) {
       toSay
         .setAuthor(`${msg.author.username} says:`, msg.author.displayAvatarURL)
-        .setDescription(say)
         .setColor(randomHexColor())
+        .setDescription(say)
     } else {
       toSay
-        .setDescription(say.replace(`///anon`, ``))
         .setColor(randomHexColor())
+        .setDescription(say.replace(`///anon`, ``))
     }
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(toSay)
   }

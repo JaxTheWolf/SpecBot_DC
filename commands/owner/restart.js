@@ -1,31 +1,31 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
+const { exec } = require(`shelljs`)
 const { options } = require(`../../configs/options`)
 const { sendSuccessEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class RestartCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `restart`,
+      aliases: [`reboot`],
+      description: `Restarts the systemd service or the nodejs process`,
+      examples: [`restart`],
       group: `owner`,
       memberName: `restart`,
-      description: `Restarts the systemd service or the nodejs process`,
-      ownerOnly: true,
-      examples: [`restart`],
-      aliases: [`reboot`]
+      name: `restart`,
+      ownerOnly: true
     })
   }
   run (msg) {
-    const shell = require(`shelljs`)
     function resNow () {
-      shell.exec(`systemctl restart bot`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`systemctl restart bot`, { shell: `/bin/bash` }, function onDone (code, stdout) {
         log.Info(`Restarting!`)
       })
     }
 
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     if (process.platform !== `win32`) {
       return sendSuccessEmbed(msg, `Restarting...`, ``).then(setTimeout(resNow, 1000))

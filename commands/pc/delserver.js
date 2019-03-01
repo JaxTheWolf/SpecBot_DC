@@ -3,29 +3,29 @@ const { delConf } = require(`../../libs/pcLibs`)
 const { options } = require(`../../configs/options`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
+const { basename } = require(`path`)
 
 module.exports = class ServerCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `delserver`,
-      group: `pc`,
-      memberName: `delserver`,
       description: `Deletes your server`,
       examples: [`delserver yes`],
+      group: `pc`,
+      memberName: `delserver`,
+      name: `delserver`,
       args: [
         {
+          error: `Reply with yes/no.`,
           key: `confirm`,
-          prompt: `Do you want to proceed? (yes or no)`,
-          type: `string`,
           oneOf: [`yes`, `no`],
-          error: `Reply with yes/no.`
+          prompt: `Do you want to proceed? (yes or no)`,
+          type: `string`
         }
       ]
     })
   }
   run (msg, { confirm }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return delConf(msg, confirm, __dirname, `server`)
   }

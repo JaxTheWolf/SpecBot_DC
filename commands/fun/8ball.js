@@ -1,18 +1,18 @@
+const log = require(`node-file-logger`)
+const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
 const { fetchText } = require(`../../libs/jsonLibs`)
 const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
 log.SetUserOptions(options)
-const path = require(`path`)
 
 module.exports = class EightBallCommand extends Command {
   constructor (client) {
     super(client, {
-      name: `8ball`,
-      group: `fun`,
-      memberName: `8ball`,
       description: `Ask a question and 8ball will answer`,
       examples: [`-8ball Am I dumb?`],
+      group: `fun`,
+      memberName: `8ball`,
+      name: `8ball`,
       args: [
         {
           key: `question`,
@@ -23,7 +23,7 @@ module.exports = class EightBallCommand extends Command {
     })
   }
   run (msg, { question }) {
-    log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return fetchText(msg, `🎱`, `https://8ball.delegator.com/magic/JSON/${encodeURI(question)}`, `magic.answer`)
   }
