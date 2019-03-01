@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -18,11 +19,18 @@ module.exports = class XYZCommand extends Command {
   run (msg) {
     function fetchEmojis (guild) {
       const emojiList = guild.emojis.map(e => e.toString()).join(` `)
-      return emojiList === `` ? `This server doesn't have any custom emotes.` : emojiList
+
+      switch (emojiList) {
+      case (``):
+        msg.delete()
+        return sendErrorEmbed(msg, `❌ This server doesn't have any custom emotes!`, ``, 7500)
+      default:
+        return msg.say(emojiList)
+      }
     }
 
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    return msg.say(fetchEmojis(msg.guild))
+    return fetchEmojis(msg.guild)
   }
 }

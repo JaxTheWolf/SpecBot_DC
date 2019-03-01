@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -46,10 +47,11 @@ module.exports = class BanCommand extends Command {
         if (reason !== `Banned by SpecBot.`) {
           log.Info(`Banned member "${m.user.tag}" from guild "${msg.guild.name}" for "${length}" days. Reason: "${reason}"`)
         }
-        msg.reply(`🔨 | Member **${m.user.tag}** was banned for **${length} ${length === 0 || length > 1 ? `days` : `day`}**. Reason: **${reason}**`)
+        return sendSuccessEmbed(msg, `🔨  Member **${m.user.tag}** was banned for **${length} ${length === 0 || length > 1 ? `days` : `day`}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.say(`Couldn't ban member **${member.user.tag}**. Reason: **${err.message}**`)
+        msg.delete().catch()
+        return sendErrorEmbed(msg, `❌ Couldn't ban member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }
 }

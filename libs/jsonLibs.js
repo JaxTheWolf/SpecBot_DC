@@ -1,7 +1,7 @@
 const https = require(`https`)
 
 exports.sendImg = function (msg, reqUrl, field) {
-  const { RichEmbed } = require(`discord.js`)
+  const { sendEmbeddedImage, sendErrorEmbed } = require(`./embeds`)
   const randomHexColor = require(`random-hex-color`)
 
   https.get(reqUrl, function onDone (response) {
@@ -10,15 +10,11 @@ exports.sendImg = function (msg, reqUrl, field) {
       data += chunk
     })
     response.on(`end`, () => {
-      const embed = new RichEmbed()
-        .setImage(JSON.parse(data)[field])
-        .setFooter(`Images are fetched form ${reqUrl}.`)
-        .setColor(randomHexColor())
-      return msg.say(embed)
+      return sendEmbeddedImage(msg, reqUrl, JSON.parse(data)[field], randomHexColor().replace(`#`, `0x`))
     })
   })
     .on(`error`, err => {
-      return msg.say(`An error has occured. (${err.message})`)
+      return sendErrorEmbed(msg, `An error has occured`, err.message, 5000)
     })
 }
 

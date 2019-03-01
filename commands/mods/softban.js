@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -40,10 +41,11 @@ module.exports = class SoftBanCommand extends Command {
         if (reason !== `Softbanned by SpecBot.`) {
           log.Info(`Softbanned user ${member.user.tag}. Reason: ${reason}`)
         }
-        msg.reply(`🔨 | Softbanned member **${member.user.tag}**. Reason: **${reason}**`)
+        return sendSuccessEmbed(msg, `🔨 Softbanned member **${member.user.tag}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.say(`Couldn't softban member **${member.user.tag}**. Reason: **${err.message}**`)
+        msg.delete().catch()
+        return sendErrorEmbed(msg, `❌ Couldn't softban member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }
 }

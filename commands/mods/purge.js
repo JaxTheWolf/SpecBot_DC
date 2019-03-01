@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -50,8 +51,6 @@ module.exports = class PurgeCommand extends Command {
     }
 
     await msg.channel.bulkDelete(messages)
-    return msg
-      .say(`Deleted ${messages.length - 1} messages!`)
-      .then(m => m.delete(2500))
+    return sendSuccessEmbed(msg, `Deleted ${messages.length - 1} messages!`, ``, 7500)
   }
 }

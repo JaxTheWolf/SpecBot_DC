@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -8,7 +9,6 @@ module.exports = class AnnchannelCommand extends Command {
   constructor (client) {
     super(client, {
       name: `annchannel`,
-      aliases: [`annchannel`],
       group: `settings`,
       memberName: `annchannel`,
       description: `Sets or shows a channel where SpecBot announcements will be sent`,
@@ -42,14 +42,15 @@ module.exports = class AnnchannelCommand extends Command {
 
     if (channel !== `` && operation === `set`) {
       if (channel.type !== `text`) {
-        return msg.reply(`The announcement channel can only be a text channel!`)
+        msg.delete().catch()
+        return sendErrorEmbed(msg, `❌ The announcement channel can only be a text channel!`, ``, 7500)
       } else {
         msg.client.provider.set(msg.guild, `annchan`, channel.id).then(c => {
-          return msg.reply(`The announcement channel has been successfully set to <#${this.client.channels.get(c).id}>!`)
+          return sendSuccessEmbed(msg, `✅ The announcement channel has been successfully set to `, `<#${this.client.channels.get(c).id}>!`)
         })
       }
     } else if (channel === `` && operation === `show`) {
-      return msg.reply(`The current announcement channel is <#${this.client.provider.get(msg.guild, `annchan`)}>!`)
+      return sendSuccessEmbed(msg, `The current announcement channel is`, `<#${this.client.provider.get(msg.guild, `annchan`)}>!`)
     }
   }
 }

@@ -1,6 +1,7 @@
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
 const { options } = require(`../../configs/options`)
+const { sendErrorEmbed } = require(`../../libs/embeds`)
 const SQLite = require(`better-sqlite3`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
@@ -38,7 +39,8 @@ module.exports = class LeaderboardCommand extends Command {
       log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
       return msg.say({ embed })
     } catch (e) {
-      return msg.reply(`An error has occured (The database is most likely not ready yet). Try waiting for a moment before retrying. Error: (${e})`)
+      msg.delete()
+      return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }
 }

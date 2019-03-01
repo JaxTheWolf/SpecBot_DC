@@ -1,6 +1,6 @@
 const { Command } = require(`discord.js-commando`)
-const { RichEmbed } = require(`discord.js`)
 const { options } = require(`../../configs/options`)
+const { sendEmbeddedImage } = require(`../../libs/embeds`)
 const log = require(`node-file-logger`)
 log.SetUserOptions(options)
 const path = require(`path`)
@@ -27,20 +27,12 @@ module.exports = class AvatarCommand extends Command {
     })
   }
   run (msg, { user }) {
-    const embed = new RichEmbed()
-      .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
-      .setColor(randomHexColor())
-    if (user === ``) {
-      embed
-        .setTitle(`Here's your avatar:`)
-        .setImage(msg.author.displayAvatarURL)
-    } else {
-      embed
-        .setTitle(`Here's ${user.username}'s avatar:`)
-        .setImage(user.displayAvatarURL)
-    }
     log.Info(`${path.basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    return msg.say(embed)
+    if (user === ``) {
+      return sendEmbeddedImage(msg, ``, msg.author.displayAvatarURL, randomHexColor().replace(`#`, `0x`), `Here's your avatar!`)
+    } else {
+      return sendEmbeddedImage(msg, ``, user.displayAvatarURL, randomHexColor().replace(`#`, `0x`), `Here's ${user.username}'s avatar!`)
+    }
   }
 }
