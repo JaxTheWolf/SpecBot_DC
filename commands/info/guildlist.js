@@ -18,7 +18,7 @@ module.exports = class GuildListCommand extends Command {
     })
   }
   run (msg) {
-    const guildlist = this.client.guilds.map(g => g.name).join(`\n`)
+    const guildlist = this.client.guilds.map(g => `**${g.name}**\nMember count: **${g.memberCount}**`).join(`\n`)
     log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return sendSimpleEmbededMessage(msg, guildlist, randomHexColor().replace(`#`, `0x`), `Here's the list of guilds the bot is in:`)
