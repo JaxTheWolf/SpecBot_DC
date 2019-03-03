@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-
 cd ..
-git pull https://github.com/JaxTheWolf/SpecBot_DC.git
+
+if [ -z $(command -v git) ]; then
+  echo "Git not installed!"
+else
+  git pull https://github.com/JaxTheWolf/SpecBot_DC.git
+fi
