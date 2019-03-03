@@ -24,7 +24,7 @@ module.exports = class PurgeCommand extends Command {
           type: `integer`,
           min: 2,
           max: 100,
-          error: `You can only delete 1 to 99 messages.`
+          error: `You can only delete 2 to 100 messages.`
         },
         {
           key: `member`,
