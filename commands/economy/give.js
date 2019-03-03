@@ -1,8 +1,9 @@
 const log = require(`node-file-logger`)
-const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
+const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
 log.SetUserOptions(options)
 
 module.exports = class GiveCommand extends Command {
@@ -43,19 +44,7 @@ module.exports = class GiveCommand extends Command {
         level: 1
       }
     }
-    function setPoints (userScore, operation, amount) {
-      switch (operation) {
-      case `-`:
-        userScore.points -= amount
-        break
-      case `+`:
-        userScore.points += amount
-      }
-    }
-    function updateLevel (userScore) {
-      const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
-      userScore.level = userLevel < 1 ? 1 : userLevel
-    }
+
     try {
       if (authorScore.points < amount) {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)

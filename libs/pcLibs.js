@@ -10,8 +10,7 @@ exports.delConf = function (msg, confirm, dirname, conf) {
       db.prepare(`DELETE FROM ${conf} WHERE id = '${msg.author.id}';`).run()
       return sendSuccessEmbed(msg, `✅ Configuration successfully deleted!`, ``, 7500)
     } catch (e) {
-      msg.delete().catch()
-      return sendErrorEmbed(msg, `❌ You don't have a configuration yet or an error has occured.`, ``, 7500)
+      return msg.delete().then(sendErrorEmbed(msg, `❌ You don't have a configuration yet or an error has occured.`, ``, 7500).catch())
     }
   }
 }
@@ -47,11 +46,9 @@ exports.editConf = function (msg, component, newCmp, dirname, conf) {
       return sendSuccessEmbed(msg, `✅ Configuration updated successfully!`, ``, 7500)
     } catch (e) {
       if (e.message === `Cannot read property 'conf' of undefined`) {
-        msg.delete().catch()
-        return sendErrorEmbed(msg, `❌ You don't have a configuration yet!`, ``, 7500)
+        return msg.delete().then(sendErrorEmbed(msg, `❌ You don't have a configuration yet!`, ``, 7500)).catch()
       } else {
-        msg.delete().catch()
-        return sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)
+        return msg.delete().then(sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)).catch()
       }
     }
   }
@@ -65,14 +62,12 @@ exports.sendConf = function (msg, user, conf, dirname) {
     try {
       return sendSimpleEmbededMessage(msg, db.prepare(`SELECT conf FROM ${conf} WHERE id = '${user.id}';`).get().conf,
         randomHexColor().replace(`#`, `0x`),
-        `Here's ${user.username}'s configuration!'`)
+        `Here's ${user.username}'s configuration!`)
     } catch (e) {
       if (e || typeof row === `undefined`) {
-        msg.delete().catch()
-        return sendErrorEmbed(msg, `❌ This person doesn't have a configuration yet!`, ``, 7500)
+        return msg.delete().then(sendErrorEmbed(msg, `❌ This person doesn't have a configuration yet!`, ``, 7500)).catch()
       } else if (e) {
-        msg.delete().catch()
-        return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
+        return msg.delete().then(sendErrorEmbed(msg, `An error has occured`, e.message, 7500)).catch()
       }
     }
   }
@@ -91,11 +86,9 @@ exports.setConf = function (msg, content, conf, dirname) {
     return sendSuccessEmbed(msg, `✅ Configuration saved successfully!`, ``, 7500)
   } catch (e) {
     if (e.message.includes(`UNIQUE constraint failed`)) {
-      msg.delete().catch()
-      return sendErrorEmbed(msg, `❌ You already own a configuration!`, ``, 7500)
+      return msg.delete().then(sendErrorEmbed(msg, `❌ You already own a configuration!`, ``, 7500).catch())
     } else {
-      msg.delete().catch()
-      return sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)
+      msg.delete().then(sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)).catch()
     }
   }
 }

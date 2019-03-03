@@ -9,7 +9,6 @@ log.SetUserOptions(options)
 module.exports = class SayCommand extends Command {
   constructor (client) {
     super(client, {
-      clientPermissions: [`MANAGE_MESSAGES`],
       description: `Embeds whatever you specify`,
       examples: [`embed lul`],
       group: `main`,
@@ -25,27 +24,32 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    msg.delete().catch()
     const toSay = new RichEmbed()
+      .setColor(randomHexColor())
 
     function checkAnon (toCheck) {
       if (toCheck.includes(`///anon`)) return true
       else return false
     }
 
-    if (!checkAnon(msg.content)) {
-      toSay
-        .setAuthor(`${msg.author.username} says:`, msg.author.displayAvatarURL)
-        .setColor(randomHexColor())
-        .setDescription(say)
-    } else {
-      toSay
-        .setColor(randomHexColor())
-        .setDescription(say.replace(`///anon`, ``))
+    function sendEmbed (msg) {
+      if (!checkAnon(msg.content)) {
+        toSay
+          .setAuthor(`${msg.author.username} says:`, msg.author.displayAvatarURL)
+          .setDescription(say)
+      } else {
+        toSay
+          .setDescription(say.replace(`///anon`, ``))
+      }
+      return msg.say(toSay)
     }
 
     log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    return msg.say(toSay)
+    if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
+      return sendEmbed(msg)
+    } else {
+      return msg.delete().then(sendEmbed(msg)).catch()
+    }
   }
 }

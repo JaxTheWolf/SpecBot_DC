@@ -22,8 +22,8 @@ module.exports = class PurgeCommand extends Command {
           key: `amount`,
           prompt: `How many messages would you like to delete?`,
           type: `integer`,
-          min: 1,
-          max: 99,
+          min: 2,
+          max: 100,
           error: `You can only delete 1 to 99 messages.`
         },
         {
@@ -37,20 +37,19 @@ module.exports = class PurgeCommand extends Command {
     })
   }
   async run (msg, { member, amount }) {
-    msg.delete()
-
+    msg.delete().catch()
     await log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    let messages = await msg.channel.fetchMessages({ limit: 99 })
+    let messages = await msg.channel.fetchMessages({ limit: 100 })
     if (member !== ``) {
       messages = messages.array().filter(m => m.author.id === member.user.id)
-      messages.length = amount + 1
+      messages.length = amount
     } else {
       messages = messages.array()
-      messages.length = amount + 1
+      messages.length = amount
     }
 
     await msg.channel.bulkDelete(messages)
-    return sendSuccessEmbed(msg, `Deleted ${messages.length - 1} messages!`, ``, 7500)
+    return sendSuccessEmbed(msg, `Deleted ${messages.length} messages!`, ``, 7500)
   }
 }

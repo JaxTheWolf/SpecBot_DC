@@ -33,6 +33,7 @@ module.exports = class AnnounceCommand extends Command {
         const muted = client.provider.get(guild, `muteann`, null)
         return !!(muted === false || muted === null)
       }
+
       function setDefAnnChannAndSendMessage (guild, client) {
         let defaultChann
         guild.channels.map(c => {
