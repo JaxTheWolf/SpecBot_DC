@@ -8,7 +8,6 @@ module.exports = class SayCommand extends Command {
   constructor (client) {
     super(client, {
       aliases: [`repeat`, `msg`],
-      clientPermissions: [`MANAGE_MESSAGES`],
       description: `Repeats whatever you specify`,
       examples: [`say oko sux`],
       group: `main`,
@@ -26,6 +25,10 @@ module.exports = class SayCommand extends Command {
   run (msg, { say }) {
     log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
-    return msg.delete().then(msg.say(say))
+    if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
+      return msg.say(say)
+    } else {
+      return msg.delete().then(msg.say(say)).catch()
+    }
   }
 }
