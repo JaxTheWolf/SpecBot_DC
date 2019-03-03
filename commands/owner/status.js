@@ -18,13 +18,10 @@ module.exports = class StatusCommand extends Command {
   }
   run (msg) {
     if (process.platform !== `win32`) {
-      exec(`systemctl status bot | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`cd scripts/ && sh service.sh status`, { shell: `/bin/bash` }, function onDone (code, stdout) {
         return msg.say(`...\n${stdout}`, { code: `asciidoc` })
       })
-    } else {
-      return msg.say(`wip`)
     }
-
     log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

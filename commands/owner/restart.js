@@ -20,7 +20,7 @@ module.exports = class RestartCommand extends Command {
   }
   run (msg) {
     function resNow () {
-      exec(`systemctl restart bot`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`cd scripts/ && sh service.sh restart`, { shell: `/bin/bash` }, function onDone (code, stdout) {
         log.Info(`Restarting!`)
       })
     }
@@ -29,16 +29,6 @@ module.exports = class RestartCommand extends Command {
 
     if (process.platform !== `win32`) {
       return sendSuccessEmbed(msg, `Restarting...`, ``).then(setTimeout(resNow, 1000))
-    } else {
-      return sendSuccessEmbed(msg, `Not implemented **yet**`, ``)
-      /* msg.say(`Restarting...`);
-      shell.exec(
-        `cd scripts && taskkill /f /im node.exe && start run.bat`,
-        { shell: `C:\\Windows\\System32\\cmd.exe` },
-        function(code, stdout, stderr) {
-          msg.say(stdout);
-        }
-      ); */
     }
   }
 }
