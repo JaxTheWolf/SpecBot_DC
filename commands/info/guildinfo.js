@@ -26,19 +26,20 @@ module.exports = class GuildInfoCommand extends Command {
     })
   }
   run (msg) {
-    function checkBots (guild) {
-      let botCount = 0
-      guild.members.forEach(member => {
-        if (member.user.bot) botCount++
-      })
-      return botCount
-    }
-
-    function checkMembers (guild) {
+    function checkMembers (guild, member) {
       let memberCount = 0
-      guild.members.forEach(member => {
-        if (!member.user.bot) memberCount++
-      })
+
+      switch (member) {
+      case `user`:
+        guild.members.forEach(member => {
+          if (!member.user.bot) memberCount++
+        })
+        break
+      case `bot`:
+        guild.members.forEach(member => {
+          if (member.user.bot) memberCount++
+        })
+      }
       return memberCount
     }
 
@@ -61,9 +62,9 @@ module.exports = class GuildInfoCommand extends Command {
       .addField(`Number of text channels:`, channCount(msg.guild, `text`), false)
       .addField(`Number of voice channels:`, channCount(msg.guild, `voice`), false)
       .addField(`Amount of members (total):`, msg.guild.memberCount, false)
-      .addField(`Bots:`, checkBots(msg.guild), false)
-      .addField(`Humans:`, checkMembers(msg.guild), false)
-      .addField(`Is this guild considered large? (250+ members):`, msg.guild.large, false)
+      .addField(`Bots:`, checkMembers(msg.guild, `bot`), false)
+      .addField(`Humans:`, checkMembers(msg.guild, `user`), false)
+      .addField(`Is this guild considered large? (250+ members):`, msg.guild.large ? `Yes` : `No`, false)
       .addField(`Region:`, msg.guild.region, false)
       .setFooter(`Guild created at:`)
       .setTimestamp(msg.guild.createdAt)
