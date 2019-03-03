@@ -10,12 +10,13 @@ const allowed = [
   `tails`
 ]
 const log = require(`node-file-logger`)
-const { basename } = require(`path`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
+const { basename } = require(`path`)
 const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
+const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
 log.SetUserOptions(options)
 
 module.exports = class FlipCommand extends Command {
@@ -47,22 +48,6 @@ module.exports = class FlipCommand extends Command {
   }
   run (msg, { bet, gstate }) {
     const score = this.client.getScore.get(msg.author.id, msg.guild.id)
-
-    function setPoints (userScore, operation, amount) {
-      switch (operation) {
-      case `-`:
-        userScore.points -= amount
-        break
-      case `+`:
-        userScore.points += amount
-        break
-      }
-    }
-    function updateLevel (userScore) {
-      const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
-      userScore.level = userLevel < 1 ? 1 : userLevel
-    }
-
     const embed = new RichEmbed()
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())
