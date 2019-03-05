@@ -1,5 +1,8 @@
+const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
+const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
+log.SetUserOptions(options)
 
 module.exports = class SoftBanCommand extends Command {
   constructor (client) {
