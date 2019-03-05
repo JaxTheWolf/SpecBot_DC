@@ -1,12 +1,8 @@
 const SQLite = require(`better-sqlite3`)
-const log = require(`node-file-logger`)
-const { basename } = require(`path`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-log.SetUserOptions(options)
 
 module.exports = class LeaderboardCommand extends Command {
   constructor (client) {
@@ -36,7 +32,7 @@ module.exports = class LeaderboardCommand extends Command {
       for (const data of top10) {
         embed.addField(this.client.users.get(data.user).tag, `**${data.points}** points (level **${data.level}**)`)
       }
-      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
       return msg.say({ embed })
     } catch (e) {
       msg.delete()

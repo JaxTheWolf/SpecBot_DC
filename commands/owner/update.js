@@ -1,9 +1,5 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
 const { exec } = require(`shelljs`)
-const { options } = require(`../../configs/options`)
-log.SetUserOptions(options)
 
 module.exports = class UpdateCommand extends Command {
   constructor (client) {
@@ -22,7 +18,5 @@ module.exports = class UpdateCommand extends Command {
         return msg.say(`...\n${stdout}`, { code: `asciidoc` })
       })
     }
-
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
   }
 }

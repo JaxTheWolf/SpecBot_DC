@@ -1,9 +1,5 @@
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const log = require(`node-file-logger`)
-log.SetUserOptions(options)
-const { basename } = require(`path`)
 
 module.exports = class SoftBanCommand extends Command {
   constructor (client) {
@@ -33,8 +29,6 @@ module.exports = class SoftBanCommand extends Command {
     })
   }
   run (msg, { member, reason }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     return member.ban({ days: 1, reason: reason })
       .then(m => msg.guild.unban(member.user, reason))
       .then(m => {

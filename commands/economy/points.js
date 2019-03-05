@@ -1,10 +1,6 @@
 const jimp = require(`jimp`)
-const log = require(`node-file-logger`)
-const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-log.SetUserOptions(options)
 
 module.exports = class PointsCommand extends Command {
   constructor (client) {
@@ -65,7 +61,6 @@ module.exports = class PointsCommand extends Command {
         })
     }
 
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
     try {
       if (member === ``) {
         return sendCard(msg.author, this.client)

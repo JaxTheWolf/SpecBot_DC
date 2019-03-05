@@ -9,15 +9,11 @@ const allowed = [
   `t`,
   `tails`
 ]
-const log = require(`node-file-logger`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
 const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
-log.SetUserOptions(options)
 
 module.exports = class FlipCommand extends Command {
   constructor (client) {
@@ -84,7 +80,7 @@ module.exports = class FlipCommand extends Command {
           .setDescription(`${gstateConv === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -${bet === 1 ? `${bet} point!` : `${bet} points!`} (Total: ${score.points})`)
           .setImage(cf === true ? cpub : cpuf)
       }
-      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
+
       return msg.say({ embed })
     } catch (e) {
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
