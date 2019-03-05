@@ -1,9 +1,5 @@
-const log = require(`node-file-logger`)
-const { basename } = require(`path`)
 const { Command } = require(`discord.js-commando`)
 const { fetchText } = require(`../../libs/jsonLibs`)
-const { options } = require(`../../configs/options`)
-log.SetUserOptions(options)
 
 module.exports = class EightBallCommand extends Command {
   constructor (client) {
@@ -23,8 +19,6 @@ module.exports = class EightBallCommand extends Command {
     })
   }
   run (msg, { question }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     return fetchText(msg, `🎱`, `https://8ball.delegator.com/magic/JSON/${encodeURI(question)}`, `magic.answer`)
   }
 }

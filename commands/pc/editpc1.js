@@ -1,9 +1,5 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
 const { editConf } = require(`../../libs/pcLibs`)
-const { options } = require(`../../configs/options`)
-log.SetUserOptions(options)
 
 module.exports = class EditPC1Comand extends Command {
   constructor (client) {
@@ -31,8 +27,6 @@ module.exports = class EditPC1Comand extends Command {
     })
   }
   run (msg, { component, newCmp }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     return editConf(msg, component, newCmp, __dirname, `conf1`)
   }
 }

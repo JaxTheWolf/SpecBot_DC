@@ -1,10 +1,6 @@
-const log = require(`node-file-logger`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { sendEmbeddedImage } = require(`../../libs/embeds`)
-log.SetUserOptions(options)
 
 module.exports = class AvatarCommand extends Command {
   constructor (client) {
@@ -27,8 +23,6 @@ module.exports = class AvatarCommand extends Command {
     })
   }
   run (msg, { user }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     if (user === ``) {
       return sendEmbeddedImage(msg, ``, msg.author.displayAvatarURL, randomHexColor().replace(`#`, `0x`), `Here's your avatar!`)
     } else {

@@ -1,9 +1,5 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { setConf } = require(`../../libs/pcLibs`)
-log.SetUserOptions(options)
 
 module.exports = class Setpc2Command extends Command {
   constructor (client) {
@@ -114,8 +110,6 @@ module.exports = class Setpc2Command extends Command {
     }
   ) {
     const content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`
-
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return setConf(msg, content, `conf2`, __dirname)
   }

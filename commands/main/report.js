@@ -1,11 +1,7 @@
-const log = require(`node-file-logger`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { sendSuccessEmbed } = require(`../../libs/embeds`)
-log.SetUserOptions(options)
 
 module.exports = class ReportCommand extends Command {
   constructor (client) {
@@ -52,8 +48,6 @@ module.exports = class ReportCommand extends Command {
         .setColor(randomHexColor())
         .setDescription(`**Remember to punish the offending user if needed!**`)
         .setFooter(new Date(), user.displayAvatarURL)
-
-      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
       return msg.guild.owner.user.send(embed)
         .then(sendSuccessEmbed(msg, `User \`${user.tag}\` has been reported to the server owner!`, ``))

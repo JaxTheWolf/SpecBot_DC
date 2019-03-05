@@ -1,9 +1,8 @@
 const { Command } = require(`discord.js-commando`)
 const { delConf } = require(`../../libs/pcLibs`)
-const { options } = require(`../../configs/options`)
-const log = require(`node-file-logger`)
-log.SetUserOptions(options)
-const { basename } = require(`path`)
+
+
+
 
 module.exports = class ServerCommand extends Command {
   constructor (client) {
@@ -25,8 +24,6 @@ module.exports = class ServerCommand extends Command {
     })
   }
   run (msg, { confirm }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     return delConf(msg, confirm, __dirname, `server`)
   }
 }

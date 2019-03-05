@@ -1,6 +1,5 @@
 const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
 const { exec } = require(`shelljs`)
 const { options } = require(`../../configs/options`)
 const { sendSuccessEmbed } = require(`../../libs/embeds`)
@@ -24,8 +23,6 @@ module.exports = class RestartCommand extends Command {
         log.Info(`Restarting!`)
       })
     }
-
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     if (process.platform !== `win32`) {
       return sendSuccessEmbed(msg, `Restarting...`, ``).then(setTimeout(resNow, 1000))

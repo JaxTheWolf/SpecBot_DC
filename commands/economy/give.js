@@ -1,10 +1,6 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
 const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
-log.SetUserOptions(options)
 
 module.exports = class GiveCommand extends Command {
   constructor (client) {
@@ -58,7 +54,6 @@ module.exports = class GiveCommand extends Command {
       this.client.setScore.run(authorScore)
       this.client.setScore.run(userScore)
 
-      log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
       return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
         .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
     } catch (e) {

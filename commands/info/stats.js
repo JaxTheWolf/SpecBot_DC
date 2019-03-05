@@ -1,13 +1,9 @@
 const SQLite = require(`better-sqlite3`)
-const log = require(`node-file-logger`)
 const moment = require(`moment`)
 const verCommando = require(`discord.js-commando`).version
 const verDC = require(`discord.js`).version
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { version } = require(`../../package.json`)
-log.SetUserOptions(options)
 require(`moment-duration-format`)
 
 module.exports = class StatsCommand extends Command {
@@ -26,8 +22,6 @@ module.exports = class StatsCommand extends Command {
         .prepare(`SELECT COUNT(id) FROM ${conf}`)
         .get()[`COUNT(id)`]
     }
-
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(
       `---STATISTICS---

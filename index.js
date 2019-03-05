@@ -6,9 +6,12 @@ const {
   unknownCommandResponse
 } = require(`./configs/conf.json`)
 const fs = require(`fs`)
+const log = require(`node-file-logger`)
 const sqlite = require(`sqlite`)
 const { CommandoClient, SQLiteProvider } = require(`discord.js-commando`)
 const { join } = require(`path`)
+const { options } = require(`./configs/options`)
+log.SetUserOptions(options)
 
 const client = new CommandoClient({
   commandPrefix: prefix,
@@ -45,6 +48,11 @@ fs.readdir(`./events/`, (err, files) => {
     client.on(eventName, event.bind(null, client))
     delete require.cache[require.resolve(`./events/${file}`)]
   })
+})
+
+// Temp event handler in index.js. Doesn't work in ./events for some reason.
+client.on(`commandRun`, (command, promise, message) => {
+  log.Info(`${command.name} was used by ${message.author.tag}.`)
 })
 
 client.setProvider(

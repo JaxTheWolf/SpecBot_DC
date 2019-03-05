@@ -1,9 +1,5 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-log.SetUserOptions(options)
 
 module.exports = class AnnchannelCommand extends Command {
   constructor (client) {
@@ -38,8 +34,6 @@ module.exports = class AnnchannelCommand extends Command {
   }
 
   run (msg, { channel, operation }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     if (channel !== `` && operation === `set`) {
       if (channel.type !== `text`) {
         msg.delete().catch()

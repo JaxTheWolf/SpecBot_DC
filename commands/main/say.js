@@ -1,8 +1,4 @@
-const log = require(`node-file-logger`)
 const { Command } = require(`discord.js-commando`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
-log.SetUserOptions(options)
 
 module.exports = class SayCommand extends Command {
   constructor (client) {
@@ -23,8 +19,6 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
-
     if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
       return msg.say(say)
     } else {

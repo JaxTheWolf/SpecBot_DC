@@ -1,10 +1,6 @@
-const log = require(`node-file-logger`)
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
-const { basename } = require(`path`)
-const { options } = require(`../../configs/options`)
-log.SetUserOptions(options)
 
 module.exports = class UserInfoCommand extends Command {
   constructor (client) {
@@ -88,7 +84,6 @@ module.exports = class UserInfoCommand extends Command {
         .setTimestamp(member.user.createdAt)
         .setTitle(`Here's some info about **${member.user.tag}**:`)
     }
-    log.Info(`${basename(__filename, `.js`)} was used by ${msg.author.username}.`)
 
     return msg.say(embed)
   }
