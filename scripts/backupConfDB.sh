@@ -1,32 +1,22 @@
 #!/usr/bin/env bash
 
-fn="backup_$(date +"%F").sqlite3"
-path="$1/backups"
-backdir="../backups"
+if [ ! -z $(cat "../configs/conf.json" | jq ".backPath") ]; then
+  path=$(echo "$(cat "../configs/conf.json" | jq ".backPath")/backups" | tr -d "\"")
+else
+  path="$1/backups"
+fi
 
 createBackup() {
   cd "../DBs" || exit
-  sqlite3 configurations.sqlite3 ".backup $fn"
-  mv "$fn" "$1/$fn"
+  sqlite3 configurations.sqlite3 ".backup backup_$(date +"%F").sqlite3"
+  mv "backup_$(date +"%F").sqlite3" "$path/backup_$(date +"%F").sqlite3"
 }
 
-if [ -z "$1" ]
+if [ -d "$path" ]
 then
-  if [ -d $backdir ]
-  then
-    createBackup $backdir
-  else
-    mkdir -p $backdir
-    createBackup $backdir
-  fi
-  exit 0
+  createBackup "$path"
 else
-  if [ -d "$path" ]
-  then
-    createBackup "$path"
-  else
-    mkdir -p "$path"
-    createBackup "$path"
-  fi
-  exit 0
+  mkdir -p "$path"
+  createBackup "$path"
 fi
+exit 0

@@ -1,4 +1,5 @@
 {
+  "backPath": "../",
   "disableEveryone": true,
   "owner": "Your owner ID",
   "prefix": "Prefix",
