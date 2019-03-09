@@ -37,8 +37,7 @@ module.exports = class KickCommand extends Command {
         if (reason !== `Kicked by SpecBot.`) {
           log.Info(`Kicked member "${m.user.tag}" from guild "${msg.guild.name}". Reason: "${reason}"`)
         }
-        msg.reply(`👢 | Member **${m.user.tag}** wask kicked. Reason: **${reason}**`)
-        return sendSuccessEmbed(msg, `👢  Member **${m.user.tag}** wask kicked.`, `Reason: **${reason}**`)
+        return sendSuccessEmbed(msg, `👢  Member **${m.user.tag}** was kicked.`, `Reason: **${reason}**`)
       })
       .catch(err => {
         msg.delete().catch()
