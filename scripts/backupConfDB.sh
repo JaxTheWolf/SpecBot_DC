@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [ ! -z $(cat "../configs/conf.json" | jq ".backPath") ]; then
-  path=$(echo "$(cat "../configs/conf.json" | jq ".backPath")/backups" | tr -d "\"")
+if [ ! -z $(jq ".backPath" < "../configs/conf.json") ]; then
+  path=$(echo "$(jq ".backPath" < "../configs/conf.json")/backups" | tr -d "\"")
 else
   path="$1/backups"
 fi
