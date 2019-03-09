@@ -1,9 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { delConf } = require(`../../libs/pcLibs`)
 
-
-
-
 module.exports = class ServerCommand extends Command {
   constructor (client) {
     super(client, {
