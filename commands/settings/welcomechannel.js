@@ -2,13 +2,13 @@ const { Command } = require(`discord.js-commando`)
 const randomHexColor = require(`random-hex-color`)
 const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed } = require(`../../libs/embeds`)
 
-module.exports = class XYZCommand extends Command {
+module.exports = class WelcomeChannel extends Command {
   constructor (client) {
     super(client, {
       description: `Use this to set the channel where the invite messages will be sent or to disable them.`,
       examples: [`welcome`, `welcome show`, `welcome disable`, `welcome set # welcome`, `welcome set 570179101340262656`],
       group: `settings`,
-      memberName: `welcome`,
+      memberName: `welcomechannel`,
       name: `welcome`,
       args: [
         {
@@ -53,16 +53,15 @@ module.exports = class XYZCommand extends Command {
       if (joinchann === null) {
         return sendErrorEmbed(msg, `❌ The welcome function is already disabled!`, ``)
       } else {
-        this.client.provider.remove(msg.guild, `joinchann`)
+        return this.client.provider.remove(msg.guild, `joinchann`)
           .then(() => {
-            return sendSuccessEmbed(msg, `✅ The join channel has been sucessfully disabled!`, ``)
+            sendSuccessEmbed(msg, `✅ The join channel has been sucessfully disabled!`, ``)
           })
           .catch(e => {
-            return msg.delete()
+            msg.delete()
               .then(sendErrorEmbed(msg, `❌ An error has occured`, e.message)).catch()
           })
       }
-      break
     default:
       if (joinchann !== null) {
         return sendSimpleEmbededMessage(msg, `<#${joinchann}>!`, randomHexColor().replace(`#`, `0x`), `The current welcome channel is`)
