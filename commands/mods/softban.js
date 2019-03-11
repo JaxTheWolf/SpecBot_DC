@@ -41,7 +41,6 @@ module.exports = class SoftBanCommand extends Command {
         return sendSuccessEmbed(msg, `🔨 Softbanned member **${member.user.tag}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.delete().catch()
         return sendErrorEmbed(msg, `❌ Couldn't softban member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }

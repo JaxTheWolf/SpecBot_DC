@@ -1,6 +1,6 @@
 const https = require(`https`)
 
-exports.sendImg = function (msg, reqUrl, field) {
+exports.sendImg = (msg, reqUrl, field) => {
   const randomHexColor = require(`random-hex-color`)
   const { sendEmbeddedImage, sendErrorEmbed } = require(`./embeds`)
 
@@ -10,7 +10,7 @@ exports.sendImg = function (msg, reqUrl, field) {
       data += chunk
     })
     response.on(`end`, () => {
-      return sendEmbeddedImage(msg, reqUrl, JSON.parse(data)[field], randomHexColor().replace(`#`, `0x`))
+      return sendEmbeddedImage(msg, reqUrl, JSON.parse(data)[field], randomHexColor().replace(`#`, `0x`), ``, `Trouble viewing the image? Link [**here**](${JSON.parse(data)[field]})`)
     })
   })
     .on(`error`, err => {
@@ -18,7 +18,7 @@ exports.sendImg = function (msg, reqUrl, field) {
     })
 }
 
-exports.fetchText = function (msg, emote, reqUrl, field) {
+exports.fetchText = (msg, emote, reqUrl, field) => {
   https.get(reqUrl, function onDone (response) {
     let data = ``
     response.on(`data`, chunk => {

@@ -1,21 +1,19 @@
 const randomHexColor = require(`random-hex-color`)
 const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed } = require(`./embeds`)
 
-exports.setMsg = function (msg, jMsg, jl) {
+exports.setMsg = (msg, jMsg, jl) => {
   if (!jMsg.includes(`%s`)) {
-    return msg.delete()
-      .then(sendErrorEmbed(msg, `❌ The ${jl} message doesn't contain "%s" (which will get replaced for the tag)`, `Aborting...`, 7500)).catch()
+    return sendErrorEmbed(msg, `❌ The ${jl} message doesn't contain "%s" (which will get replaced for the tag)`, `Aborting...`, 7500)
   } else {
     return msg.client.provider.set(msg.guild, jl, jMsg)
       .then(s => sendSuccessEmbed(msg, `✅ The ${jl} message has been set to`, s.replace(/(%s)/gi, `\`tag\``)))
       .catch(e => {
-        msg.delete()
-          .then(sendErrorEmbed(msg, `An error has occured.`, e.message, 7500)).catch()
+        sendErrorEmbed(msg, `An error has occured.`, e.message, 7500)
       })
   }
 }
 
-exports.disableMsg = function (msg, jl) {
+exports.disableMsg = (msg, jl) => {
   const joinOrLeaveMsg = msg.client.provider.get(msg.guild, jl, null)
 
   if (joinOrLeaveMsg === null) {
@@ -28,7 +26,7 @@ exports.disableMsg = function (msg, jl) {
   }
 }
 
-exports.showMsg = function (msg, jl) {
+exports.showMsg = (msg, jl) => {
   const joinOrLeaveMsg = msg.client.provider.get(msg.guild, jl, null)
 
   if (joinOrLeaveMsg !== null) {

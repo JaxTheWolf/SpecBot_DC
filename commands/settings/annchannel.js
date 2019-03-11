@@ -36,7 +36,6 @@ module.exports = class AnnchannelCommand extends Command {
   run (msg, { channel, operation }) {
     if (channel !== `` && operation === `set`) {
       if (channel.type !== `text`) {
-        msg.delete().catch()
         return sendErrorEmbed(msg, `❌ The announcement channel can only be a text channel!`, ``, 7500)
       } else {
         msg.client.provider.set(msg.guild, `annchan`, channel.id).then(c => {

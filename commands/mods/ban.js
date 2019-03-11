@@ -47,7 +47,6 @@ module.exports = class BanCommand extends Command {
         return sendSuccessEmbed(msg, `🔨  Member **${m.user.tag}** was banned for **${length} ${length === 0 || length > 1 ? `days` : `day`}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.delete().catch()
         return sendErrorEmbed(msg, `❌ Couldn't ban member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }

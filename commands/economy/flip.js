@@ -48,9 +48,7 @@ module.exports = class FlipCommand extends Command {
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())
       .setTitle(`Flip result:`)
-    const cf = () => {
-      return Math.floor(Math.random() * 2) === 0
-    }
+    const cf = () => Math.floor(Math.random() * 2) === 0
     const cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`
     const cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`
     let gstateConv

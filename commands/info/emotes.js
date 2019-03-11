@@ -18,7 +18,6 @@ module.exports = class XYZCommand extends Command {
 
       switch (emojiList) {
       case (``):
-        msg.delete()
         return sendErrorEmbed(msg, `❌ This server doesn't have any custom emotes!`, ``, 7500)
       default:
         return msg.say(emojiList)
