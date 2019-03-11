@@ -68,12 +68,10 @@ module.exports = class PointsCommand extends Command {
         try {
           return sendCard(member.user, this.client)
         } catch (e) {
-          msg.delete().catch()
           return sendErrorEmbed(msg, `❌ This user doesn't have any points!`, ``, 7500)
         }
       }
     } catch (e) {
-      msg.delete().catch()
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }

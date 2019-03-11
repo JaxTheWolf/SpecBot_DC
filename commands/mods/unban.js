@@ -42,7 +42,6 @@ module.exports = class UnbanCommand extends Command {
         return sendSuccessEmbed(msg, `🔨 Unbanned user **${user.tag}**`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.delete().catch()
         return sendErrorEmbed(msg, `❌ Couldn't unban user **${user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }

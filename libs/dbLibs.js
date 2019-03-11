@@ -1,4 +1,4 @@
-exports.setPoints = function (score, operation, amount) {
+exports.setPoints = (score, operation, amount) => {
   switch (operation) {
   case `-`:
     score.points -= amount
@@ -9,7 +9,7 @@ exports.setPoints = function (score, operation, amount) {
   }
 }
 
-exports.updateLevel = function (userScore) {
+exports.updateLevel = userScore => {
   const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
   userScore.level = userLevel < 1 ? 1 : userLevel
 }

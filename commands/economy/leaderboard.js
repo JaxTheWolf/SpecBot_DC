@@ -35,7 +35,6 @@ module.exports = class LeaderboardCommand extends Command {
 
       return msg.say({ embed })
     } catch (e) {
-      msg.delete()
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }

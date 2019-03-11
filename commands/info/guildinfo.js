@@ -22,20 +22,11 @@ module.exports = class GuildInfoCommand extends Command {
     })
   }
   run (msg) {
-    function checkMembers (guild, member) {
+    function checkBots (guild, member) {
       let memberCount = 0
-
-      switch (member) {
-      case `user`:
-        guild.members.forEach(member => {
-          if (!member.user.bot) memberCount++
-        })
-        break
-      case `bot`:
-        guild.members.forEach(member => {
-          if (member.user.bot) memberCount++
-        })
-      }
+      guild.members.forEach(member => {
+        if (member.user.bot) memberCount++
+      })
       return memberCount
     }
 
@@ -52,16 +43,16 @@ module.exports = class GuildInfoCommand extends Command {
       .setTitle(`Here's some info about this guild:`)
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setThumbnail(msg.guild.iconURL)
-      .addField(`Name:`, msg.guild.name, false)
-      .addField(`Owner:`, `${msg.guild.owner.user.tag} (${msg.guild.owner.user.id})`, false)
-      .addField(`ID:`, msg.guild.id, false)
-      .addField(`Number of text channels:`, channCount(msg.guild, `text`), false)
-      .addField(`Number of voice channels:`, channCount(msg.guild, `voice`), false)
-      .addField(`Amount of members (total):`, msg.guild.memberCount, false)
-      .addField(`Bots:`, checkMembers(msg.guild, `bot`), false)
-      .addField(`Humans:`, checkMembers(msg.guild, `user`), false)
-      .addField(`Is this guild considered large? (250+ members):`, msg.guild.large ? `Yes` : `No`, false)
-      .addField(`Region:`, msg.guild.region, false)
+      .addField(`Name:`, `**${msg.guild.name}**`, true)
+      .addField(`Owner:`, `**${msg.guild.owner.user.tag}** (\`${msg.guild.owner.user.id}\`)`, false)
+      .addField(`ID:`, `**${msg.guild.id}**`, false)
+      .addField(`Total amount of channels:`, `**${msg.guild.channels.size - channCount(msg.guild, `category`)}**`, false)
+      .addField(`Text channels:`, `**${channCount(msg.guild, `text`)}**`, false)
+      .addField(`Voice channels:`, `**${channCount(msg.guild, `voice`)}**`, false)
+      .addField(`Amount of members:`, `**${msg.guild.memberCount}**`, false)
+      .addField(`Amount bots:`, `**${checkBots(msg.guild)}**`, false)
+      .addField(`Amount humans:`, `**${msg.guild.members.size - checkBots(msg.guild)}**`, false)
+      .addField(`Region:`, `**${msg.guild.region}**`, false)
       .setFooter(`Guild created at:`)
       .setTimestamp(msg.guild.createdAt)
 

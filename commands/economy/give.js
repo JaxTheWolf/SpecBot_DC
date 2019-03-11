@@ -57,7 +57,6 @@ module.exports = class GiveCommand extends Command {
       return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
         .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
     } catch (e) {
-      msg.delete()
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
     }
   }

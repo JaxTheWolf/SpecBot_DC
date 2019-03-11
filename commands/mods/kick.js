@@ -40,7 +40,6 @@ module.exports = class KickCommand extends Command {
         return sendSuccessEmbed(msg, `👢  Member **${m.user.tag}** was kicked.`, `Reason: **${reason}**`)
       })
       .catch(err => {
-        msg.delete().catch()
         return sendErrorEmbed(msg, `❌ Couldn't kick member **${member.user.tag}**`, `Reason: **${err.message}**`, 7500)
       })
   }
