@@ -27,6 +27,11 @@ module.exports = class LeaveMsg extends Command {
       ]
     })
   }
+
+  hasPermission (msg) {
+    return this.client.isOwner(msg.author) || msg.member.hasPermission(`ADMINISTRATOR`)
+  }
+
   run (msg, { action, jMsg }) {
     switch (action) {
     case `set`:

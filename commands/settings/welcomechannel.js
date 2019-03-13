@@ -29,6 +29,11 @@ module.exports = class WelcomeChannel extends Command {
       ]
     })
   }
+
+  hasPermission (msg) {
+    return this.client.isOwner(msg.author) || msg.member.hasPermission(`ADMINISTRATOR`)
+  }
+
   run (msg, { action, channel }) {
     const joinchann = this.client.provider.get(msg.guild, `joinchann`, null)
 
