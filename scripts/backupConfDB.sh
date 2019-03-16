@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
+path=$(jq ".backPath" < "../configs/conf.json" | tr -d "\"")backups
 
-if [ ! -z $(jq ".backPath" < "../configs/conf.json") ]; then
-  path=$(echo "$(jq ".backPath" < "../configs/conf.json")/backups" | tr -d "\"")
-else
-  path="$1/backups"
-fi
+case "$1" in
+  conf ) fn="configurations.sqlite3"
+    ;;
+  settings ) fn="settings.sqlite3"
+    ;;
+  scores ) fn="scores.sqlite3"
+    ;;
+  * ) echo "Invalid name. Exitting" && exit 1
+    ;;
+esac
 
 createBackup() {
   cd "../DBs" || exit
-  sqlite3 configurations.sqlite3 ".backup backup_$(date +"%F").sqlite3"
-  mv "backup_$(date +"%F").sqlite3" "$path/backup_$(date +"%F").sqlite3"
+  sqlite3 "$fn" ".backup backup_$(echo $fn | cut -f 1 -d ".")_$(date +"%F").sqlite3"
+  mv "backup_$(echo $fn | cut -f 1 -d ".")_$(date +"%F").sqlite3" "$path/backup_$(echo $fn | cut -f 1 -d ".")_$(date +"%F").sqlite3"
 }
 
 if [ -d "$path" ]

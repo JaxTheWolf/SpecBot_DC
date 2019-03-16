@@ -1,4 +1,4 @@
-exports.setPoints = (score, operation, amount) => {
+exports.setPoints = (client, score, operation, amount) => {
   switch (operation) {
   case `-`:
     score.points -= amount
@@ -7,9 +7,8 @@ exports.setPoints = (score, operation, amount) => {
     score.points += amount
     break
   }
-}
+  const userLevel = Math.floor(0.25 * Math.sqrt(score.points))
+  score.level = userLevel < 1 ? 1 : userLevel
 
-exports.updateLevel = userScore => {
-  const userLevel = Math.floor(0.25 * Math.sqrt(userScore.points))
-  userScore.level = userLevel < 1 ? 1 : userLevel
+  client.setScore.run(score)
 }
