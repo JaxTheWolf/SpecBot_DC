@@ -1,3 +1,8 @@
+const randomHexColor = require(`random-hex-color`)
+const { Command } = require(`discord.js-commando`)
+const { RichEmbed } = require(`discord.js`)
+const { sendErrorEmbed } = require(`../../libs/embeds`)
+const { setPoints } = require(`../../libs/dbLibs`)
 const allowed = [
   `h`,
   `heads`,
@@ -9,11 +14,6 @@ const allowed = [
   `t`,
   `tails`
 ]
-const randomHexColor = require(`random-hex-color`)
-const { Command } = require(`discord.js-commando`)
-const { RichEmbed } = require(`discord.js`)
-const { sendErrorEmbed } = require(`../../libs/embeds`)
-const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
 
 module.exports = class FlipCommand extends Command {
   constructor (client) {
@@ -43,45 +43,37 @@ module.exports = class FlipCommand extends Command {
     })
   }
   run (msg, { bet, gstate }) {
+    function flip () {
+      return Math.floor(Math.random() * 2) === 0
+    }
+    const cf = flip()
     const score = this.client.getScore.get(msg.author.id, msg.guild.id)
+    const cpus = [`https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`,
+      `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`]
     const embed = new RichEmbed()
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())
+      .setImage(cf === true ? cpus[0] : cpus[1])
       .setTitle(`Flip result:`)
-    const cf = () => Math.floor(Math.random() * 2) === 0
-    const cpub = `https://www.dropbox.com/s/a0w5kdqterb29gk/cpu-back.png?dl=1`
-    const cpuf = `https://www.dropbox.com/s/dhmpmc16wt1glfu/cpu-front.png?dl=1`
-    let gstateConv
 
-    try {
-      if (allowed.slice(0, 4).includes(gstate.toLowerCase())) {
-        gstateConv = true
-      } else {
-        gstateConv = false
-      }
-      if (score.points < bet) {
-        return msg.reply(`Insufficent funds.`)
-      }
-      if (gstateConv === cf) {
-        const toAdd = Math.floor(bet * 1.5)
-        setPoints(score, `+`, toAdd)
-        updateLevel(score)
-        this.client.setScore.run(score)
-        embed
-          .setDescription(`${gstateConv === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +${toAdd === 1 ? `${toAdd} point!` : `${toAdd} points!`} (Total: ${score.points})`)
-          .setImage(cf === true ? cpub : cpuf)
-      } else {
-        setPoints(score, `-`, bet)
-        updateLevel(score)
-        this.client.setScore.run(score)
-        embed
-          .setDescription(`${gstateConv === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -${bet === 1 ? `${bet} point!` : `${bet} points!`} (Total: ${score.points})`)
-          .setImage(cf === true ? cpub : cpuf)
-      }
-
-      return msg.say({ embed })
-    } catch (e) {
-      return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
+    let convState
+    if (allowed.slice(5, 8).includes(gstate)) {
+      convState = true
+    } else {
+      convState = false
     }
+
+    if (score.points < bet) {
+      return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``)
+    }
+    if (convState === cf) {
+      const points = Math.floor(bet * 1.75)
+      setPoints(this.client, score, `+`, points)
+      embed.setDescription(`${convState === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +**${points}** points! (Total: **${score.points}**)`)
+    } else {
+      setPoints(this.client, score, `-`, bet)
+      embed.setDescription(`${convState === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -**${bet}** points! (Total: **${score.points}**)`)
+    }
+    return msg.say({ embed })
   }
 }

@@ -1,6 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const { setPoints, updateLevel } = require(`../../libs/dbLibs`)
+const { setPoints } = require(`../../libs/dbLibs`)
 
 module.exports = class GiveCommand extends Command {
   constructor (client) {
@@ -45,14 +45,8 @@ module.exports = class GiveCommand extends Command {
       if (authorScore.points < amount) {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)
       }
-      setPoints(authorScore, `-`, amount)
-      setPoints(userScore, `+`, amount)
-
-      updateLevel(authorScore)
-      updateLevel(userScore)
-
-      this.client.setScore.run(authorScore)
-      this.client.setScore.run(userScore)
+      setPoints(this.client, authorScore, `-`, amount)
+      setPoints(this.client, userScore, `+`, amount)
 
       return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
         .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
