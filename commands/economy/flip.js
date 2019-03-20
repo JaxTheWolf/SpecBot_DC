@@ -62,7 +62,6 @@ module.exports = class FlipCommand extends Command {
     } else {
       convState = false
     }
-
     if (score.points < bet) {
       return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``)
     }

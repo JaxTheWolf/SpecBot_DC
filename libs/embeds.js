@@ -1,3 +1,5 @@
+const randomHexColor = require(`random-hex-color`)
+
 exports.sendSimpleEmbededMessage = (msg, text, color, title, timeout = 0) => {
   const promise = msg.embed({
     author: { name: `${msg.author.username} `, icon_url: msg.author.displayAvatarURL },
@@ -30,4 +32,8 @@ exports.sendEmbeddedImage = (msg, footUrl, url, color, title = ``, description =
     title: title,
     description: description
   })
+}
+
+exports.hexColorWith0x = () => {
+  return randomHexColor().replace(`#`, `0x`)
 }

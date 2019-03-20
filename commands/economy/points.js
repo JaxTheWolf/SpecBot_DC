@@ -60,7 +60,6 @@ module.exports = class PointsCommand extends Command {
             .then(setTimeout(() => msg.say({ file: `${__dirname}/export/card${user.id}.png` }), 500))
         })
     }
-
     try {
       if (member === ``) {
         return sendCard(msg.author, this.client)

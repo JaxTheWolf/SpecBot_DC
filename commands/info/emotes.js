@@ -23,7 +23,6 @@ module.exports = class XYZCommand extends Command {
         return msg.say(emojiList)
       }
     }
-
     return fetchEmojis(msg.guild)
   }
 }

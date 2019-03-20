@@ -40,7 +40,6 @@ module.exports = class GiveCommand extends Command {
         level: 1
       }
     }
-
     try {
       if (authorScore.points < amount) {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)
