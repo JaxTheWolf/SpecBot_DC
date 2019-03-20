@@ -26,6 +26,7 @@ exports.fetchText = (msg, emote, reqUrl, field) => {
     })
     response.on(`end`, () => {
       const getDeepProp = (obj, path) => (path.split(`.`).reduce((acc, part) => acc && acc[part], obj))
+
       return msg.say(`${emote} | ${getDeepProp(JSON.parse(data), field)}`)
     })
   })

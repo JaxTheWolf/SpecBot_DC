@@ -27,7 +27,6 @@ module.exports = class SayCommand extends Command {
       if (toCheck.includes(`///anon`)) return true
       else return false
     }
-
     function sendEmbed (msg) {
       if (!checkAnon(msg.content)) {
         toSay
@@ -37,9 +36,9 @@ module.exports = class SayCommand extends Command {
         toSay
           .setDescription(say.replace(`///anon`, ``))
       }
+
       return msg.say(toSay)
     }
-
     if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
       return sendEmbed(msg)
     } else {

@@ -27,11 +27,9 @@ module.exports = class UserInfoCommand extends Command {
     function isBot (user) {
       return user.bot === false ? `**No**` : `**Yes**`
     }
-
     function getNick (user) {
       return user.nickname === null ? `**None**` : `**${user.nickname}**`
     }
-
     function getPlayStat (user) {
       try {
         return `**${user.presence.game.name}**`
@@ -39,7 +37,6 @@ module.exports = class UserInfoCommand extends Command {
         return `**nothing**`
       }
     }
-
     function getStatus (user) {
       let status
       switch (user.presence.status) {
@@ -56,8 +53,10 @@ module.exports = class UserInfoCommand extends Command {
         status = `**Offline/Invisible**`
         break
       }
+
       return status
     }
+
     const embed = new RichEmbed()
       .setAuthor(this.client.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())

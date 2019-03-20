@@ -1,6 +1,5 @@
-const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
-const { sendEmbeddedImage } = require(`../../libs/embeds`)
+const { sendEmbeddedImage, hexColorWith0x } = require(`../../libs/embeds`)
 
 module.exports = class AvatarCommand extends Command {
   constructor (client) {
@@ -24,9 +23,9 @@ module.exports = class AvatarCommand extends Command {
   }
   run (msg, { user }) {
     if (user === ``) {
-      return sendEmbeddedImage(msg, ``, msg.author.displayAvatarURL, randomHexColor().replace(`#`, `0x`), `Here's your avatar!`)
+      return sendEmbeddedImage(msg, ``, msg.author.displayAvatarURL, hexColorWith0x(), `Here's your avatar!`)
     } else {
-      return sendEmbeddedImage(msg, ``, user.displayAvatarURL, randomHexColor().replace(`#`, `0x`), `Here's ${user.username}'s avatar!`)
+      return sendEmbeddedImage(msg, ``, user.displayAvatarURL, hexColorWith0x(), `Here's ${user.username}'s avatar!`)
     }
   }
 }

@@ -29,7 +29,6 @@ module.exports = class GuildInfoCommand extends Command {
       })
       return memberCount
     }
-
     function channCount (guild, type) {
       let chann = 0
       guild.channels.forEach(c => {
@@ -50,8 +49,8 @@ module.exports = class GuildInfoCommand extends Command {
       .addField(`Text channels:`, `**${channCount(msg.guild, `text`)}**`, false)
       .addField(`Voice channels:`, `**${channCount(msg.guild, `voice`)}**`, false)
       .addField(`Amount of members:`, `**${msg.guild.memberCount}**`, false)
-      .addField(`Amount bots:`, `**${checkBots(msg.guild)}**`, false)
-      .addField(`Amount humans:`, `**${msg.guild.members.size - checkBots(msg.guild)}**`, false)
+      .addField(`Amount of bots:`, `**${checkBots(msg.guild)}**`, false)
+      .addField(`Amount of humans:`, `**${msg.guild.memberCount - checkBots(msg.guild)}**`, false)
       .addField(`Region:`, `**${msg.guild.region}**`, false)
       .setFooter(`Guild created at:`)
       .setTimestamp(msg.guild.createdAt)

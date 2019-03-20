@@ -22,7 +22,6 @@ module.exports = class LeaderboardCommand extends Command {
       const top10 = sql
         .prepare('SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;')
         .all(msg.guild.id)
-
       const embed = new RichEmbed()
         .setAuthor(this.client.user.username, this.client.user.avatarURL)
         .setColor(randomHexColor())
@@ -32,7 +31,6 @@ module.exports = class LeaderboardCommand extends Command {
       for (const data of top10) {
         embed.addField(this.client.users.get(data.user).tag, `**${data.points}** points (level **${data.level}**)`)
       }
-
       return msg.say({ embed })
     } catch (e) {
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
