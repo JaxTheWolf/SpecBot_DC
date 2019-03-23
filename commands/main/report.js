@@ -46,17 +46,17 @@ module.exports = class ReportCommand extends Command {
         return msg.reply(`Cancelled command.`)
       } else {
         const embed = new RichEmbed()
-          .addField(`User:`, `**${user.tag}**`, false)
-          .addField(`Reason:`, `**${reason}**`, false)
-          .addField(`Guild:`, `**${msg.guild.name}**`, false)
-          .addField(`Channel:`, `**${msg.channel.name}**`, false)
-          .addField(`If you feel that this report is unnecessary and/or you believe the command has been abused:`, ` you may want to "punish" the author (**${msg.author.tag}**).`, false)
-          .setAuthor(`Report from ${msg.author.username}:`, msg.author.displayAvatarURL)
+          .addField(`User`, `${user.tag}`, true)
+          .addField(`Reason`, `${reason}`, true)
+          .addField(`Guild`, `${msg.guild.name}`, true)
+          .addField(`Channel`, `${msg.channel.name}`, true)
+          .addField(`If you feel that this report is unnecessary and/or you believe the command has been abused`, ` you may want to "punish" the author (${msg.author.tag}).`, true)
+          .setAuthor(`Report from ${msg.author.username}`, msg.author.displayAvatarURL)
           .setColor(randomHexColor())
-          .setDescription(`**Remember to punish the offending user if needed!**`)
+          .setDescription(`Remember to punish the offending user if needed!`)
           .setFooter(new Date(), user.displayAvatarURL)
 
-        return msg.guild.owner.user.send(embed)
+        return msg.guild.owner.user.send({ embed })
           .then(sendSuccessEmbed(msg, `User \`${user.tag}\` has been reported to the server owner!`, ``))
       }
     }
