@@ -1,4 +1,5 @@
 const { Command } = require(`discord.js-commando`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class AnnounceCommand extends Command {
   constructor (client) {
@@ -12,6 +13,7 @@ module.exports = class AnnounceCommand extends Command {
       ownerOnly: true,
       args: [
         {
+          default: ``,
           key: `message`,
           prompt: `What would you like to be announced?`,
           type: `string`
@@ -22,7 +24,7 @@ module.exports = class AnnounceCommand extends Command {
   run (msg, { message }) {
     function isMuted (guild, client) {
       const muted = client.provider.get(guild, `muteann`, null)
-      return !!(muted === false || muted === null)
+      return !!(muted === null || false)
     }
 
     function setDefAnnChannAndSendMessage (guild, client) {
@@ -39,19 +41,22 @@ module.exports = class AnnounceCommand extends Command {
       })
       return this.client.provider.set(guild, `annchan`, defaultChann)
         .then(c => this.client.channels.get(c).send(message)
-          .then(msg => msg.channel.send(`This message was sent to a "random" channel. Please consider adding an announcement channel via -setannchannel channelID or #channel.`)))
+          .then(msg => msg.channel.send(`This message was sent to a "random" channel. Please consider adding an announcement channel via ${this.usage(`#channel or channelID`, msg.guild.commandPrefix)}.`)))
     }
+    if (message === ``) {
+      return sendCMDUsage(msg, this, `message`)
+    } else {
+      this.client.guilds.map(guild => {
+        const channel = this.client.channels.get(this.client.provider.get(guild, `annchan`, null))
 
-    this.client.guilds.map(guild => {
-      const channel = this.client.channels.get(this.client.provider.get(guild, `annchan`, null))
-
-      if (isMuted(guild, this.client)) {
-        try {
-          channel.send(message)
-        } catch (e) {
-          setDefAnnChannAndSendMessage(guild, this.client)
+        if (isMuted(guild, this.client)) {
+          try {
+            channel.send(message)
+          } catch (e) {
+            setDefAnnChannAndSendMessage(guild, this.client)
+          }
         }
-      }
-    })
+      })
+    }
   }
 }

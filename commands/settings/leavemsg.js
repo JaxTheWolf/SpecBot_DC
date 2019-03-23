@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { setMsg, disableMsg, showMsg } = require(`../../libs/welcomeLib`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class LeaveMsg extends Command {
   constructor (client) {
@@ -33,13 +34,17 @@ module.exports = class LeaveMsg extends Command {
   }
 
   run (msg, { action, jMsg }) {
-    switch (action) {
-    case `set`:
-      return setMsg(msg, jMsg, `leave`)
-    case `disable`:
-      return disableMsg(msg, `leave`)
-    default:
-      return showMsg(msg, `leave`)
+    if (action === `` || jMsg === ``) {
+      return sendCMDUsage(msg, this, [`action (set, disable, show)`, `message`])
+    } else {
+      switch (action) {
+      case `set`:
+        return setMsg(msg, jMsg, `leave`)
+      case `disable`:
+        return disableMsg(msg, `leave`)
+      case `show`:
+        return showMsg(msg, `leave`)
+      }
     }
   }
 }

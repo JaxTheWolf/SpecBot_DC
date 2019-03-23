@@ -1,4 +1,5 @@
 const { Command } = require(`discord.js-commando`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class SayCommand extends Command {
   constructor (client) {
@@ -19,7 +20,9 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
+    if (say === ``) {
+      return sendCMDUsage(msg, this, `message`)
+    } else if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
       return msg.say(say)
     } else {
       return msg.delete().then(msg.say(say)).catch()

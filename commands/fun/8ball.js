@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { fetchText } = require(`../../libs/jsonLibs`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class EightBallCommand extends Command {
   constructor (client) {
@@ -11,6 +12,7 @@ module.exports = class EightBallCommand extends Command {
       name: `8ball`,
       args: [
         {
+          default: ``,
           key: `question`,
           prompt: `What would you like to ask?`,
           type: `string`
@@ -19,6 +21,10 @@ module.exports = class EightBallCommand extends Command {
     })
   }
   run (msg, { question }) {
-    return fetchText(msg, `🎱`, `https://8ball.delegator.com/magic/JSON/${encodeURI(question)}`, `magic.answer`)
+    if (question === ``) {
+      return sendCMDUsage(msg, this, `question`)
+    } else {
+      return fetchText(msg, `🎱`, `https://8ball.delegator.com/magic/JSON/${encodeURI(question)}`, `magic.answer`)
+    }
   }
 }
