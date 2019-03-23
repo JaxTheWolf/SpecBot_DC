@@ -1,5 +1,6 @@
 const { Command } = require(`discord.js-commando`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class AnnchannelCommand extends Command {
   constructor (client) {
@@ -16,7 +17,8 @@ module.exports = class AnnchannelCommand extends Command {
           key: `operation`,
           oneOf: [`set`, `show`],
           prompt: `What would you like to do? (set/show)`,
-          type: `string`
+          type: `string`,
+          default: ``
         },
         {
           default: ``,
@@ -34,16 +36,27 @@ module.exports = class AnnchannelCommand extends Command {
   }
 
   run (msg, { channel, operation }) {
-    if (channel !== `` && operation === `set`) {
-      if (channel.type !== `text`) {
-        return sendErrorEmbed(msg, `❌ The announcement channel can only be a text channel!`, ``, 7500)
-      } else {
-        msg.client.provider.set(msg.guild, `annchan`, channel.id).then(c => {
-          return sendSuccessEmbed(msg, `✅ The announcement channel has been successfully set to `, `<#${this.client.channels.get(c).id}>!`)
-        })
+    if (operation === ``) {
+      return sendCMDUsage(msg, this, [`channel`, `operation (set, show)`])
+    } else {
+      switch (operation) {
+      case `set`:
+        if (channel.type !== `text`) {
+          return sendErrorEmbed(msg, `❌ The announcement channel can only be a text channel!`, ``, 7500)
+        } else {
+          msg.client.provider.set(msg.guild, `annchan`, channel.id).then(c => {
+            return sendSuccessEmbed(msg, `✅ The announcement channel has been successfully set to `, `<#${this.client.channels.get(c).id}>!`)
+          })
+        }
+        break
+      case `show`:
+        const id = this.client.provider.get(msg.guild, `annchan`, null)
+        if (id === null) {
+          return sendErrorEmbed(msg, `❌ The announcement channel isn't set!`)
+        } else {
+          return sendSuccessEmbed(msg, `The current announcement channel is`, `<#${this.client.provider.get(msg.guild, `annchan`)}>!`)
+        }
       }
-    } else if (channel === `` && operation === `show`) {
-      return sendSuccessEmbed(msg, `The current announcement channel is`, `<#${this.client.provider.get(msg.guild, `annchan`)}>!`)
     }
   }
 }

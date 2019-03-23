@@ -1,6 +1,7 @@
 const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
+const { sendCMDUsage } = require(`../../libs/miscLibs`)
 
 module.exports = class SayCommand extends Command {
   constructor (client) {
@@ -12,6 +13,7 @@ module.exports = class SayCommand extends Command {
       name: `embed`,
       args: [
         {
+          default: ``,
           key: `say`,
           prompt: `What would you like the bot to embed?`,
           type: `string`
@@ -36,13 +38,17 @@ module.exports = class SayCommand extends Command {
         toSay
           .setDescription(say.replace(`///anon`, ``))
       }
-
       return msg.say(toSay)
     }
-    if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
-      return sendEmbed(msg)
+
+    if (say === ``) {
+      return sendCMDUsage(msg, this, `message`)
     } else {
-      return msg.delete().then(sendEmbed(msg)).catch()
+      if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
+        return sendEmbed(msg)
+      } else {
+        return msg.delete().then(sendEmbed(msg)).catch()
+      }
     }
   }
 }

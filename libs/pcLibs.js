@@ -1,5 +1,5 @@
 const SQLite = require(`better-sqlite3`)
-const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed } = require(`./embeds`)
+const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed, hexColorWith0x } = require(`./embeds`)
 
 exports.delConf = (msg, confirm, dirname, conf) => {
   if (confirm === `no`) {
@@ -55,13 +55,10 @@ exports.editConf = (msg, component, newCmp, dirname, conf) => {
 
 exports.sendConf = (msg, user, conf, dirname) => {
   const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
-  const randomHexColor = require(`random-hex-color`)
 
   function retrievePC (user) {
     try {
-      return sendSimpleEmbededMessage(msg, db.prepare(`SELECT conf FROM ${conf} WHERE id = '${user.id}';`).get().conf,
-        randomHexColor().replace(`#`, `0x`),
-        `Here's ${user.username}'s configuration!`)
+      return sendSimpleEmbededMessage(msg, `Here's ${user.username}'s configuration!`, db.prepare(`SELECT conf FROM ${conf} WHERE id = '${user.id}';`).get().conf, hexColorWith0x())
     } catch (e) {
       if (e || typeof row === `undefined`) {
         return sendErrorEmbed(msg, `❌ This person doesn't have a configuration yet!`, ``, 7500)
