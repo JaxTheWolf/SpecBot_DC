@@ -38,7 +38,7 @@ module.exports = class SayCommand extends Command {
         toSay
           .setDescription(say.replace(`///anon`, ``))
       }
-      return msg.say(toSay)
+      return msg.say({ toSay })
     }
 
     if (say === ``) {
