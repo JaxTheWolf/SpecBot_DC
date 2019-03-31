@@ -20,10 +20,7 @@ module.exports = class SetServerCommand extends Command {
     })
   }
   run (msg, { serverconf }) {
-    const content = `Server: \n${serverconf
-      .toString()
-      .split(`,`)
-      .join(`\n`)}`
+    const content = `Server: \n${serverconf.join(`\n`)}`
 
     return setConf(msg, content, `server`, __dirname)
   }

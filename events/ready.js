@@ -2,7 +2,7 @@ module.exports = client => {
   const SQLite = require(`better-sqlite3`)
   const log = require(`node-file-logger`)
   const { options } = require(`../configs/options`)
-  const { setActivity } = require(`../libs/eventLibs`)
+  const { setActivity, setRandomActivity } = require(`../libs/eventLibs`)
   log.SetUserOptions(options)
 
   function createTable (sql, tablename, args) {
@@ -35,6 +35,10 @@ module.exports = client => {
     createTable(sql, `server`, confArgs)
   }
   setActivity(client)
+
+  setInterval(() => {
+    setRandomActivity(client)
+  }, Math.floor(Math.random() * (18000000 - 10000)) + 10000)
 
   log.Info(`Ready!`)
 }

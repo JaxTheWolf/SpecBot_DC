@@ -1,7 +1,6 @@
-const randomHexColor = require(`random-hex-color`)
 const { Command } = require(`discord.js-commando`)
-const { RichEmbed } = require(`discord.js`)
 const { sendCMDUsage } = require(`../../libs/miscLibs`)
+const { sendSimpleEmbededMessage, hexColorWith0x } = require(`../../libs/embeds`)
 
 module.exports = class SayCommand extends Command {
   constructor (client) {
@@ -22,33 +21,12 @@ module.exports = class SayCommand extends Command {
     })
   }
   run (msg, { say }) {
-    const toSay = new RichEmbed()
-      .setColor(randomHexColor())
-
-    function checkAnon (toCheck) {
-      if (toCheck.includes(`///anon`)) return true
-      else return false
-    }
-    function sendEmbed (msg) {
-      if (!checkAnon(msg.content)) {
-        toSay
-          .setAuthor(`${msg.author.username} says:`, msg.author.displayAvatarURL)
-          .setDescription(say)
-      } else {
-        toSay
-          .setDescription(say.replace(`///anon`, ``))
-      }
-      return msg.say({ toSay })
-    }
-
     if (say === ``) {
       return sendCMDUsage(msg, this, `message`)
+    } else if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
+      return sendSimpleEmbededMessage(msg, ``, say, hexColorWith0x())
     } else {
-      if (msg.channel.type === `dm` || !msg.guild.me.hasPermission(`MANAGE_MESSAGES`)) {
-        return sendEmbed(msg)
-      } else {
-        return msg.delete().then(sendEmbed(msg)).catch()
-      }
+      return msg.delete().then(sendSimpleEmbededMessage(msg, ``, say, hexColorWith0x())).catch()
     }
   }
 }
