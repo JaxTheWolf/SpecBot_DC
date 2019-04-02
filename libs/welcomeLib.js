@@ -1,5 +1,5 @@
 const randomHexColor = require(`random-hex-color`)
-const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed } = require(`./embeds`)
+const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed, hexColorWith0x } = require(`./embeds`)
 
 exports.setMsg = (msg, jMsg, jl) => {
   if (!jMsg.includes(`%s`)) {
@@ -30,7 +30,7 @@ exports.showMsg = (msg, jl) => {
   const joinOrLeaveMsg = msg.client.provider.get(msg.guild, jl, null)
 
   if (joinOrLeaveMsg !== null) {
-    return sendSimpleEmbededMessage(msg, joinOrLeaveMsg.replace(/(%s)/gi, `\`tag\``), randomHexColor().replace(`#`, `0x`), `The current ${jl} message is`)
+    return sendSimpleEmbededMessage(msg, `The current ${jl} message is`, joinOrLeaveMsg.replace(/(%s)/gi, `\`tag\``), hexColorWith0x())
   } else {
     return sendErrorEmbed(msg, `❌ The ${jl} message isn't set!`, `Try setting it up with \`${jl}message set Your message here (%s will get substituted for the tag)\``)
   }

@@ -34,7 +34,7 @@ module.exports = class LeaveMsg extends Command {
   }
 
   run (msg, { action, jMsg }) {
-    if (action === `` || jMsg === ``) {
+    if (action === ``) {
       return sendCMDUsage(msg, this, [`action (set, disable, show)`, `message`])
     } else {
       switch (action) {
