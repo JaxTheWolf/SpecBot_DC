@@ -19,7 +19,7 @@ const allowed = [
 module.exports = class FlipCommand extends Command {
   constructor (client) {
     super(client, {
-      description: `Flips a coin. If you guess the coin state your bet gets multiplied by 1.75!`,
+      description: `Flips a coin. If you guess the coin state your bet gets multiplied by 1.25!`,
       examples: [`flip 10 pins (pins = tails in this case)`, `flip 10 p`],
       group: `economy`,
       guildOnly: true,
@@ -72,7 +72,7 @@ module.exports = class FlipCommand extends Command {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``)
       }
       if (convState === cf) {
-        const points = Math.floor(bet * 1.75)
+        const points = Math.floor(bet * 1.25)
         setPoints(this.client, score, `+`, points)
         embed.setDescription(`${convState === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +**${points}** points! (Total: **${score.points}**)`)
       } else {

@@ -70,7 +70,7 @@ module.exports = class WelcomeChannel extends Command {
         }
       default:
         if (joinchann !== null) {
-          return sendSimpleEmbededMessage(msg, `<#${joinchann}>!`, hexColorWith0x(), `The current welcome channel is`)
+          return sendSimpleEmbededMessage(msg, `The current welcome channel is`, `<#${joinchann}>!`, hexColorWith0x())
         } else {
           return sendErrorEmbed(msg, `❌ The welcome channel isn't set!`, ``)
         }

@@ -44,7 +44,7 @@ module.exports = class UserInfoCommand extends Command {
       .addField(`Created`, `${uMember.user.createdAt.toLocaleString()}`, true)
       .addField(`Joined`, `${uMember.joinedAt.toLocaleString()}`, true)
       .addField(`Nickname`, uMember.nickname === null ? `None` : uMember.nickname, true)
-      .addField(`Roles [${uMember.roles.size - 1}]`, `${uMember.roles.map(r => r).slice(1).join(` `)}`, true)
+      .addField(`Roles [${uMember.roles.size - 1}]`, `${uMember.roles.size <= 1 ? `none` : uMember.roles.map(r => r).slice(1).join(` `)}`, true)
       .addField(`Status`, ` ${statuses[uMember.presence.status]}`, true)
       .setAuthor(uMember.user.username, this.client.user.displayAvatarURL)
       .setColor(randomHexColor())
