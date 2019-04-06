@@ -10,7 +10,7 @@ exports.setRandomActivity = client => {
     `literally nothing`,
     `games you can't afford`,
     `with fire`,
-    `Playing with Playing with Playing with`,
+    `with Playing with Playing with`,
     `with your feelings`,
     `Half-Life 3 Early Access`,
     `with ${client.users.size} users`,
@@ -22,7 +22,9 @@ exports.setRandomActivity = client => {
     `far away from Putin`,
     `sudo rm -rf /*`,
     `in ${client.guilds.size} servers|-help`,
-    `version v${version}`
+    `version v${version}`,
+    `myslef`,
+    `absolutely nothing`
   ]
 
   client.user.setActivity(playing[Math.floor(Math.random() * playing.length)])

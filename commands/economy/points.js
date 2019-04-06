@@ -30,8 +30,7 @@ module.exports = class PointsCommand extends Command {
         `${__dirname}/raw/mask.png`
       ]
       const jimps = []
-      const level = client.getScore.get(user.id, msg.guild.id).level
-      const points = client.getScore.get(user.id, msg.guild.id).points
+      const score = client.getScore.get(user.id, msg.guild.id)
       let bg, avatar, mask
 
       for (let i = 0; i < images.length; i++) {
@@ -46,7 +45,7 @@ module.exports = class PointsCommand extends Command {
           return Promise.all(jimps)
         })
         .then(() => {
-          return jimp.loadFont(`${__dirname}/font/noto_sans_ui_16_b.fnt`)
+          return jimp.loadFont(jimp.FONT_SANS_16_WHITE)
         })
         .then(font => {
           const circleAvatar = avatar
@@ -54,10 +53,12 @@ module.exports = class PointsCommand extends Command {
             .resize(80, 80)
             .mask(mask, 0, 0)
           bg.composite(circleAvatar, 10, 10)
-            .print(font, 100, 22, `Points: ${points}`)
-            .print(font, 100, 52, `Level: ${level}`)
-            .writeAsync(`${__dirname}/export/card${user.id}.png`)
-            .then(setTimeout(() => msg.say({ file: `${__dirname}/export/card${user.id}.png` }), 500))
+            .print(font, 100, 22, `Points: ${score.points}`)
+            .print(font, 100, 52, `Level: ${score.level}`)
+            .getBufferAsync(jimp.MIME_PNG)
+            .then(img => {
+              msg.say({ files: [{ attachment: img, name: `card.png` }] })
+            })
         })
     }
     try {
