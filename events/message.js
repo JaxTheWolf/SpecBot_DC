@@ -17,7 +17,7 @@ module.exports = (client, msg) => {
 
     if (score.level < curLevel) {
       score.level++
-      msg.reply(`You've leveled up to level **${curLevel}**`)
+      msg.reply(`You've leveled up to level **${curLevel}**`).then(m => m.delete(3000))
     }
     client.setScore.run(score)
   }
