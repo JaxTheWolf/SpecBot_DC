@@ -4,4 +4,5 @@ module.exports = (client, member) => {
   if (joinChannID !== null) {
     return client.channels.get(joinChannID).send(leaveMsg.replace(/(%s)/gi, `${member.user.tag}`))
   }
+  client.removeRow.run(member.user.id)
 }
