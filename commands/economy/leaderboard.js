@@ -29,8 +29,12 @@ module.exports = class LeaderboardCommand extends Command {
         .setTitle('Leaderboard')
 
       for (const data of top10) {
+        try {
         embed.addField(this.client.users.get(data.user).tag, `**${data.points}** points (level **${data.level}**)`)
+      } catch (e) {
+        this.client.removeRow.run(data.user.id)
       }
+    }
       return msg.say({ embed })
     } catch (e) {
       return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)

@@ -1,6 +1,7 @@
 const { version } = require(`../package.json`)
+const { prefix } = require(`../configs/conf.json`)
 exports.setActivity = client => {
-  client.user.setActivity(`in ${client.guilds.size} servers|-help|v.${version}`)
+  client.user.setActivity(`in ${client.guilds.size} servers|${prefix}help|v.${version}`)
 }
 
 exports.setRandomActivity = client => {

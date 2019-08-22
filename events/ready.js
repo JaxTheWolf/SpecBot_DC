@@ -19,6 +19,7 @@ module.exports = client => {
   }
   client.getScore = sql.prepare(`SELECT * FROM scores WHERE user = ? AND guild = ?`)
   client.setScore = sql.prepare(`INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);`)
+  client.removeRow = sql.prepare(`DELETE FROM scores WHERE user = ?`)
 
   const confArgs = 'id INTEGER PRIMARY KEY, conf TEXT NOT NULL'
   sql = new SQLite(`./DBs/configurations.sqlite3`)

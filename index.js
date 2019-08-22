@@ -35,7 +35,7 @@ client.registry
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
-    eval_: false
+    eval_: true
   })
   .registerCommandsIn(join(__dirname, `commands`))
 
