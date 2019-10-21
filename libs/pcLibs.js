@@ -78,7 +78,7 @@ exports.sendConf = (msg, user, conf, dirname) => {
 exports.setConf = (msg, content, conf, dirname) => {
   const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
   try {
-    db.prepare(`INSERT INTO ${conf}(id, conf) VALUES ('${msg.author.id}', '${content.replace(`'`, `''`)}');`).run()
+    db.prepare(`INSERT INTO ${conf}(id, conf) VALUES ('${msg.author.id}', ?);`, content).run(content)
     return sendSuccessEmbed(msg, `✅ Configuration saved successfully!`, ``, 7500)
   } catch (e) {
     if (e.message.includes(`UNIQUE constraint failed`)) {
