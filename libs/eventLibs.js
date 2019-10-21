@@ -6,6 +6,7 @@ exports.setActivity = client => {
 
 exports.setRandomActivity = client => {
   const playing = [
+    `crying in my bed`,
     `yourself`,
     `a prank on you`,
     `literally nothing`,
@@ -19,6 +20,7 @@ exports.setRandomActivity = client => {
     `nothing because of EU`,
     `alone :(`,
     `с товарищ`,
+    `russian war crimes`,
     `hide and seek with FBI`,
     `far away from Putin`,
     `sudo rm -rf /*`,
