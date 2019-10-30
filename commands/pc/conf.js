@@ -33,14 +33,7 @@ module.exports = class ConfCommand extends Command {
     if (conf === ``) {
       return sendCMDUsage(msg, this, [`configuration (1, 2 or server)`, `(user)`])
     } else {
-      switch (conf) {
-      case `1`:
-        return sendConf(msg, user, `conf1`, __dirname)
-      case `2`:
-        return sendConf(msg, user, `conf2`, __dirname)
-      case `server`:
-        return sendConf(msg, user, `server`, __dirname)
-      }
+      return sendConf(msg, user, conf, __dirname)
     }
   }
 }

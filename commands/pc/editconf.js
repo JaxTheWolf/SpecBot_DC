@@ -39,12 +39,7 @@ module.exports = class EditConfCommand extends Command {
     if (confNum === `` || component === `` || newCmp === ``) {
       return sendCMDUsage(msg, this, [`configuration (1 or 2)`, `component`, `newValue`])
     } else {
-      switch (confNum) {
-      case `1`:
-        return editConf(msg, component, newCmp, __dirname, `conf1`)
-      case `2`:
-        return editConf(msg, component, newCmp, __dirname, `conf2`)
-      }
+      return editConf(msg, component, newCmp, __dirname, confNum)
     }
   }
 }

@@ -34,14 +34,7 @@ module.exports = class DelConfCommand extends Command {
     if (confNum === `` || confirm === ``) {
       return sendCMDUsage(msg, this, [`configuration (1, 2 or server)`, `confirm (yes or no)`])
     } else {
-      switch (confNum) {
-      case `1`:
-        return delConf(msg, confirm, __dirname, `conf1`)
-      case `2`:
-        return delConf(msg, confirm, __dirname, `conf2`)
-      case `server`:
-        return delConf(msg, confirm, __dirname, `server`)
-      }
+      return delConf(msg, confirm, __dirname, confNum)
     }
   }
 }
