@@ -18,79 +18,79 @@ module.exports = class Setpc1Command extends Command {
           oneOf: [`1`, `2`]
         },
         {
-          key: `CPU`,
+          key: `cpu`,
           prompt: `What CPU do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `GPU`,
+          key: `gpu`,
           prompt: `What GPU do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `RAM`,
+          key: `ram`,
           prompt: `What RAM do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `CASE`,
+          key: `case_`,
           prompt: `Which CASE do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `MOBO`,
+          key: `mobo`,
           prompt: `What MOBO do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `PSU`,
+          key: `psu`,
           prompt: `What PSU do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `COOLER`,
+          key: `cooler`,
           prompt: `What COOLER do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `STORAGE`,
+          key: `storage`,
           prompt: `What STORAGE do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `SCREEN`,
+          key: `screen`,
           prompt: `What SCREEN do you have?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `KEYBOARD`,
+          key: `keyboard`,
           prompt: `What KEYBOARD do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `MOUSE`,
+          key: `mouse`,
           prompt: `What MOUSE do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `HEADSET`,
+          key: `headset`,
           prompt: `What HEADSET do you use?`,
           type: `string`,
           wait: 90
         },
         {
-          key: `EXTRA`,
+          key: `extra`,
           prompt: `Do you have any extra accessories?`,
           type: `string`,
           wait: 90
@@ -98,31 +98,23 @@ module.exports = class Setpc1Command extends Command {
       ]
     })
   }
-  run (
-    msg,
-    {
-      conf,
-      CASE,
-      COOLER,
-      CPU,
-      EXTRA,
-      GPU,
-      HEADSET,
-      KEYBOARD,
-      MOBO,
-      MOUSE,
-      PSU,
-      RAM,
-      SCREEN,
-      STORAGE
+  run (msg, { conf, case_, cooler, cpu, extra, gpu, headset, keyboard, mobo, mouse, psu, ram, screen, storage }) {
+    const content = {
+      'CPU': cpu,
+      'GPU': gpu,
+      'RAM': ram,
+      'CASE': case_,
+      'MOBO': mobo,
+      'PSU': psu,
+      'COOLER': cooler,
+      'STORAGE': storage,
+      'SCREEN': screen,
+      'KEYBOARD': keyboard,
+      'MOUSE': mouse,
+      'HEADSET': headset,
+      'EXTRA': extra
     }
-  ) {
-    const content = `CPU: ${CPU}\nGPU: ${GPU}\nRAM: ${RAM}\nCASE: ${CASE}\nMOBO: ${MOBO}\nPSU: ${PSU}\nCOOLER: ${COOLER}\nSTORAGE: ${STORAGE}\nSCREEN: ${SCREEN}\nKEYBOARD: ${KEYBOARD}\nMOUSE: ${MOUSE}\nHEADSET: ${HEADSET}\nEXTRA: ${EXTRA}`
-    switch (conf) {
-    case `1`:
-      return setConf(msg, content, `conf1`, __dirname)
-    case `2`:
-      return setConf(msg, content, `conf2`, __dirname)
-    }
+
+    return setConf(msg, content, conf, __dirname)
   }
 }
