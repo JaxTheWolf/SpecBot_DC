@@ -1,8 +1,8 @@
 module.exports = (client, guild) => {
-  const log = require(`node-file-logger`)
+  const { Info, SetUserOptions } = require(`node-file-logger`)
   const { options } = require(`../configs/options`)
   const { setActivity } = require(`../libs/eventLibs`)
-  log.SetUserOptions(options)
+  SetUserOptions(options)
 
   setActivity(client)
 
@@ -21,5 +21,5 @@ module.exports = (client, guild) => {
   client.provider.set(guild, `annchan`, defaultChann)
   client.provider.set(guild, `muteann`, false)
 
-  log.Info(`Joined guild "${guild.name}".`)
+  Info(`Joined guild "${guild.name}".`)
 }

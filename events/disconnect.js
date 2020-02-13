@@ -1,7 +1,7 @@
 module.exports = event => {
-  const log = require(`node-file-logger`)
+  const { Warn, SetUserOptions } = require(`node-file-logger`)
   const { options } = require(`../configs/options`)
-  log.SetUserOptions(options)
+  SetUserOptions(options)
 
-  log.Info(`Client's WebSocket disconnected! Code: ${event.code}`)
+  Warn(`Client's WebSocket disconnected! Code: ${event.code}`)
 }

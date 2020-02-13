@@ -42,7 +42,7 @@ exports.editConf = (msg, component, newCmp, dirname, conf) => {
 exports.sendConf = (msg, user, conf, dirname) => {
   const db = new SQLite(`${dirname}/../../DBs/configurations.sqlite3`)
 
-  function retrievePC (user) {
+  const retrievePC = (user) => {
     let conf_
     conf === `server` ? conf_ = `server` : conf_ = `conf` + conf
 

@@ -22,14 +22,14 @@ module.exports = class GuildInfoCommand extends Command {
     })
   }
   run (msg) {
-    function checkBots (guild, member) {
+    const checkBots = (guild) => {
       let memberCount = 0
       guild.members.forEach(member => {
         if (member.user.bot) memberCount++
       })
       return memberCount
     }
-    function channCount (guild, type) {
+    const channCount = (guild, type) => {
       let chann = 0
       guild.channels.forEach(c => {
         if (c.type === type) chann++

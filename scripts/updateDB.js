@@ -3,7 +3,7 @@ const SQL = require(`sqlite3`)
 const DB = new SQL.Database(`${__dirname}/../DBs/configurations.sqlite3`)
 const stmt = DB.prepare(`SELECT * FROM conf1`)
 
-stmt.all(function (err, rows) {
+stmt.all((err, rows) => {
   if (err) throw err
 
   rows.forEach(row => {

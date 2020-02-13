@@ -1,12 +1,12 @@
 const { Command } = require(`discord.js-commando`)
 const { sendCMDUsage } = require(`../../libs/miscLibs`)
 const { sendErrorEmbed, sendSuccessEmbed } = require(`../../libs/embeds`)
-const { setPoints } = require(`../../libs/dbLibs`)
+const { setMoney } = require(`../../libs/dbLibs`)
 
 module.exports = class GiveCommand extends Command {
   constructor (client) {
     super(client, {
-      description: `Gives someone x points.`,
+      description: `Gives someone x Spec$.`,
       examples: [`give 10 @user#0000`],
       group: `economy`,
       guildOnly: true,
@@ -15,17 +15,17 @@ module.exports = class GiveCommand extends Command {
       args: [
         {
           default: ``,
-          error: `You can only give 1 point or more!`,
+          error: `You can only give 1 Spec$ or more!`,
           key: `amount`,
           min: 1,
-          prompt: `How many point would you like to give?`,
+          prompt: `How many Spec$ would you like to give?`,
           type: `integer`
         },
         {
           default: ``,
           error: `Invalid user mention. Please try again.`,
           key: `user`,
-          prompt: `Who would you like to give these points?`,
+          prompt: `Who would you like to give these Spec$?`,
           type: `user`
         }
       ]
@@ -50,11 +50,11 @@ module.exports = class GiveCommand extends Command {
         if (authorScore.points < amount) {
           return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``, 7500)
         }
-        setPoints(this.client, authorScore, `-`, amount)
-        setPoints(this.client, userScore, `+`, amount)
+        setMoney(this.client, authorScore, `-`, amount)
+        setMoney(this.client, userScore, `+`, amount)
 
-        return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** points!`, ``)
-          .then(user.send(`**${msg.author.username}** gave you **${amount}** points! (Total: **${userScore.points}**)`))
+        return sendSuccessEmbed(msg, `Gave user **${user.username} ${amount}** Spec$!`, ``)
+          .then(user.send(`**${msg.author.username}** gave you **${amount}** Spec$! (Total: **${userScore.money}**)`))
       } catch (e) {
         return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
       }

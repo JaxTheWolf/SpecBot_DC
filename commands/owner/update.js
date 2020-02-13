@@ -14,7 +14,7 @@ module.exports = class UpdateCommand extends Command {
   }
   run (msg) {
     if (process.platform !== `win32`) {
-      exec(`cd scripts/ && sh update.sh | tail -10`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`cd scripts/ && sh update.sh | tail -10`, { shell: `/bin/bash` }, (code, stdout) => {
         return msg.say(`...\n${stdout}`, { code: `asciidoc` })
       })
     }

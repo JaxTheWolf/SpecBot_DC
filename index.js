@@ -60,7 +60,7 @@ client.setProvider(
     .then(db => new SQLiteProvider(db)))
   .catch(console.error)
 
-async function cleanupFunc (code) {
+const cleanupFunc = async (code) => {
   await client.destroy()
   process.exit(code)
 }
