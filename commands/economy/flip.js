@@ -3,7 +3,7 @@ const { Command } = require(`discord.js-commando`)
 const { RichEmbed } = require(`discord.js`)
 const { sendCMDUsage } = require(`../../libs/miscLibs`)
 const { sendErrorEmbed } = require(`../../libs/embeds`)
-const { setPoints } = require(`../../libs/dbLibs`)
+const { setMoney } = require(`../../libs/dbLibs`)
 const allowed = [
   `h`,
   `heads`,
@@ -46,7 +46,7 @@ module.exports = class FlipCommand extends Command {
     })
   }
   run (msg, { bet, gstate }) {
-    function flip () {
+    const flip = () => {
       return Math.floor(Math.random() * 2) === 0
     }
     if (bet === `` || gstate === ``) {
@@ -68,16 +68,16 @@ module.exports = class FlipCommand extends Command {
       } else {
         convState = false
       }
-      if (score.points < bet) {
+      if (score.money < bet) {
         return sendErrorEmbed(msg, `❌ Insufficent funds!`, ``)
       }
       if (convState === cf) {
-        const points = Math.floor(bet * 1.25)
-        setPoints(this.client, score, `+`, points)
-        embed.setDescription(`${convState === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +**${points}** points! (Total: **${score.points}**)`)
+        const money = Math.floor(bet * 1.25)
+        setMoney(this.client, score, `+`, money)
+        embed.setDescription(`${convState === true ? `CPU has been successfully inserted!` : `Overclock is stable!`} +**${money}** points! (Total: **${score.money}**)`)
       } else {
-        setPoints(this.client, score, `-`, bet)
-        embed.setDescription(`${convState === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -**${bet}** points! (Total: **${score.points}**)`)
+        setMoney(this.client, score, `-`, bet)
+        embed.setDescription(`${convState === true ? `You've bent the pins :(` : `You fried the poor CPU!`} -**${bet}** points! (Total: **${score.money}**)`)
       }
       return msg.say({ embed })
     }

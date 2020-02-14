@@ -8,7 +8,8 @@ module.exports = (client, msg) => {
         user: msg.author.id,
         guild: msg.guild.id,
         points: 0,
-        level: 1
+        level: 1,
+        money: 5
       }
     }
     score.points++
@@ -17,7 +18,8 @@ module.exports = (client, msg) => {
 
     if (score.level < curLevel) {
       score.level++
-      msg.reply(`You've leveled up to level **${curLevel}**`).then(m => m.delete(3000))
+      score.money += Math.round(Math.sqrt(curLevel * 5))
+      msg.reply(`You've leveled up to level **${score.level}**\nYou've also gained **${score.money}** Spec$!`).then(m => m.delete(3000))
     }
     client.setScore.run(score)
   }

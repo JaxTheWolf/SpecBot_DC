@@ -13,7 +13,7 @@ module.exports = class XYZCommand extends Command {
     })
   }
   run (msg) {
-    function fetchEmojis (guild) {
+    const fetchEmojis = (guild) => {
       const emojiList = guild.emojis.map(e => e.toString()).join(` `)
 
       switch (emojiList) {

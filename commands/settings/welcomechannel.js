@@ -35,7 +35,7 @@ module.exports = class WelcomeChannel extends Command {
   }
 
   run (msg, { action, channel }) {
-    function isText (channel) {
+    const isText = (channel) => {
       return channel.type === `text`
     }
 

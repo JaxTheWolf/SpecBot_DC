@@ -14,7 +14,7 @@ module.exports = class StatusCommand extends Command {
   }
   run (msg) {
     if (process.platform !== `win32`) {
-      exec(`cd scripts/ && sh service.sh status`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+      exec(`cd scripts/ && sh service.sh status`, { shell: `/bin/bash` }, (code, stdout) => {
         return msg.say(`...\n${stdout}`, { code: `asciidoc` })
       })
     }

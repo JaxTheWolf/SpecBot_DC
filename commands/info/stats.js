@@ -17,7 +17,7 @@ module.exports = class StatsCommand extends Command {
     })
   }
   run (msg) {
-    function countConfigs (conf) {
+    const countConfigs = (conf) => {
       return new SQLite(`${__dirname}/../../DBs/configurations.sqlite3`)
         .prepare(`SELECT COUNT(id) FROM ${conf}`)
         .get()[`COUNT(id)`]

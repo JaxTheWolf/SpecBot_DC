@@ -1,4 +1,3 @@
-const randomHexColor = require(`random-hex-color`)
 const { sendErrorEmbed, sendSimpleEmbededMessage, sendSuccessEmbed, hexColorWith0x } = require(`./embeds`)
 
 exports.setMsg = (msg, jMsg, jl) => {

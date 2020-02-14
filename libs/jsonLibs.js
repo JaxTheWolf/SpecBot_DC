@@ -1,10 +1,10 @@
-const https = require(`https`)
+const { get } = require(`https`)
 
 exports.sendImg = (msg, reqUrl, field) => {
   const randomHexColor = require(`random-hex-color`)
   const { sendEmbeddedImage, sendErrorEmbed } = require(`./embeds`)
 
-  https.get(reqUrl, function onDone (response) {
+  get(reqUrl, (response) => {
     let data = ``
     response.on(`data`, chunk => {
       data += chunk
@@ -19,7 +19,7 @@ exports.sendImg = (msg, reqUrl, field) => {
 }
 
 exports.fetchText = (msg, emote, reqUrl, field) => {
-  https.get(reqUrl, function onDone (response) {
+  get(reqUrl, (response) => {
     let data = ``
     response.on(`data`, chunk => {
       data += chunk

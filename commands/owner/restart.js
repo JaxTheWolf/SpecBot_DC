@@ -18,8 +18,8 @@ module.exports = class RestartCommand extends Command {
     })
   }
   run (msg) {
-    function resNow () {
-      exec(`cd scripts/ && sh service.sh restart`, { shell: `/bin/bash` }, function onDone (code, stdout) {
+    const resNow = () => {
+      exec(`cd scripts/ && sh service.sh restart`, { shell: `/bin/bash` }, (code, stdout) => {
         log.Info(`Restarting!`)
       })
     }

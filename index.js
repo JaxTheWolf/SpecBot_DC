@@ -31,7 +31,8 @@ client.registry
     [`fun`, `Various fun commands.`],
     [`mods`, `Moderation related commands.`],
     [`owner`, `Owner-only commands.`],
-    [`info`, `Informative commands.`]
+    [`info`, `Informative commands.`]// ,
+    // [`games`, `All kinds of smol games are here.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
@@ -60,7 +61,7 @@ client.setProvider(
     .then(db => new SQLiteProvider(db)))
   .catch(console.error)
 
-async function cleanupFunc (code) {
+const cleanupFunc = async (code) => {
   await client.destroy()
   process.exit(code)
 }

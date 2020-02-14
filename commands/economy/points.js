@@ -23,7 +23,7 @@ module.exports = class PointsCommand extends Command {
     })
   }
   run (msg, { member }) {
-    function sendCard (user, client) {
+    const sendCard = (user, client) => {
       const images = [
         `${__dirname}/raw/rect.png`,
         user.displayAvatarURL,
