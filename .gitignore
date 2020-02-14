@@ -6,3 +6,5 @@ conf.json
 
 # ignore logfiles
 logs
+
+package-lock.json
