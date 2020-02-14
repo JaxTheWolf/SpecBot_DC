@@ -31,7 +31,8 @@ client.registry
     [`fun`, `Various fun commands.`],
     [`mods`, `Moderation related commands.`],
     [`owner`, `Owner-only commands.`],
-    [`info`, `Informative commands.`]
+    [`info`, `Informative commands.`]// ,
+    // [`games`, `All kinds of smol games are here.`]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
