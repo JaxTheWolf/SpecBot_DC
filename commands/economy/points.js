@@ -55,6 +55,7 @@ module.exports = class PointsCommand extends Command {
           bg.composite(circleAvatar, 10, 10)
             .print(font, 100, 22, `Points: ${score.points}`)
             .print(font, 100, 52, `Level: ${score.level}`)
+            .print(font, 210, 52, `(${score.money} Spec$)`)
             .getBufferAsync(jimp.MIME_PNG)
             .then(img => {
               msg.say({ files: [{ attachment: img, name: `card.png` }] })
