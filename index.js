@@ -7,7 +7,8 @@ const {
 } = require(`./configs/conf.json`)
 const fs = require(`fs`)
 const log = require(`node-file-logger`)
-const sqlite = require(`sqlite`)
+const { open } = require(`sqlite`)
+const sqlite3 = require(`sqlite3`)
 const { CommandoClient, SQLiteProvider } = require(`discord.js-commando`)
 const { join } = require(`path`)
 const { options } = require(`./configs/options`)
@@ -57,7 +58,7 @@ client.on(`commandRun`, (command, promise, message) => {
 })
 
 client.setProvider(
-  sqlite.open(join(`${__dirname}/DBs`, `settings.sqlite3`))
+  open({ filename: join(`${__dirname}/DBs`, `settings.sqlite3`), driver: sqlite3.Database })
     .then(db => new SQLiteProvider(db)))
   .catch(console.error)
 
