@@ -12,6 +12,6 @@ module.exports = class MemeCommand extends Command {
     })
   }
   run (msg) {
-    return sendImg(msg, `https://some-random-api.ml/meme`, `url`)
+    return sendImg(msg, `https://some-random-api.ml/meme`, `image`)
   }
 }
