@@ -13,7 +13,7 @@ exports.delConf = (msg, confirm, dirname, conf) => {
       db.prepare(`DELETE FROM ${conf_} WHERE id = '${msg.author.id}';`).run()
       return sendSuccessEmbed(msg, `✅ Configuration successfully deleted!`, ``, 7500)
     } catch (e) {
-      return sendErrorEmbed(msg, `❌ You don't have a configuration yet or an error has occured.`, ``, 7500)
+      return sendErrorEmbed(msg, `❌ You don't have a configuration yet or an error has occurred.`, ``, 7500)
     }
   }
 }
@@ -33,7 +33,7 @@ exports.editConf = (msg, component, newCmp, dirname, conf) => {
       if (e.message === `Cannot read property 'conf' of undefined`) {
         return sendErrorEmbed(msg, `❌ You don't have a configuration yet!`, ``, 7500)
       } else {
-        return sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)
+        return sendErrorEmbed(msg, `An error has occurred while saving your configuration`, e.message, 7500)
       }
     }
   }
@@ -62,7 +62,7 @@ exports.sendConf = (msg, user, conf, dirname) => {
       if (typeof confObj === `undefined`) {
         return sendErrorEmbed(msg, `❌ This person doesn't have a configuration yet!`, ``, 7500)
       } else if (e) {
-        return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
+        return sendErrorEmbed(msg, `An error has occurred`, e.message, 7500)
       }
     }
   }
@@ -83,7 +83,7 @@ exports.setConf = (msg, content, conf, dirname) => {
     if (e.message.includes(`UNIQUE constraint failed`)) {
       return sendErrorEmbed(msg, `❌ You already own a configuration!`, ``, 7500)
     } else {
-      sendErrorEmbed(msg, `An error has occured while saving your configuration`, e.message, 7500)
+      sendErrorEmbed(msg, `An error has occurred while saving your configuration`, e.message, 7500)
     }
   }
 }

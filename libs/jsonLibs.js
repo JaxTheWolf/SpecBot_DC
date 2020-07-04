@@ -14,7 +14,7 @@ exports.sendImg = (msg, reqUrl, field) => {
     })
   })
     .on(`error`, err => {
-      return sendErrorEmbed(msg, `An error has occured`, err.message, 7500)
+      return sendErrorEmbed(msg, `An error has occurred`, err.message, 7500)
     })
 }
 

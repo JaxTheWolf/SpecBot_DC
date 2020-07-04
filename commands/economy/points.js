@@ -73,7 +73,7 @@ module.exports = class PointsCommand extends Command {
         }
       }
     } catch (e) {
-      return sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
+      return sendErrorEmbed(msg, `An error has occurred`, e.message, 7500)
     }
   }
 }

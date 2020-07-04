@@ -7,7 +7,7 @@ exports.setMsg = (msg, jMsg, jl) => {
     return msg.client.provider.set(msg.guild, jl, jMsg)
       .then(s => sendSuccessEmbed(msg, `✅ The ${jl} message has been set to`, s.replace(/(%s)/gi, `\`tag\``)))
       .catch(e => {
-        sendErrorEmbed(msg, `An error has occured.`, e.message, 7500)
+        sendErrorEmbed(msg, `An error has occurred.`, e.message, 7500)
       })
   }
 }

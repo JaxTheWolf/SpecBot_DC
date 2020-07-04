@@ -49,7 +49,7 @@ module.exports = class WelcomeChannel extends Command {
         if (isText(channel) && joinchann === null) {
           return this.client.provider.set(msg.guild, `joinchann`, channel.id).then(id => sendSuccessEmbed(msg, `✅ The welcome channel has been set to`, `<#${id}>`))
             .catch(e => {
-              sendErrorEmbed(msg, `An error has occured`, e.message, 7500)
+              sendErrorEmbed(msg, `An error has occurred`, e.message, 7500)
             })
         } else if (joinchann !== null) {
           return sendErrorEmbed(msg, `❌ You already have the join channel set!`)
@@ -65,7 +65,7 @@ module.exports = class WelcomeChannel extends Command {
               sendSuccessEmbed(msg, `✅ The join channel has been sucessfully disabled!`, ``)
             })
             .catch(e => {
-              sendErrorEmbed(msg, `❌ An error has occured`, e.message)
+              sendErrorEmbed(msg, `❌ An error has occurred`, e.message)
             })
         }
       default:
